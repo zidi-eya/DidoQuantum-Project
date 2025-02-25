@@ -22,7 +22,6 @@ app = FastAPI(
 @app.on_event("startup")
 async def startup():
     await init_db()  # Initialize the database on startup
-    webbrowser.open("http://127.0.0.1:8000/docs")  # ✅ Auto-open Swagger UI
 
 
 # Include User Routes
