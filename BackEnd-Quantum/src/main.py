@@ -1,11 +1,4 @@
-import webbrowser
-from fastapi import FastAPI, HTTPException, Depends
-from sqlalchemy.ext.asyncio import AsyncSession
-from pydantic import BaseModel
-from src.database import Base, engine, get_db  # ✅ Use the async database setup
-from sqlalchemy import Column, Integer, String
-
-import webbrowser
+from fastapi import FastAPI
 from src.database import init_db
 from src.modules.Formulaire.router import router as user_router
 

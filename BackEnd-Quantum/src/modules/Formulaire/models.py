@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from src.database import Base
 
-class formulair(Base):
+class Formulair(Base):
     __tablename__ = "formulair"
 
     id = Column(Integer, primary_key=True, index=True)
