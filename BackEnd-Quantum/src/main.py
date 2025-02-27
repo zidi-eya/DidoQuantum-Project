@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+
 from src.database import init_db
 from src.modules.Formulaire.router import router as user_router
 
@@ -12,11 +15,22 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
+# CORS Configuration (Allows frontend to communicate with the backend)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins (for development)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods
+    allow_headers=["*"],  # Allows all headers
+)
 @app.on_event("startup")
 async def startup():
     await init_db()  # Initialize the database on startup
 
+# Import and include your routers
+from src.modules.Formulaire.router import router as formulaire_router
 
+app.include_router(formulaire_router)
 # Include User Routes
 app.include_router(user_router, prefix="/users", tags=["Users"])
 

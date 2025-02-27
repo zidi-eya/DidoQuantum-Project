@@ -1,13 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+import FormulaireExample from '..//modules/pages/FormulaireExample.vue'
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: FormulaireExample,
     },
     {
       path: '/about',
@@ -18,11 +21,7 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
 
-    {
-      path: '/formulaire',
-      name: 'formulaire',
-      component: () => import('../views/FormulaireExample.vue'),
-    },
+
   ],
 })
 
