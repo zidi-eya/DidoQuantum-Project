@@ -23,3 +23,31 @@ export const addUser = async (user: User): Promise<User> => {
     throw error;
   }
 };
+
+export const deleteUser = async (userId: number): Promise<void> => {
+  try {
+    await axios.delete(`${API_URL}/deleteuser/${userId}`);
+    console.log(`User with ID ${userId} deleted successfully.`);
+  } catch (error) {
+    console.error(`Error deleting user with ID ${userId}:`, error);
+    throw error;
+  }
+};
+
+export interface UserUpdate {
+  firstname?: string;
+  lastname?: string;
+  emil?: string;
+  description?: string;
+}
+
+export const updateUser = async (userId: number, user: UserUpdate): Promise<User> => {
+  try {
+    const response = await axios.put<User>(`${API_URL}/updateuser/${userId}`, user);
+    console.log(`User with ID ${userId} updated successfully.`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating user with ID ${userId}:`, error);
+    throw error;
+  }
+};
