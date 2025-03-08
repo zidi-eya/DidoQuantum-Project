@@ -14,9 +14,9 @@ export const fetchAllUsers = async (): Promise<User[]> => {
   }
 };
 
-export const addUser = async (user: User): Promise<User> => {
+export const addUser = async (formData: FormData): Promise<User> => {
   try {
-    const response = await axios.post<User>(`${API_URL}/createuser`, user);
+    const response = await axios.post<User>(`${API_URL}/createuser`, formData);
     return response.data;
   } catch (error) {
     console.error("Error adding user:", error);

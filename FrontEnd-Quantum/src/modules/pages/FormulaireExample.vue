@@ -97,19 +97,40 @@ const handleFileUpload = (event: Event) => {
 // Function to submit the form and add a new user
 const submitForm = async () => {
   try {
-    const newUser = await addUser(user.value);
+    const formData = new FormData();
+    formData.append("name", user.value.name);
+    formData.append("email", user.value.email);
+    formData.append("role", user.value.role);
+    formData.append("status", user.value.status);
+
+    // Instead of created_at, set it to the current date if the backend needs it
+    formData.append("created_at", new Date().toISOString()); // Add the date as a string in ISO format
+
+    // Attach the profile image if it exists
+    if (user.value.profile_image_file) {
+      formData.append("profile_image", user.value.profile_image_file);
+    }
+
+    // Send FormData to the addUser service
+    const newUser = await addUser(formData);
     users.value.push(newUser); // Update the list
+
+    // Reset form values
     user.value = {
       name: "",
       email: "",
       role: "",
-      profile_image: "",
       status: "",
-      created_at: new Date(),
+      profile_image: "",
       profile_image_file: null,
     };
   } catch (error) {
-    console.error("Error adding user:", error);
+    if (axios.isAxiosError(error) && error.response) {
+      console.error("Error response data:", error.response.data);
+      console.error("Error status:", error.response.status);
+    } else {
+      console.error("Error adding user:", error);
+    }
   }
 };
 
