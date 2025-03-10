@@ -8,56 +8,14 @@
       <input v-model="user.email" placeholder="Email" required />
       <input v-model="user.role" placeholder="Role" required />
       <input type="file" @change="handleFileUpload" accept="image/*" required />
-      <input v-model="user.status" placeholder="Role" required />
+      <select v-model="user.status" required>
+        <option value="" disabled>Select status</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
 
       <button type="submit">Add User</button>
     </form>
-
-    <h2>Users List</h2>
-
-    <!-- Display Users -->
-    <table class="users-table">
-      <thead>
-        <tr>
-          <th>Profile Image</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Status</th>
-          <th>Created At</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in users" :key="user.id">
-          <td>
-            <img
-              v-if="user.profile_image"
-              :src="user.profile_image"
-              alt="Profile"
-              width="50"
-              height="50"
-            />
-          </td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.role }}</td>
-          <td>{{ user.status }}</td>
-          <td>{{ user.created_at }}</td>
-
-          <td>
-            <!--   <button @click="editUser(user.id)">Edit</button>-->
-            <button
-              v-if="user.id !== undefined"
-              @click="deleteUserConfirmed(user.id)"
-              style="background-color: brown"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </template>
 <script setup lang="ts">
@@ -131,15 +89,6 @@ const submitForm = async () => {
     } else {
       console.error("Error adding user:", error);
     }
-  }
-};
-
-const deleteUserConfirmed = async (id: number) => {
-  try {
-    await deleteUser(id);
-    users.value = users.value.filter((u) => u.id !== id);
-  } catch (error) {
-    console.error("Error deleting user:", error);
   }
 };
 </script>

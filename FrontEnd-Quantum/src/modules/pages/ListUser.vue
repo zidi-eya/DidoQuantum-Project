@@ -1,0 +1,159 @@
+<template>
+  <div class="container">
+    <h2>Users List</h2>
+
+    <!-- Display Users -->
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>Profile Image</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Created At</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in users" :key="user.id">
+          <td>
+            <img
+              v-if="user.profile_image"
+              :src="user.profile_image"
+              alt="Profile"
+              width="50"
+              height="50"
+            />
+          </td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.status }}</td>
+          <td>{{ user.created_at }}</td>
+
+          <td>
+            <!--   <button @click="editUser(user.id)">Edit</button>-->
+            <button
+              v-if="user.id !== undefined"
+              @click="deleteUserConfirmed(user.id)"
+              style="background-color: brown"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import { fetchAllUsers, addUser, deleteUser, updateUser } from "../services/userService";
+import type { User } from "../models/userModel";
+import axios from "axios";
+const users = ref<User[]>([]);
+const user = ref<User & { profile_image_file: File | null }>({
+  // Added profile_image_file
+  name: "",
+  email: "",
+  role: "",
+  profile_image: "", // Keep this as string
+  status: "",
+  created_at: new Date(), // Initialize with current date and time
+
+  profile_image_file: null, // New field for the uploaded file
+});
+
+// Fetch all users when the component is mounted
+onMounted(async () => {
+  try {
+    users.value = await fetchAllUsers();
+  } catch (error) {
+    console.error("Failed to fetch users:", error);
+  }
+});
+
+const deleteUserConfirmed = async (id: number) => {
+  try {
+    await deleteUser(id);
+    users.value = users.value.filter((u) => u.id !== id);
+  } catch (error) {
+    console.error("Error deleting user:", error);
+  }
+};
+</script>
+
+<style scoped>
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.user-form input,
+.user-form button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #000000;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+  border: 1px solid #000000;
+  padding: 8px;
+  text-align: left;
+}
+
+.users-table th {
+  background-color: rgba(173, 221, 27, 0.703);
+}
+
+.users-table td button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.users-table td button:hover {
+  background-color: #2929ba;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+}
+
+button {
+  background-color: #28a745;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+</style>
