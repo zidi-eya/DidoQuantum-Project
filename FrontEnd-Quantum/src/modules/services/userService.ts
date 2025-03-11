@@ -34,17 +34,11 @@ export const deleteUser = async (userId: number): Promise<void> => {
   }
 };
 
-export interface UserUpdate {
-  firstname?: string;
-  lastname?: string;
-  emil?: string;
-  description?: string;
-}
 
-export const updateUser = async (userId: number, user: UserUpdate): Promise<User> => {
+
+export const updateUser = async (userId: number, userData: Partial<User>): Promise<User> => {
   try {
-    const response = await axios.put<User>(`${API_URL}/updateuser/${userId}`, user);
-    console.log(`User with ID ${userId} updated successfully.`);
+    const response = await axios.put<User>(`${API_URL}/updateuser/${userId}`, userData);
     return response.data;
   } catch (error) {
     console.error(`Error updating user with ID ${userId}:`, error);

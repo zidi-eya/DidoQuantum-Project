@@ -16,6 +16,13 @@
 
       <button type="submit">Add User</button>
     </form>
+
+    <!-- Success & Error Notification -->
+    <transition name="toast-fade">
+      <div v-if="isToastVisible" class="toast" :class="toastType">
+        {{ toastMessage }}
+      </div>
+    </transition>
   </div>
 </template>
 <script setup lang="ts">
@@ -24,6 +31,9 @@ import { fetchAllUsers, addUser, deleteUser, updateUser } from "../services/user
 import type { User } from "../models/userModel";
 import axios from "axios";
 const users = ref<User[]>([]);
+const isToastVisible = ref(false);
+const toastMessage = ref("");
+const toastType = ref("success"); // "success" or "error"
 const user = ref<User & { profile_image_file: File | null }>({
   // Added profile_image_file
   name: "",
@@ -52,7 +62,6 @@ const handleFileUpload = (event: Event) => {
   }
 };
 
-// Function to submit the form and add a new user
 const submitForm = async () => {
   try {
     const formData = new FormData();
@@ -60,18 +69,17 @@ const submitForm = async () => {
     formData.append("email", user.value.email);
     formData.append("role", user.value.role);
     formData.append("status", user.value.status);
+    formData.append("created_at", new Date().toISOString());
 
-    // Instead of created_at, set it to the current date if the backend needs it
-    formData.append("created_at", new Date().toISOString()); // Add the date as a string in ISO format
-
-    // Attach the profile image if it exists
     if (user.value.profile_image_file) {
       formData.append("profile_image", user.value.profile_image_file);
     }
 
-    // Send FormData to the addUser service
     const newUser = await addUser(formData);
-    users.value.push(newUser); // Update the list
+    users.value.push(newUser);
+
+    // Show success notification
+    showToast("User added successfully!", "success");
 
     // Reset form values
     user.value = {
@@ -85,15 +93,59 @@ const submitForm = async () => {
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
       console.error("Error response data:", error.response.data);
-      console.error("Error status:", error.response.status);
+      showToast("Error adding user: " + error.response.data.detail, "error");
     } else {
       console.error("Error adding user:", error);
+      showToast("An unknown error occurred!", "error");
     }
   }
+};
+
+// Function to show toast notification
+const showToast = (message: string, type: "success" | "error") => {
+  toastMessage.value = message;
+  toastType.value = type;
+  isToastVisible.value = true;
+
+  setTimeout(() => {
+    isToastVisible.value = false;
+  }, 3000); // Hide after 3 seconds
 };
 </script>
 
 <style scoped>
+/* Toast Notification */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: white;
+  z-index: 1000;
+}
+
+/* Success & Error Colors */
+.success {
+  background-color: green;
+}
+
+.error {
+  background-color: red;
+}
+
+/* Toast Fade Animation */
+.toast-fade-enter-active,
+.toast-fade-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.toast-fade-enter,
+.toast-fade-leave-to {
+  opacity: 0;
+}
+
 .container {
   max-width: 900px;
   margin: auto;
@@ -110,8 +162,9 @@ const submitForm = async () => {
 }
 
 .user-form input,
+.user-form select,
 .user-form button {
-  padding: 10px;
+  padding: 17px;
   font-size: 16px;
   border-radius: 4px;
   border: 1px solid #000000;

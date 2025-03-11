@@ -9,7 +9,7 @@
         style="margin-left: 50px"
       />
       <router-link to="/" class="button">Add User </router-link>
-      <router-link to="/about" class="button">View List User</router-link>
+      <router-link to="/ListUser" class="button">View List User</router-link>
       <div>
         <p style="position: fixed; bottom: 1px">
           Copyright © 2025 Dido Quantum Pulse <br />
