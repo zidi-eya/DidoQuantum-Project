@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-
 from src.database import init_db
 from src.modules.Formulaire.router import router as user_router
 
@@ -12,10 +11,12 @@ app = FastAPI(
     description="API documentation for the Dido Quantum backend",
     version="1.0.0",
     docs_url="/docs",  # Swagger UI (default)
-    redoc_url="/redoc",  # ReDoc UI (optional)
     openapi_url="/openapi.json"
 )
 
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
 # CORS Configuration (Allows frontend to communicate with the backend)
 app.add_middleware(
     CORSMiddleware,

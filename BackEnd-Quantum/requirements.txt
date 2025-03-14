@@ -30,4 +30,7 @@ soupsieve==2.5
 sqlalchemy>=1.4
 typing_extensions==4.12.2
 uvicorn==0.34.0
+playwright
 zipp==1.0.0
+python-multipart
+debugpy

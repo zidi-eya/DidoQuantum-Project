@@ -6,7 +6,7 @@ from sqlalchemy import JSON
 from typing import Any
 
 # Correct Async DATABASE URL
-DATABASE_URL = "postgresql+asyncpg://quantum_user:dido@localhost:5432/dido_quantum_db"
+DATABASE_URL = "postgresql+asyncpg://quantum_user:dido@db:5432/dido_quantum_db"
 
 # Async Engine
 engine = create_async_engine(DATABASE_URL, echo=True)
@@ -25,7 +25,7 @@ async def init_db():
         await conn.run_sync(Base.metadata.create_all)
         
 # Dependency for DB session
-async def get_db() -> AsyncSession:
+async def get_db() -> AsyncSession: # type: ignore
     async with SessionLocal() as session:
         yield session
 
