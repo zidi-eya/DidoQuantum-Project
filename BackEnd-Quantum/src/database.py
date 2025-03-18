@@ -1,4 +1,4 @@
-from sqlalchemy.orm import DeclarativeBase, sessionmaker, Session
+from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -10,6 +10,7 @@ DATABASE_URL = "postgresql+asyncpg://quantum_user:dido@db:5432/dido_quantum_db"
 
 # Async Engine
 engine = create_async_engine(DATABASE_URL, echo=True)
+async_session = async_sessionmaker(engine,class_=AsyncSession, expire_on_commit=False)
 
 # Async Session
 SessionLocal = async_sessionmaker(bind=engine, expire_on_commit=False)

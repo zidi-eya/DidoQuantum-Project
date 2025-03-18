@@ -34,3 +34,6 @@ playwright
 zipp==1.0.0
 python-multipart
 debugpy
+psycopg2-binary
+bcrypt
+pydantic_settings

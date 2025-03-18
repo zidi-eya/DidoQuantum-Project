@@ -5,6 +5,8 @@ from fastapi.staticfiles import StaticFiles
 from src.database import init_db
 from src.modules.Formulaire.router import router as user_router
 
+from src.modules.auth.router import router as auth
+
 # FastAPI App
 app = FastAPI(
     title="Dido Quantum API",
@@ -35,6 +37,7 @@ from src.modules.Formulaire.router import router as formulaire_router
 app.include_router(formulaire_router)
 # Include User Routes
 app.include_router(user_router, prefix="/users", tags=["Users"])
+app.include_router(auth, prefix="/auth", tags=["auth"])
 
 
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
