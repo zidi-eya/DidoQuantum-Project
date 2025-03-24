@@ -21,7 +21,7 @@ class AppConfig(BaseSettings):
     #STRIPE_API_KEY: str
     #STRIPE_ENPOINT_SECRET: str
     #TRIAL_PERIOD_DAYS: int
-    # COOKIES_CONFIG_SAMESITE: str
+    COOKIES_CONFIG_SAMESITE: str
 
 
 

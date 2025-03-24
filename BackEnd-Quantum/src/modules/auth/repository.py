@@ -72,7 +72,7 @@ class AuthRepository:
         is_active: bool = True,
         password: str | None = None,
     ) -> User:
-        client_reference_id = str(uuid.uuid4())
+        #client_reference_id = str(uuid.uuid4())
         user_roles = await self.get_roles_by_names(roles)
         async with async_session() as session:
             new_user = User(
@@ -83,7 +83,7 @@ class AuthRepository:
                 else await User.hash_password(password),
                 is_active=is_active,
                 roles=user_roles,
-                client_reference_id=client_reference_id,
+               # client_reference_id=client_reference_id,
             )
             session.add(new_user)
             await session.commit()

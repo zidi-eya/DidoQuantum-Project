@@ -123,7 +123,7 @@ class AuthService:
                 "sub": user.id,
                 "iat": now,
                 "exp": now + datetime.timedelta(minutes=auth_config.ACCESS_TOKEN_EXPIRE_MINUTES),
-                "subscription_validity" : user.subscription.validity_date.timestamp()
+               # "subscription_validity" : user.subscription.validity_date.timestamp()
             },
             auth_config.JWT_SECRET_KEY,
             algorithm=auth_config.JWT_ALGORITHM,

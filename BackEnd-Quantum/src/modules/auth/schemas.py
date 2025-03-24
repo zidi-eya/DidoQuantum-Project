@@ -9,7 +9,6 @@ class SignUpRequest(CustomSchema):
     full_name: str
     email: str
     password: str
-    referer_id: str = ""
 
 
 class SignInRequest(CustomSchema):
@@ -52,7 +51,6 @@ class UserBrief(CustomSchema):
             email=user.email,
             is_active=user.is_active,
             roles=[role.name for role in user.roles],
-           # client_reference_id=user.client_reference_id,
         )
     
 class SubscriptionStatus(IntEnum):
@@ -145,8 +143,7 @@ class ApiKeyResponse(CustomSchema):
             id=api_key.id,
             key=api_key.key,
             user_id=api_key.user_id,
-            prompt=api_key.prompt,
-           
+            prompt=api_key.prompt,           
             valid_until=api_key.valid_until,
         )
 
@@ -164,7 +161,7 @@ class ApiKeyListResponse(CustomSchema):
 class ApiKeyInfoResponse(CustomSchema):
     key: str
     prompt: bool
-    collection_ids: list[int] | None = None
+   # collection_ids: list[int] | None = None
     valid_until: datetime.date | None = None
 
     @staticmethod

@@ -54,13 +54,9 @@ async def sign_up(request: SignUpRequest, response: Response) -> UserBrief:
     new_user = await auth_service.create_user(
         request.full_name,
         request.email,
-        request.phone_country_code,
-        request.phone,
         [UserRole.USER],
         password=request.password,
         is_active=True,
-        referer_id=request.referer_id,
-        promo_code=request.promo_code
     )
 
    # email_service.send_email(

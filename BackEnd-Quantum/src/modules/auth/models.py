@@ -38,15 +38,11 @@ class User(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     full_name: Mapped[str] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
-    #phone_country_code: Mapped[str] = mapped_column(nullable=True)
-    #phone: Mapped[str] = mapped_column(nullable=True)
     hashed_password: Mapped[bytes] = mapped_column(nullable=True)
     is_active: Mapped[bool] = mapped_column(nullable=False, default=True)
     roles: Mapped[List[Role]] = relationship(
         secondary=user_role_association_table, lazy="joined"
     )
-   # subscription: Mapped[Subscription] = relationship(lazy="joined", uselist=False)
-    #client_reference_id: Mapped[str] = mapped_column(nullable=False)
 
     @staticmethod
     def generate_random_password() -> str:
@@ -67,10 +63,7 @@ class User(Base):
         return await loop.run_in_executor(None, bcrypt.checkpw, password.encode(), self.hashed_password)
         #return bcrypt.checkpw(password.encode(), self.hashed_password)
 
-    #@property
-    #def collection_id(self) -> str:
-     #   return f"user_{self.id}"
-
+  
 
 class UserToken(Base):
     __tablename__ = "user_token"
@@ -81,23 +74,13 @@ class UserToken(Base):
     valid_until: Mapped[datetime.datetime] = mapped_column(nullable=False)
 
 
-#class ApiKeyCollectionAccess(Base):
- #   __tablename__ = "api_key_collection_access"
-  #  id: Mapped[int] = mapped_column(primary_key=True)
-   # api_key_id: Mapped[int] = mapped_column(ForeignKey("api_key.id"), nullable=False)
-    #collection_id: Mapped[int] = mapped_column(
-     #   ForeignKey("collection.id"), nullable=False
-    #)
-
-
 class ApiKey(Base):
     __tablename__ = "api_key"
     id: Mapped[int] = mapped_column(primary_key=True)
-   # name: Mapped[str] = mapped_column(nullable=False)
     key: Mapped[str] = mapped_column(nullable=False)
     prompt: Mapped[bool] = mapped_column(nullable=False, default=False)
-    read_collections: Mapped[bool] = mapped_column(nullable=False)
     valid_until: Mapped[datetime.date] = mapped_column(nullable=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
+       # name: Mapped[str] = mapped_column(nullable=False)
 
-    #collections: Mapped[List[ApiKeyCollectionAccess]] = relationship(lazy="joined")
+
