@@ -1,8 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import { route } from 'quasar/wrappers';
+//import routes from './routes';
+import RoutePrefixes from './RoutePrefixes';
+//import { useAuthStore } from '..//modules/auth/stores/auth-store';
+//import { Role } from '..//modules/auth/utils/constants';
 
-import FormulaireExample from '..//modules/pages/FormulaireExample.vue'
 
+import { LoadingBar } from 'quasar'
+import FormulaireExample from '..//modules/pages/FormulaireExample.vue';
+import Index from '..//modules/pages/index.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,14 +21,70 @@ const router = createRouter({
     {
       path: '/ListUser',
       name: 'ListUser',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../modules/pages/ListUser.vue'),
     },
 
+    {
+      path: '/Index',
+      name: 'Index',
+      component: Index,
+    },
 
   ],
 })
 
+
+
 export default router
+ /* const createHistory = createWebHistory;
+
+  const Router = createRouter({
+    scrollBehavior: () => ({ left: 0, top: 0 }),
+    routes,
+
+
+    history: createHistory(process.env.VUE_ROUTER_BASE),
+  });
+
+  Router.beforeEach(async (to) => {
+    try {
+    const authStore = useAuthStore();
+    await authStore.reloadUser();
+    LoadingBar.start();
+    if (to.meta.requiresAuth && !authStore.isLoggedIn) {
+      return `${RoutePrefixes.AUTH}/sign-in`;
+    }
+
+    if (
+      to.meta.requiresAuth &&
+      authStore.isLoggedIn
+    ) {
+      return `${RoutePrefixes.SUBSCRIPTION}/plans`;
+    }
+
+    if (to.path.includes(RoutePrefixes.AUTH) && authStore.isLoggedIn) {
+      return RoutePrefixes.PROTECTED;
+    }
+
+    if (to.path.includes(RoutePrefixes.ADMIN) && authStore.isLoggedIn) {
+      if (!authStore.getUser.roles.includes(Role.SUPERADMIN)) {
+        return RoutePrefixes.PROTECTED;
+      }
+    }
+  } finally {
+    LoadingBar.stop();
+  }
+  });
+
+  return Router;
+});*/
+
+
+
+
+
+
+
+
+
+

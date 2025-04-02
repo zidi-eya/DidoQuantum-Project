@@ -1,5 +1,5 @@
 <template>
-  <sidebar />
+  <!--<sidebar /> -->
   <RouterView />
 </template>
 <script setup lang="ts">
