@@ -1,65 +1,39 @@
-import { createRouter, createWebHistory } from 'vue-router';
 import { route } from 'quasar/wrappers';
-//import routes from './routes';
-import RoutePrefixes from './RoutePrefixes';
-//import { useAuthStore } from '..//modules/auth/stores/auth-store';
-//import { Role } from '..//modules/auth/utils/constants';
+import { createRouter, createWebHistory } from 'vue-router';
 
+import routes from './routes';
+import { useAuthStore } from 'src/modules/auth/stores/auth-store';
+import RoutePrefixes from 'src/router/RoutePrefixes';
+import { Role } from 'src/modules/auth/utils/constants';
 
-import { LoadingBar } from 'quasar'
-import FormulaireExample from '..//modules/pages/FormulaireExample.vue';
-import Index from '..//modules/pages/index.vue';
+/*
+ * If not building with SSR mode, you can
+ * directly export the Router instantiation;
+ *
+ * The function below can be async too; either use
+ * async/await or return a Promise which resolves
+ * with the Router instance.
+ */
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: FormulaireExample,
-    },
-    {
-      path: '/ListUser',
-      name: 'ListUser',
-      component: () => import('../modules/pages/ListUser.vue'),
-    },
-
-    {
-      path: '/Index',
-      name: 'Index',
-      component: Index,
-    },
-
-  ],
-})
-
-
-
-export default router
- /* const createHistory = createWebHistory;
+export default route(function (/* { store, ssrContext } */) {
+  const createHistory = createWebHistory;
 
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
 
-
+    // Leave this as is and make changes in quasar.conf.js instead!
+    // quasar.conf.js -> build -> vueRouterMode
+    // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
   Router.beforeEach(async (to) => {
-    try {
     const authStore = useAuthStore();
     await authStore.reloadUser();
-    LoadingBar.start();
+
     if (to.meta.requiresAuth && !authStore.isLoggedIn) {
       return `${RoutePrefixes.AUTH}/sign-in`;
-    }
-
-    if (
-      to.meta.requiresAuth &&
-      authStore.isLoggedIn
-    ) {
-      return `${RoutePrefixes.SUBSCRIPTION}/plans`;
     }
 
     if (to.path.includes(RoutePrefixes.AUTH) && authStore.isLoggedIn) {
@@ -71,20 +45,7 @@ export default router
         return RoutePrefixes.PROTECTED;
       }
     }
-  } finally {
-    LoadingBar.stop();
-  }
   });
 
   return Router;
-});*/
-
-
-
-
-
-
-
-
-
-
+});

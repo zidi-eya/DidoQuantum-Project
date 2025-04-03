@@ -1,34 +1,13 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
+  "extends": "./node_modules/@quasar/app-vite/tsconfig-preset.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
     }
-  ]
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
 }
 
 
-/*{
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "typeRoots": ["./node_modules/@types", "./types"]
-  }
-}*/
