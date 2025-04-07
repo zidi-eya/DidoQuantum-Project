@@ -1,0 +1,17 @@
+{
+  "extends": "./node_modules/@quasar/app-vite/tsconfig-preset.json",
+  "compilerOptions": {
+    "outDir": "./dist-ts",
+    "declaration": false,
+    "sourceMap": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,    
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
+}
+
