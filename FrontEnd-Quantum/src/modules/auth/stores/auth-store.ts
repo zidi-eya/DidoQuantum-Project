@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import authService from 'src/modules/auth/services/AuthService';
-import { User } from 'src/modules/auth/models/user';
-import { Role } from 'src/modules/auth/utils/constants';
+import authService from '@/modules/auth/services/AuthService';
+import { User } from '@/modules/auth/models/user';
+import { Role } from '@/modules/auth/utils/constants';
 
 type authState = {
   user: User | null;
@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('auth-store', {
   actions: {
     async reloadUser(onError?: (error: Error) => Promise<void>) {
       try {
-        this.user = await authService.getUser();
+      //  this.user = await authService.getUser();
       } catch (e) {
         if (onError) {
           onError(e as Error);
@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('auth-store', {
       }
     },
     async updateUser({ fullName }: { fullName?: string }) {
-      this.user = await authService.updateProfile({ fullName });
+     // this.user = await authService.updateProfile({ fullName });
     },
     async signInWithEmailAndPassword(
       email: string,

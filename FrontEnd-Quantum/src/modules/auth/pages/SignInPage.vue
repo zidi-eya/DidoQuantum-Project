@@ -1,6 +1,6 @@
 <template>
 
-    <app-logo class="q-mb-xl" />
+    <!--<app-logo class="q-mb-xl" />-->
     <page-headings title="Sign in" subtitle="Enter your email and password to sign in!" />
     <q-form greedy class="q-gutter-md full-width" @submit.prevent="onSubmit">
       <q-input
@@ -57,21 +57,21 @@
 </template>
 
 <script setup lang="ts">
-import ErrorBox from 'src/components/ErrorBox.vue';
-import RoutePrefixes from 'src/router/RoutePrefixes';
+import ErrorBox from '@/components/ErrorBox.vue';
+import RoutePrefixes from '@/router/RoutePrefixes';
 
 import { ref } from 'vue';
-import { SignInRequest } from 'src/modules/auth/validation/sign-in';
-import { useExceptionHandling } from 'src/composables/exception-handling';
+import { SignInRequest } from '@/modules/auth/validation/sign-in';
+import { useExceptionHandling } from '@/composables/exception-handling';
 import { useAuthStore } from '../stores/auth-store';
 import { useRouter } from 'vue-router';
-import { AuthRules } from 'src/utils/validation/rules';
-import RouteNames from 'src/modules/auth/router/RouteNames';
-import PageHeadings from 'src/components/PageHeadings.vue';
-import PasswordInput from 'src/components/PasswordInput.vue';
-//import AppLogo from 'src/components/AppLogo.vue';
+import { AuthRules } from '@/utils/validation/rules';
+import RouteNames from '@/modules/auth/router/RouteNames';
+import PageHeadings from '@/components/PageHeadings.vue';
+import PasswordInput from '@/components/PasswordInput.vue';
+//import AppLogo from '@/components/AppLogo.vue';
 import { AxiosError } from 'axios';
-//import stripeService from 'src/modules/stripe/services/StripeService';
+//import stripeService from '@/modules/stripe/services/StripeService';
 
 const { safeExecute, errors } = useExceptionHandling();
 const authStore = useAuthStore();
@@ -105,7 +105,7 @@ async function onSubmit() {
             //    query: { clientReferenceId },
            //   });
            // }
-         // }
+          }
         }
       }
     );

@@ -79,11 +79,11 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { ApiKey } from 'src/modules/auth/models/api';
-import apiService from 'src/modules/auth/services/ApiService';
-import DatePickerInput from 'src/components/DatePickerInput.vue';
-import CollectionPicker from 'src/modules/knowledge-base/components/CollectionPicker.vue';
-import { GeneralRules } from 'src/utils/validation/rules';
+import { ApiKey } from '@/modules/auth/models/api';
+import apiService from '@/modules/auth/services/ApiService';
+//import DatePickerInput from '@/components/DatePickerInput.vue';
+//import CollectionPicker from '@/modules/knowledge-base/components/CollectionPicker.vue';
+import { GeneralRules } from '@/utils/validation/rules';
 
 const props = defineProps({
   modelValue: Boolean,
@@ -112,14 +112,14 @@ function close() {
 }
 
 async function create() {
-  const apiKey = await apiService.createAPIKey(
+ /* const apiKey = await apiService.createAPIKey(
     name.value,
     props.promptValue ?? prompt.value,
     allCollections.value ? undefined : collectionsIds.value,
     date.value
   );
   emit('create', apiKey);
-  close();
+  close();*/
 }
 
 watch(

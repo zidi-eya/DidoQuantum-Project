@@ -1,6 +1,6 @@
 <template>
-  <app-logo class="q-mb-xl" />
-  <q-stepper header-nav v-model="step" vertical color="primary" animated>
+    <!--<app-logo class="q-mb-xl" />-->
+    <q-stepper header-nav v-model="step" vertical color="primary" animated>
     <q-step :name="1" title="Sign up" icon="settings" :done="step > 1">
       <page-headings subtitle="Let's start creating your account!" />
       <q-form greedy class="q-gutter-md full-width" @submit.prevent="onSubmit">
@@ -80,11 +80,11 @@
         <q-select
           outlined
           v-model="selectedPrice"
-          :options="priceOptions"
           option-value="id"
           option-label="name"
           label="Subscriptions available"
         />
+        <!-- :options="priceOptions"-->
         <q-btn
           class="q-pa-md q-my-lg full-width"
           rounded
@@ -113,27 +113,27 @@
           label="Proceed with payment"
           color="primary"
           icon-right="eva-credit-card-outline"
-          @click="redirectToCheckOut"
         />
+        <!--@click="redirectToCheckOut"-->
       </div>
     </q-step>
   </q-stepper>
 </template>
 
 <script setup lang="ts">
-import ErrorBox from 'src/components/ErrorBox.vue';
+import ErrorBox from '@/components/ErrorBox.vue';
 import { ref, onMounted } from 'vue';
-import { useExceptionHandling } from 'src/composables/exception-handling';
+import { useExceptionHandling } from '@/composables/exception-handling';
 import { useRouter } from 'vue-router';
-import RouteNames from 'src/modules/auth/router/RouteNames';
-import PageHeadings from 'src/components/PageHeadings.vue';
-import PasswordInput from 'src/components/PasswordInput.vue';
-import AppLogo from 'src/components/AppLogo.vue';
-import authService from 'src/modules/auth/services/AuthService';
-import { AuthRules, GeneralRules } from 'src/utils/validation/rules';
-import { useAuthStore } from '../modules/auth/stores/auth-store';
-import stripeService from 'src/modules/stripe/services/StripeService';
-import { Price } from 'src/modules/stripe/models/price';
+import RouteNames from '@/modules/auth/router/RouteNames';
+import PageHeadings from '@/components/PageHeadings.vue';
+import PasswordInput from '@/components/PasswordInput.vue';
+//import AppLogo from '@/components/AppLogo.vue';
+import authService from '@/modules/auth/services/AuthService';
+import { AuthRules, GeneralRules } from '@/utils/validation/rules';
+import { useAuthStore } from '@/modules/auth/stores/auth-store';
+//import stripeService from '@/modules/stripe/services/StripeService';
+//import { Price } from '@/modules/stripe/models/price';
 
 const { safeExecute, errors } = useExceptionHandling();
 const router = useRouter();
@@ -145,15 +145,15 @@ const fullName = ref('');
 const password = ref('');
 const repeatPassword = ref('');
 const selectedPrice = ref();
-const priceOptions = ref<Price[]>([]);
+//const priceOptions = ref<Price[]>([]);
 const userBrief = ref();
 
-onMounted(() => {
+/*onMounted(() => {
   safeExecute(async () => {
     priceOptions.value = await stripeService.getAllPrices();
   });
 });
-
+*/
 async function onSubmit() {
   step.value = 2;
 }
@@ -175,7 +175,7 @@ async function submitUserInformation() {
   });
 }
 
-async function redirectToCheckOut() {
+/*async function redirectToCheckOut() {
   safeExecute(async () => {
     loading.value = true;
     await stripeService.createCheckoutSession({
@@ -184,5 +184,5 @@ async function redirectToCheckOut() {
     });
     loading.value = false;
   });
-}
+}*/
 </script>

@@ -1,14 +1,14 @@
 import { RouteRecordRaw } from 'vue-router';
-import RoutePrefixes from 'src/router/RoutePrefixes';
+import RoutePrefixes from '@/router/RoutePrefixes';
 
-import authRoutes from 'src/modules/auth/router/routes';
-//import profileRoutes from 'src/modules/profile/router/routes';
-//import adminRoutes from 'src/modules/admin/router/routes';
+import authRoutes from '@/modules/auth/router/routes';
+//import profileRoutes from '@/modules/profile/router/routes';
+//import adminRoutes from '@/modules/admin/router/routes';
 
 const routes: RouteRecordRaw[] = [
   {
     path: RoutePrefixes.PROTECTED,
-    component: () => import('src/modules/pages/ListUser.vue'),
+    component: () => import('@/modules/pages/ListUser.vue'),
     children: [
 
      /* {
@@ -30,7 +30,7 @@ const routes: RouteRecordRaw[] = [
   // but you can also remove it
   {
     path: '/:catchAll(.*)*',
-    component: () => import('src/pages/ErrorNotFound.vue'),
+    component: () => import('@/pages/ErrorNotFound.vue'),
   },
 ];
 

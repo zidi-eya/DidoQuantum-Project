@@ -1,9 +1,7 @@
-/// <reference types="../../../../node_modules/.vue-global-types/vue_3.5_0_0_0.d.ts" />
 import { ref, watch } from 'vue';
-import apiService from 'src/modules/auth/services/ApiService';
-import DatePickerInput from 'src/components/DatePickerInput.vue';
-import CollectionPicker from 'src/modules/knowledge-base/components/CollectionPicker.vue';
-import { GeneralRules } from 'src/utils/validation/rules';
+//import DatePickerInput from '@/components/DatePickerInput.vue';
+//import CollectionPicker from '@/modules/knowledge-base/components/CollectionPicker.vue';
+import { GeneralRules } from '@/utils/validation/rules';
 const props = defineProps({
     modelValue: Boolean,
     promptValue: Boolean,
@@ -24,9 +22,14 @@ function close() {
     collectionsIds.value = undefined;
 }
 async function create() {
-    const apiKey = await apiService.createAPIKey(name.value, props.promptValue ?? prompt.value, allCollections.value ? undefined : collectionsIds.value, date.value);
-    emit('create', apiKey);
-    close();
+    /* const apiKey = await apiService.createAPIKey(
+       name.value,
+       props.promptValue ?? prompt.value,
+       allCollections.value ? undefined : collectionsIds.value,
+       date.value
+     );
+     emit('create', apiKey);
+     close();*/
 }
 watch(() => props.modelValue, (newVal) => {
     isVisible.value = newVal;
@@ -142,9 +145,10 @@ __VLS_28.slots.default;
     }, ...__VLS_functionalComponentArgsRest(__VLS_30));
 }
 var __VLS_28;
-/** @type {[typeof DatePickerInput, ]} */ ;
+const __VLS_33 = {}.DatePickerInput;
+/** @type {[typeof __VLS_components.DatePickerInput, typeof __VLS_components.datePickerInput, ]} */ ;
 // @ts-ignore
-const __VLS_33 = __VLS_asFunctionalComponent(DatePickerInput, new DatePickerInput({
+const __VLS_34 = __VLS_asFunctionalComponent(__VLS_33, new __VLS_33({
     modelValue: (__VLS_ctx.date),
     dense: true,
     outlined: true,
@@ -154,7 +158,7 @@ const __VLS_33 = __VLS_asFunctionalComponent(DatePickerInput, new DatePickerInpu
     rules: (__VLS_ctx.GeneralRules.optionalField(__VLS_ctx.GeneralRules.date)),
     hideBottomSpace: true,
 }));
-const __VLS_34 = __VLS_33({
+const __VLS_35 = __VLS_34({
     modelValue: (__VLS_ctx.date),
     dense: true,
     outlined: true,
@@ -163,7 +167,7 @@ const __VLS_34 = __VLS_33({
     lazyRules: "ondemand",
     rules: (__VLS_ctx.GeneralRules.optionalField(__VLS_ctx.GeneralRules.date)),
     hideBottomSpace: true,
-}, ...__VLS_functionalComponentArgsRest(__VLS_33));
+}, ...__VLS_functionalComponentArgsRest(__VLS_34));
 var __VLS_20;
 if (__VLS_ctx.promptValue === undefined) {
     __VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({});
@@ -173,74 +177,75 @@ if (__VLS_ctx.promptValue === undefined) {
     __VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({
         ...{ class: "row" },
     });
-    const __VLS_36 = {}.QCheckbox;
+    const __VLS_37 = {}.QCheckbox;
     /** @type {[typeof __VLS_components.QCheckbox, typeof __VLS_components.qCheckbox, ]} */ ;
     // @ts-ignore
-    const __VLS_37 = __VLS_asFunctionalComponent(__VLS_36, new __VLS_36({
+    const __VLS_38 = __VLS_asFunctionalComponent(__VLS_37, new __VLS_37({
         modelValue: (__VLS_ctx.prompt),
         label: "Prompt",
     }));
-    const __VLS_38 = __VLS_37({
+    const __VLS_39 = __VLS_38({
         modelValue: (__VLS_ctx.prompt),
         label: "Prompt",
-    }, ...__VLS_functionalComponentArgsRest(__VLS_37));
+    }, ...__VLS_functionalComponentArgsRest(__VLS_38));
 }
 __VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({});
 __VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({
     ...{ class: "text-caption" },
 });
-const __VLS_40 = {}.QToggle;
+const __VLS_41 = {}.QToggle;
 /** @type {[typeof __VLS_components.QToggle, typeof __VLS_components.qToggle, ]} */ ;
 // @ts-ignore
-const __VLS_41 = __VLS_asFunctionalComponent(__VLS_40, new __VLS_40({
+const __VLS_42 = __VLS_asFunctionalComponent(__VLS_41, new __VLS_41({
     modelValue: (__VLS_ctx.allCollections),
     label: "All collections",
 }));
-const __VLS_42 = __VLS_41({
+const __VLS_43 = __VLS_42({
     modelValue: (__VLS_ctx.allCollections),
     label: "All collections",
-}, ...__VLS_functionalComponentArgsRest(__VLS_41));
+}, ...__VLS_functionalComponentArgsRest(__VLS_42));
 if (!__VLS_ctx.allCollections) {
-    /** @type {[typeof CollectionPicker, ]} */ ;
+    const __VLS_45 = {}.CollectionPicker;
+    /** @type {[typeof __VLS_components.CollectionPicker, typeof __VLS_components.collectionPicker, ]} */ ;
     // @ts-ignore
-    const __VLS_44 = __VLS_asFunctionalComponent(CollectionPicker, new CollectionPicker({
+    const __VLS_46 = __VLS_asFunctionalComponent(__VLS_45, new __VLS_45({
         modelValue: (__VLS_ctx.collectionsIds),
         ...{ class: "q-mt-md" },
     }));
-    const __VLS_45 = __VLS_44({
+    const __VLS_47 = __VLS_46({
         modelValue: (__VLS_ctx.collectionsIds),
         ...{ class: "q-mt-md" },
-    }, ...__VLS_functionalComponentArgsRest(__VLS_44));
+    }, ...__VLS_functionalComponentArgsRest(__VLS_46));
 }
 var __VLS_16;
-const __VLS_47 = {}.QCardActions;
+const __VLS_49 = {}.QCardActions;
 /** @type {[typeof __VLS_components.QCardActions, typeof __VLS_components.qCardActions, typeof __VLS_components.QCardActions, typeof __VLS_components.qCardActions, ]} */ ;
 // @ts-ignore
-const __VLS_48 = __VLS_asFunctionalComponent(__VLS_47, new __VLS_47({
+const __VLS_50 = __VLS_asFunctionalComponent(__VLS_49, new __VLS_49({
     align: "right",
 }));
-const __VLS_49 = __VLS_48({
+const __VLS_51 = __VLS_50({
     align: "right",
-}, ...__VLS_functionalComponentArgsRest(__VLS_48));
-__VLS_50.slots.default;
-const __VLS_51 = {}.QBtn;
+}, ...__VLS_functionalComponentArgsRest(__VLS_50));
+__VLS_52.slots.default;
+const __VLS_53 = {}.QBtn;
 /** @type {[typeof __VLS_components.QBtn, typeof __VLS_components.qBtn, ]} */ ;
 // @ts-ignore
-const __VLS_52 = __VLS_asFunctionalComponent(__VLS_51, new __VLS_51({
+const __VLS_54 = __VLS_asFunctionalComponent(__VLS_53, new __VLS_53({
     flat: true,
     label: "Close",
     noCaps: true,
 }));
-const __VLS_53 = __VLS_52({
+const __VLS_55 = __VLS_54({
     flat: true,
     label: "Close",
     noCaps: true,
-}, ...__VLS_functionalComponentArgsRest(__VLS_52));
+}, ...__VLS_functionalComponentArgsRest(__VLS_54));
 __VLS_asFunctionalDirective(__VLS_directives.vClosePopup)(null, { ...__VLS_directiveBindingRestFields, }, null, null);
-const __VLS_55 = {}.QBtn;
+const __VLS_57 = {}.QBtn;
 /** @type {[typeof __VLS_components.QBtn, typeof __VLS_components.qBtn, ]} */ ;
 // @ts-ignore
-const __VLS_56 = __VLS_asFunctionalComponent(__VLS_55, new __VLS_55({
+const __VLS_58 = __VLS_asFunctionalComponent(__VLS_57, new __VLS_57({
     flat: true,
     label: "Create",
     noCaps: true,
@@ -248,15 +253,15 @@ const __VLS_56 = __VLS_asFunctionalComponent(__VLS_55, new __VLS_55({
     type: "submit",
     form: "create-api-key-form",
 }));
-const __VLS_57 = __VLS_56({
+const __VLS_59 = __VLS_58({
     flat: true,
     label: "Create",
     noCaps: true,
     ...{ class: "bg-primary text-white" },
     type: "submit",
     form: "create-api-key-form",
-}, ...__VLS_functionalComponentArgsRest(__VLS_56));
-var __VLS_50;
+}, ...__VLS_functionalComponentArgsRest(__VLS_58));
+var __VLS_52;
 var __VLS_8;
 var __VLS_3;
 /** @type {__VLS_StyleScopedClasses['collection-picker']} */ ;
@@ -282,8 +287,6 @@ var __VLS_dollars;
 const __VLS_self = (await import('vue')).defineComponent({
     setup() {
         return {
-            DatePickerInput: DatePickerInput,
-            CollectionPicker: CollectionPicker,
             GeneralRules: GeneralRules,
             isVisible: isVisible,
             name: name,

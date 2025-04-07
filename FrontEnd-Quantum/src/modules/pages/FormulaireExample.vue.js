@@ -1,7 +1,5 @@
-/// <reference types="../../../node_modules/.vue-global-types/vue_3.5_0_0_0.d.ts" />
 import { ref, onMounted } from "vue";
-import { fetchAllUsers, addUser } from "../services/userService";
-import axios from "axios";
+import { fetchAllUsers } from "../services/userService";
 const users = ref([]);
 const isToastVisible = ref(false);
 const toastMessage = ref("");
@@ -32,40 +30,42 @@ const handleFileUpload = (event) => {
     }
 };
 const submitForm = async () => {
-    try {
-        const formData = new FormData();
-        formData.append("name", user.value.name);
-        formData.append("email", user.value.email);
-        formData.append("role", user.value.role);
-        formData.append("status", user.value.status);
-        formData.append("created_at", new Date().toISOString());
-        if (user.value.profile_image_file) {
-            formData.append("profile_image", user.value.profile_image_file);
-        }
-        const newUser = await addUser(formData);
-        users.value.push(newUser);
-        // Show success notification
-        showToast("User added successfully!", "success");
-        // Reset form values
-        user.value = {
-            name: "",
-            email: "",
-            role: "",
-            status: "",
-            profile_image: "",
-            profile_image_file: null,
-        };
-    }
-    catch (error) {
-        if (axios.isAxiosError(error) && error.response) {
-            console.error("Error response data:", error.response.data);
-            showToast("Error adding user: " + error.response.data.detail, "error");
-        }
-        else {
-            console.error("Error adding user:", error);
-            showToast("An unknown error occurred!", "error");
-        }
-    }
+    /* try {
+       const formData = new FormData();
+       formData.append("name", user.value.name);
+       formData.append("email", user.value.email);
+       formData.append("role", user.value.role);
+       formData.append("status", user.value.status);
+       formData.append("created_at", new Date().toISOString());
+   
+       if (user.value.profile_image_file) {
+         formData.append("profile_image", user.value.profile_image_file);
+       }
+   
+       const newUser = await addUser(formData);
+       users.value.push(newUser);
+   
+       // Show success notification
+       showToast("User added successfully!", "success");
+   
+       // Reset form values
+       user.value = {
+         name: "",
+         email: "",
+         role: "",
+         status: "",
+         profile_image: "",
+         profile_image_file: null,
+       };
+     } catch (error) {
+       if (axios.isAxiosError(error) && error.response) {
+         console.error("Error response data:", error.response.data);
+         showToast("Error adding user: " + error.response.data.detail, "error");
+       } else {
+         console.error("Error adding user:", error);
+         showToast("An unknown error occurred!", "error");
+       }
+     }*/
 };
 // Function to show toast notification
 const showToast = (message, type) => {

@@ -1,5 +1,5 @@
 <template>
-    <app-logo class="q-mb-xl" />
+    <!--<app-logo class="q-mb-xl" />-->
     <page-headings
       title="Forgot password"
       subtitle="Don't remember your password? No problem, we'll sort it out!."
@@ -37,7 +37,7 @@
         color="primary"
         icon-right="eva-email-outline"
       />
-  
+
       <q-banner v-else class="bg-positive text-white">
         <template v-slot:avatar>
           <q-icon name="eva-checkmark-circle-2-outline" />
@@ -50,15 +50,15 @@
 </template>
 
 <script setup lang="ts">
-import ErrorBox from 'src/components/ErrorBox.vue';
+import ErrorBox from '@/components/ErrorBox.vue';
 
 import { ref } from 'vue';
-import { useExceptionHandling } from 'src/composables/exception-handling';
-import authService from 'src/modules/auth/services/AuthService';
-import PageHeadings from 'src/components/PageHeadings.vue';
-import AppLogo from 'src/components/AppLogo.vue';
-import { AuthRules } from 'src/utils/validation/rules';
-import RouteNames from 'src/modules/auth/router/RouteNames';
+import { useExceptionHandling } from '@/composables/exception-handling';
+import authService from '@/modules/auth/services/AuthService';
+import PageHeadings from '@/components/PageHeadings.vue';
+//import AppLogo from '@/components/AppLogo.vue';
+import { AuthRules } from '@/utils/validation/rules';
+import RouteNames from '@/modules/auth/router/RouteNames';
 import { useRouter } from 'vue-router';
 
 const { safeExecute, errors } = useExceptionHandling();

@@ -1,6 +1,6 @@
 <template>
-  <app-logo class="q-mb-xl" />
-  <page-headings
+    <!--<app-logo class="q-mb-xl" />-->
+    <page-headings
     title="Sign up"
     subtitle="You have received an invite. Create an account and let's get started!"
   />
@@ -77,19 +77,19 @@
 </template>
 
 <script setup lang="ts">
-import ErrorBox from 'src/components/ErrorBox.vue';
+import ErrorBox from '@/components/ErrorBox.vue';
 
 import { ref } from 'vue';
-import { useExceptionHandling } from 'src/composables/exception-handling';
+import { useExceptionHandling } from '@/composables/exception-handling';
 import { useRouter } from 'vue-router';
-import RouteNames from 'src/modules/auth/router/RouteNames';
-import PageHeadings from 'src/components/PageHeadings.vue';
-import PasswordInput from 'src/components/PasswordInput.vue';
-//import AppLogo from 'src/components/AppLogo.vue';
-import authService from 'src/modules/auth/services/AuthService';
-import { AuthRules, GeneralRules } from 'src/utils/validation/rules';
-import RoutePrefixes from 'src/router/RoutePrefixes';
-import { useAuthStore } from '../modules/auth/stores/auth-store';
+import RouteNames from '@/modules/auth/router/RouteNames';
+import PageHeadings from '@/components/PageHeadings.vue';
+import PasswordInput from '@/components/PasswordInput.vue';
+//import AppLogo from '@/components/AppLogo.vue';
+import authService from '@/modules/auth/services/AuthService';
+import { AuthRules, GeneralRules } from '@/utils/validation/rules';
+import RoutePrefixes from '@/router/RoutePrefixes';
+import { useAuthStore } from '@/modules/auth/stores/auth-store';
 
 const { safeExecute, errors } = useExceptionHandling();
 const router = useRouter();

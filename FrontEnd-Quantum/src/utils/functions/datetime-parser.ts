@@ -1,4 +1,4 @@
-import { DateTimeFormat } from 'src/utils/constants/datetime-formats';
+import { DateTimeFormat } from '@/utils/constants/datetime-formats';
 
 export function DateTimeParser(datetime_string: string, input_format: DateTimeFormat): Date {
     const [date_part, time_part] = datetime_string.split(input_format.main_separator)

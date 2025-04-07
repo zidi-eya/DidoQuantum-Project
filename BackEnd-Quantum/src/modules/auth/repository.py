@@ -151,7 +151,7 @@ class AuthRepository:
     async def create_api_key(
         self,
         user_id: int,
-        name: str,
+        #name: str,
         key: str,
         prompt: bool,
         valid_until: datetime.date | None = None,
@@ -159,7 +159,7 @@ class AuthRepository:
         async with async_session() as session:
             new_api_key = ApiKey(
                 user_id=user_id,
-                name=name,
+                #name=name,
                 key=key,
                 prompt=prompt,
                 valid_until=valid_until,

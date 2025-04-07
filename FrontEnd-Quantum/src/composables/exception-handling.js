@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { z } from 'zod';
-import { HttpException } from 'src/exceptions/http-exceptions';
+import { HttpException } from '@/exceptions/http-exceptions';
 import { AxiosError } from 'axios';
 export function useExceptionHandling() {
     const errors = ref([]);

@@ -1,16 +1,15 @@
-/// <reference types="../../../../node_modules/.vue-global-types/vue_3.5_0_0_0.d.ts" />
-import ErrorBox from 'src/components/ErrorBox.vue';
+import ErrorBox from '@/components/ErrorBox.vue';
 import { ref } from 'vue';
-import { useExceptionHandling } from 'src/composables/exception-handling';
+import { useExceptionHandling } from '@/composables/exception-handling';
 import { useRouter } from 'vue-router';
-import RouteNames from 'src/modules/auth/router/RouteNames';
-import PageHeadings from 'src/components/PageHeadings.vue';
-import PasswordInput from 'src/components/PasswordInput.vue';
-//import AppLogo from 'src/components/AppLogo.vue';
-import authService from 'src/modules/auth/services/AuthService';
-import { AuthRules, GeneralRules } from 'src/utils/validation/rules';
-import RoutePrefixes from 'src/router/RoutePrefixes';
-import { useAuthStore } from '../modules/auth/stores/auth-store';
+import RouteNames from '@/modules/auth/router/RouteNames';
+import PageHeadings from '@/components/PageHeadings.vue';
+import PasswordInput from '@/components/PasswordInput.vue';
+//import AppLogo from '@/components/AppLogo.vue';
+import authService from '@/modules/auth/services/AuthService';
+import { AuthRules, GeneralRules } from '@/utils/validation/rules';
+import RoutePrefixes from '@/router/RoutePrefixes';
+import { useAuthStore } from '@/modules/auth/stores/auth-store';
 const { safeExecute, errors } = useExceptionHandling();
 const router = useRouter();
 const authStore = useAuthStore();
@@ -29,49 +28,40 @@ debugger; /* PartiallyEnd: #3632/scriptSetup.vue */
 const __VLS_ctx = {};
 let __VLS_components;
 let __VLS_directives;
-const __VLS_0 = {}.AppLogo;
-/** @type {[typeof __VLS_components.AppLogo, typeof __VLS_components.appLogo, ]} */ ;
-// @ts-ignore
-const __VLS_1 = __VLS_asFunctionalComponent(__VLS_0, new __VLS_0({
-    ...{ class: "q-mb-xl" },
-}));
-const __VLS_2 = __VLS_1({
-    ...{ class: "q-mb-xl" },
-}, ...__VLS_functionalComponentArgsRest(__VLS_1));
 /** @type {[typeof PageHeadings, ]} */ ;
 // @ts-ignore
-const __VLS_4 = __VLS_asFunctionalComponent(PageHeadings, new PageHeadings({
+const __VLS_0 = __VLS_asFunctionalComponent(PageHeadings, new PageHeadings({
     title: "Sign up",
     subtitle: "You have received an invite. Create an account and let's get started!",
 }));
-const __VLS_5 = __VLS_4({
+const __VLS_1 = __VLS_0({
     title: "Sign up",
     subtitle: "You have received an invite. Create an account and let's get started!",
-}, ...__VLS_functionalComponentArgsRest(__VLS_4));
-const __VLS_7 = {}.QForm;
+}, ...__VLS_functionalComponentArgsRest(__VLS_0));
+const __VLS_3 = {}.QForm;
 /** @type {[typeof __VLS_components.QForm, typeof __VLS_components.qForm, typeof __VLS_components.QForm, typeof __VLS_components.qForm, ]} */ ;
 // @ts-ignore
-const __VLS_8 = __VLS_asFunctionalComponent(__VLS_7, new __VLS_7({
+const __VLS_4 = __VLS_asFunctionalComponent(__VLS_3, new __VLS_3({
     ...{ 'onSubmit': {} },
     greedy: true,
     ...{ class: "q-gutter-md full-width q-mb-xl" },
 }));
-const __VLS_9 = __VLS_8({
+const __VLS_5 = __VLS_4({
     ...{ 'onSubmit': {} },
     greedy: true,
     ...{ class: "q-gutter-md full-width q-mb-xl" },
-}, ...__VLS_functionalComponentArgsRest(__VLS_8));
-let __VLS_11;
-let __VLS_12;
-let __VLS_13;
-const __VLS_14 = {
+}, ...__VLS_functionalComponentArgsRest(__VLS_4));
+let __VLS_7;
+let __VLS_8;
+let __VLS_9;
+const __VLS_10 = {
     onSubmit: (__VLS_ctx.onSubmit)
 };
-__VLS_10.slots.default;
-const __VLS_15 = {}.QInput;
+__VLS_6.slots.default;
+const __VLS_11 = {}.QInput;
 /** @type {[typeof __VLS_components.QInput, typeof __VLS_components.qInput, typeof __VLS_components.QInput, typeof __VLS_components.qInput, ]} */ ;
 // @ts-ignore
-const __VLS_16 = __VLS_asFunctionalComponent(__VLS_15, new __VLS_15({
+const __VLS_12 = __VLS_asFunctionalComponent(__VLS_11, new __VLS_11({
     ...{ class: "full-width" },
     standout: "bg-primary text-white",
     modelValue: (__VLS_ctx.email),
@@ -80,7 +70,7 @@ const __VLS_16 = __VLS_asFunctionalComponent(__VLS_15, new __VLS_15({
     rules: (__VLS_ctx.AuthRules.email),
     hideBottomSpace: true,
 }));
-const __VLS_17 = __VLS_16({
+const __VLS_13 = __VLS_12({
     ...{ class: "full-width" },
     standout: "bg-primary text-white",
     modelValue: (__VLS_ctx.email),
@@ -88,25 +78,25 @@ const __VLS_17 = __VLS_16({
     lazyRules: "ondemand",
     rules: (__VLS_ctx.AuthRules.email),
     hideBottomSpace: true,
-}, ...__VLS_functionalComponentArgsRest(__VLS_16));
-__VLS_18.slots.default;
+}, ...__VLS_functionalComponentArgsRest(__VLS_12));
+__VLS_14.slots.default;
 {
-    const { prepend: __VLS_thisSlot } = __VLS_18.slots;
-    const __VLS_19 = {}.QIcon;
+    const { prepend: __VLS_thisSlot } = __VLS_14.slots;
+    const __VLS_15 = {}.QIcon;
     /** @type {[typeof __VLS_components.QIcon, typeof __VLS_components.qIcon, ]} */ ;
     // @ts-ignore
-    const __VLS_20 = __VLS_asFunctionalComponent(__VLS_19, new __VLS_19({
+    const __VLS_16 = __VLS_asFunctionalComponent(__VLS_15, new __VLS_15({
         name: "eva-email-outline",
     }));
-    const __VLS_21 = __VLS_20({
+    const __VLS_17 = __VLS_16({
         name: "eva-email-outline",
-    }, ...__VLS_functionalComponentArgsRest(__VLS_20));
+    }, ...__VLS_functionalComponentArgsRest(__VLS_16));
 }
-var __VLS_18;
-const __VLS_23 = {}.QInput;
+var __VLS_14;
+const __VLS_19 = {}.QInput;
 /** @type {[typeof __VLS_components.QInput, typeof __VLS_components.qInput, typeof __VLS_components.QInput, typeof __VLS_components.qInput, ]} */ ;
 // @ts-ignore
-const __VLS_24 = __VLS_asFunctionalComponent(__VLS_23, new __VLS_23({
+const __VLS_20 = __VLS_asFunctionalComponent(__VLS_19, new __VLS_19({
     ...{ class: "full-width" },
     standout: "bg-primary text-white",
     modelValue: (__VLS_ctx.fullName),
@@ -115,7 +105,7 @@ const __VLS_24 = __VLS_asFunctionalComponent(__VLS_23, new __VLS_23({
     rules: (__VLS_ctx.GeneralRules.fieldRequired('Please enter your full name')),
     hideBottomSpace: true,
 }));
-const __VLS_25 = __VLS_24({
+const __VLS_21 = __VLS_20({
     ...{ class: "full-width" },
     standout: "bg-primary text-white",
     modelValue: (__VLS_ctx.fullName),
@@ -123,24 +113,24 @@ const __VLS_25 = __VLS_24({
     lazyRules: "ondemand",
     rules: (__VLS_ctx.GeneralRules.fieldRequired('Please enter your full name')),
     hideBottomSpace: true,
-}, ...__VLS_functionalComponentArgsRest(__VLS_24));
-__VLS_26.slots.default;
+}, ...__VLS_functionalComponentArgsRest(__VLS_20));
+__VLS_22.slots.default;
 {
-    const { prepend: __VLS_thisSlot } = __VLS_26.slots;
-    const __VLS_27 = {}.QIcon;
+    const { prepend: __VLS_thisSlot } = __VLS_22.slots;
+    const __VLS_23 = {}.QIcon;
     /** @type {[typeof __VLS_components.QIcon, typeof __VLS_components.qIcon, ]} */ ;
     // @ts-ignore
-    const __VLS_28 = __VLS_asFunctionalComponent(__VLS_27, new __VLS_27({
+    const __VLS_24 = __VLS_asFunctionalComponent(__VLS_23, new __VLS_23({
         name: "eva-person-outline",
     }));
-    const __VLS_29 = __VLS_28({
+    const __VLS_25 = __VLS_24({
         name: "eva-person-outline",
-    }, ...__VLS_functionalComponentArgsRest(__VLS_28));
+    }, ...__VLS_functionalComponentArgsRest(__VLS_24));
 }
-var __VLS_26;
+var __VLS_22;
 /** @type {[typeof PasswordInput, ]} */ ;
 // @ts-ignore
-const __VLS_31 = __VLS_asFunctionalComponent(PasswordInput, new PasswordInput({
+const __VLS_27 = __VLS_asFunctionalComponent(PasswordInput, new PasswordInput({
     ...{ class: "full-width" },
     label: "Password",
     standout: "bg-primary text-white",
@@ -149,7 +139,7 @@ const __VLS_31 = __VLS_asFunctionalComponent(PasswordInput, new PasswordInput({
     rules: (__VLS_ctx.AuthRules.passwordRequirements),
     hideBottomSpace: true,
 }));
-const __VLS_32 = __VLS_31({
+const __VLS_28 = __VLS_27({
     ...{ class: "full-width" },
     label: "Password",
     standout: "bg-primary text-white",
@@ -157,10 +147,10 @@ const __VLS_32 = __VLS_31({
     lazyRules: "ondemand",
     rules: (__VLS_ctx.AuthRules.passwordRequirements),
     hideBottomSpace: true,
-}, ...__VLS_functionalComponentArgsRest(__VLS_31));
+}, ...__VLS_functionalComponentArgsRest(__VLS_27));
 /** @type {[typeof PasswordInput, ]} */ ;
 // @ts-ignore
-const __VLS_34 = __VLS_asFunctionalComponent(PasswordInput, new PasswordInput({
+const __VLS_30 = __VLS_asFunctionalComponent(PasswordInput, new PasswordInput({
     ...{ class: "full-width" },
     label: "Repeat password",
     standout: "bg-primary text-white",
@@ -169,7 +159,7 @@ const __VLS_34 = __VLS_asFunctionalComponent(PasswordInput, new PasswordInput({
     rules: (__VLS_ctx.AuthRules.repeatPassword(__VLS_ctx.password)),
     hideBottomSpace: true,
 }));
-const __VLS_35 = __VLS_34({
+const __VLS_31 = __VLS_30({
     ...{ class: "full-width" },
     label: "Repeat password",
     standout: "bg-primary text-white",
@@ -177,11 +167,11 @@ const __VLS_35 = __VLS_34({
     lazyRules: "ondemand",
     rules: (__VLS_ctx.AuthRules.repeatPassword(__VLS_ctx.password)),
     hideBottomSpace: true,
-}, ...__VLS_functionalComponentArgsRest(__VLS_34));
-const __VLS_37 = {}.QBtn;
+}, ...__VLS_functionalComponentArgsRest(__VLS_30));
+const __VLS_33 = {}.QBtn;
 /** @type {[typeof __VLS_components.QBtn, typeof __VLS_components.qBtn, ]} */ ;
 // @ts-ignore
-const __VLS_38 = __VLS_asFunctionalComponent(__VLS_37, new __VLS_37({
+const __VLS_34 = __VLS_asFunctionalComponent(__VLS_33, new __VLS_33({
     ...{ class: "q-pa-md q-my-lg full-width" },
     rounded: true,
     label: "Sign up",
@@ -189,14 +179,14 @@ const __VLS_38 = __VLS_asFunctionalComponent(__VLS_37, new __VLS_37({
     color: "primary",
     iconRight: "eva-log-in-outline",
 }));
-const __VLS_39 = __VLS_38({
+const __VLS_35 = __VLS_34({
     ...{ class: "q-pa-md q-my-lg full-width" },
     rounded: true,
     label: "Sign up",
     type: "submit",
     color: "primary",
     iconRight: "eva-log-in-outline",
-}, ...__VLS_functionalComponentArgsRest(__VLS_38));
+}, ...__VLS_functionalComponentArgsRest(__VLS_34));
 __VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({});
 __VLS_asFunctionalElement(__VLS_intrinsicElements.span, __VLS_intrinsicElements.span)({
     ...{ class: "q-mr-sm" },
@@ -209,14 +199,13 @@ __VLS_asFunctionalElement(__VLS_intrinsicElements.span, __VLS_intrinsicElements.
 });
 /** @type {[typeof ErrorBox, ]} */ ;
 // @ts-ignore
-const __VLS_41 = __VLS_asFunctionalComponent(ErrorBox, new ErrorBox({
+const __VLS_37 = __VLS_asFunctionalComponent(ErrorBox, new ErrorBox({
     errors: (__VLS_ctx.errors),
 }));
-const __VLS_42 = __VLS_41({
+const __VLS_38 = __VLS_37({
     errors: (__VLS_ctx.errors),
-}, ...__VLS_functionalComponentArgsRest(__VLS_41));
-var __VLS_10;
-/** @type {__VLS_StyleScopedClasses['q-mb-xl']} */ ;
+}, ...__VLS_functionalComponentArgsRest(__VLS_37));
+var __VLS_6;
 /** @type {__VLS_StyleScopedClasses['q-gutter-md']} */ ;
 /** @type {__VLS_StyleScopedClasses['full-width']} */ ;
 /** @type {__VLS_StyleScopedClasses['q-mb-xl']} */ ;

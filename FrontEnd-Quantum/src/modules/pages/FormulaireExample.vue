@@ -63,7 +63,7 @@ const handleFileUpload = (event: Event) => {
 };
 
 const submitForm = async () => {
-  try {
+ /* try {
     const formData = new FormData();
     formData.append("name", user.value.name);
     formData.append("email", user.value.email);
@@ -98,7 +98,7 @@ const submitForm = async () => {
       console.error("Error adding user:", error);
       showToast("An unknown error occurred!", "error");
     }
-  }
+  }*/
 };
 
 // Function to show toast notification

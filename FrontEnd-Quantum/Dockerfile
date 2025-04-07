@@ -24,6 +24,6 @@ RUN npm run build
 
 # Use nginx for the final production image
 FROM nginx:alpine AS production-stage
-COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

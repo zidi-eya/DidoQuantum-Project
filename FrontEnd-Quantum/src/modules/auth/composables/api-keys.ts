@@ -1,6 +1,6 @@
 import { ref, onMounted } from 'vue';
-import { ApiKey } from 'src/modules/auth/models/api';
-import apiService from 'src/modules/auth/services/ApiService';
+import { ApiKey } from '@/modules/auth/models/api';
+import apiService from '@/modules/auth/services/ApiService';
 
 export function useApiKeys() {
   const apiKeys = ref<ApiKey[]>([]);

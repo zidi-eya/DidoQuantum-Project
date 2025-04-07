@@ -1,5 +1,5 @@
 <template>
-    <app-logo class="q-mb-xl" />
+    <!--<app-logo class="q-mb-xl" />-->
     <page-headings
       title="Reset password"
       subtitle="Enter your new password below"
@@ -59,17 +59,17 @@
 </template>
 
 <script setup lang="ts">
-import ErrorBox from 'src/components/ErrorBox.vue';
+import ErrorBox from '@/components/ErrorBox.vue';
 
 import { ref } from 'vue';
-import { useExceptionHandling } from 'src/composables/exception-handling';
+import { useExceptionHandling } from '@/composables/exception-handling';
 import { useRoute, useRouter } from 'vue-router';
-import RouteNames from 'src/modules/auth/router/RouteNames';
-import PasswordInput from 'src/components/PasswordInput.vue';
-import authService from 'src/modules/auth/services/AuthService';
-import PageHeadings from 'src/components/PageHeadings.vue';
-import AppLogo from 'src/components/AppLogo.vue';
-import { AuthRules } from 'src/utils/validation/rules';
+import RouteNames from '@/modules/auth/router/RouteNames';
+import PasswordInput from '@/components/PasswordInput.vue';
+import authService from '@/modules/auth/services/AuthService';
+import PageHeadings from '@/components/PageHeadings.vue';
+//import AppLogo from '@/components/AppLogo.vue';
+import { AuthRules } from '@/utils/validation/rules';
 
 const { safeExecute, errors } = useExceptionHandling();
 const route = useRoute();

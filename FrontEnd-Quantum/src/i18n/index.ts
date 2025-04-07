@@ -1,14 +1,14 @@
 import enUS from './en-US';
-import { DateTimeFormat } from 'src/utils/constants/datetime-formats';
+import { DateTimeFormat } from '@/utils/constants/datetime-formats';
 
 export default {
   'en-US': enUS,
 };
 
 export type Language = {
-  label: string, 
+  label: string,
   code: string,
-  date_format: DateTimeFormat 
+  date_format: DateTimeFormat
 }
 
 export const languages:Language[] = [

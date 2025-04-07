@@ -1,6 +1,6 @@
 import { boot } from 'quasar/wrappers';
 import axios from 'axios';
-import { useErrorDialog } from 'src/composables/error-dialog';
+import { useErrorDialog } from '@/composables/error-dialog';
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
 // If any client changes this (global) instance, it might be a

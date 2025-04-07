@@ -2,9 +2,9 @@ import { route } from 'quasar/wrappers';
 import { createRouter, createWebHistory } from 'vue-router';
 
 import routes from './routes';
-import { useAuthStore } from 'src/modules/auth/stores/auth-store';
-import RoutePrefixes from 'src/router/RoutePrefixes';
-import { Role } from 'src/modules/auth/utils/constants';
+import { useAuthStore } from '@/modules/auth/stores/auth-store';
+import RoutePrefixes from '@/router/RoutePrefixes';
+import { Role } from '@/modules/auth/utils/constants';
 
 /*
  * If not building with SSR mode, you can

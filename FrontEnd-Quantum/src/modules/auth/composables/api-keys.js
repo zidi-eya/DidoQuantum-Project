@@ -1,5 +1,5 @@
 import { ref, onMounted } from 'vue';
-import apiService from 'src/modules/auth/services/ApiService';
+import apiService from '@/modules/auth/services/ApiService';
 export function useApiKeys() {
     const apiKeys = ref([]);
     const isLoading = ref(true);

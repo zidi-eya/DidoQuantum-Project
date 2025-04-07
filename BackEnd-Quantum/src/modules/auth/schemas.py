@@ -123,9 +123,7 @@ class RefreshTokenResponse(CustomSchema):
 
 
 class ApiKeyCreateRequest(CustomSchema):
-    name: str
     prompt: bool
-    collection_ids: list[int] | None = None
     valid_until: datetime.date | None = None
 
 
@@ -134,13 +132,12 @@ class ApiKeyResponse(CustomSchema):
     key: str
     user_id: int
     prompt: bool
-    collection_ids: list[int] | None = None
     valid_until: datetime.date | None = None
 
     @staticmethod
     def from_model(api_key: ApiKey) -> "ApiKeyResponse":
         return ApiKeyResponse(
-            id=api_key.id,
+            id=api_key.id,            
             key=api_key.key,
             user_id=api_key.user_id,
             prompt=api_key.prompt,           
@@ -161,7 +158,6 @@ class ApiKeyListResponse(CustomSchema):
 class ApiKeyInfoResponse(CustomSchema):
     key: str
     prompt: bool
-   # collection_ids: list[int] | None = None
     valid_until: datetime.date | None = None
 
     @staticmethod

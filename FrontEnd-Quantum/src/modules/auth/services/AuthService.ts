@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
-import { api } from 'src/boot/axios';
-import { NotFoundException } from 'src/exceptions/http-exceptions';
-import { SignInResponse } from 'src/modules/auth/validation/sign-in';
-import { User } from 'src/modules/auth/models/user';
+import { api } from '@/boot/axios';
+import { NotFoundException } from '@/exceptions/http-exceptions';
+import { SignInResponse } from '@/modules/auth/validation/sign-in';
+import { User } from '@/modules/auth/models/user';
 import { plainToInstance } from 'class-transformer';
 
 class AuthService {
@@ -44,7 +44,8 @@ class AuthService {
     });
   }
 
-  async getUser(): Promise<User> {
+ /* async getUser()
+  : Promise<User> {
     const response = await api.get('api/auth/profile');
     const data = response.data;
     return plainToInstance(User, data, {
@@ -52,7 +53,8 @@ class AuthService {
     });
   }
 
-  async updateProfile({ fullName }: { fullName?: string }): Promise<User> {
+  async updateProfile({ fullName }: { fullName?: string })
+  : Promise<User> {
     const response = await api.patch('api/auth/profile', {
       ...(fullName && { full_name: fullName }),
     });
@@ -60,7 +62,7 @@ class AuthService {
       excludeExtraneousValues: true,
     });
   }
-
+*/
   async signOut(): Promise<void> {
     await api.post('api/auth/sign-out');
   }

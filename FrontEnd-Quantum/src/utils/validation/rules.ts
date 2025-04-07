@@ -1,4 +1,4 @@
-import { usePreferenceStore } from 'src/stores/user-preference-store';
+import { usePreferenceStore } from '@/stores/user-preference-store';
 import { DateTimeParser } from '../functions/datetime-parser';
 
 type Rule<T> = (value: T) => boolean | string;

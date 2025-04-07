@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { languages } from 'src/i18n';
+import { languages } from '@/i18n';
 export const usePreferenceStore = defineStore('preferences', {
     state: () => ({
         language: languages[0]

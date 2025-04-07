@@ -1,8 +1,6 @@
 import { AxiosError } from 'axios';
-import { api } from 'src/boot/axios';
-import { NotFoundException } from 'src/exceptions/http-exceptions';
-import { User } from 'src/modules/auth/models/user';
-import { plainToInstance } from 'class-transformer';
+import { api } from '@/boot/axios';
+import { NotFoundException } from '@/exceptions/http-exceptions';
 class AuthService {
     async signInWithEmailAndPassword(email, password, rememberMe = false) {
         try {
@@ -32,21 +30,25 @@ class AuthService {
             password: password,
         });
     }
-    async getUser() {
-        const response = await api.get('api/auth/profile');
-        const data = response.data;
-        return plainToInstance(User, data, {
-            excludeExtraneousValues: true,
-        });
-    }
-    async updateProfile({ fullName }) {
-        const response = await api.patch('api/auth/profile', {
-            ...(fullName && { full_name: fullName }),
-        });
-        return plainToInstance(User, response.data, {
-            excludeExtraneousValues: true,
-        });
-    }
+    /* async getUser()
+     : Promise<User> {
+       const response = await api.get('api/auth/profile');
+       const data = response.data;
+       return plainToInstance(User, data, {
+         excludeExtraneousValues: true,
+       });
+     }
+   
+     async updateProfile({ fullName }: { fullName?: string })
+     : Promise<User> {
+       const response = await api.patch('api/auth/profile', {
+         ...(fullName && { full_name: fullName }),
+       });
+       return plainToInstance(User, response.data, {
+         excludeExtraneousValues: true,
+       });
+     }
+   */
     async signOut() {
         await api.post('api/auth/sign-out');
     }

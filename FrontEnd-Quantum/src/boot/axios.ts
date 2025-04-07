@@ -1,6 +1,6 @@
 import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
-import { useErrorDialog } from 'src/composables/error-dialog';
+import { useErrorDialog } from '@/composables/error-dialog';
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
