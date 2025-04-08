@@ -5,6 +5,7 @@ enum RoutePrefixes {
   PROFILE = '/profile',
   SUBSCRIPTION = '/subscription',
   WELCOMING_MESSAGE = '/welcoming-message',
+  INDEX = '/index',
 }
 
 export default RoutePrefixes;

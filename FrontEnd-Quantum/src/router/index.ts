@@ -1,11 +1,11 @@
 import { route } from 'quasar/wrappers';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory ,RouteRecordRaw } from 'vue-router';
 
-import routes from './routes';
+//import routes from './routes';
 import { useAuthStore } from '@/modules/auth/stores/auth-store';
 import RoutePrefixes from '@/router/RoutePrefixes';
 import { Role } from '@/modules/auth/utils/constants';
-
+import routes from './routes';
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -14,38 +14,34 @@ import { Role } from '@/modules/auth/utils/constants';
  * async/await or return a Promise which resolves
  * with the Router instance.
  */
+import HomePage from '@/modules/pages/index.vue';
+import SignInPage from '@/modules/auth/pages/SignInPage.vue';
 
-export default route(function (/* { store, ssrContext } */) {
-  const createHistory = createWebHistory;
 
-  const Router = createRouter({
-    scrollBehavior: () => ({ left: 0, top: 0 }),
-    routes,
+/*const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    name: 'home',
+    component: HomePage,
+  },
+  {
+    path: '/sign-in',
+    name: 'sign-in',
+    component: SignInPage,
+  },
 
-    // Leave this as is and make changes in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
-    history: createHistory(process.env.VUE_ROUTER_BASE),
-  });
+  {
+    path: '/:catchAll(.*)*',
+    name: 'not-found',
+    component: () => import('@/pages/ErrorNotFound.vue'),
+  },
+];*/
 
-  Router.beforeEach(async (to) => {
-    const authStore = useAuthStore();
-    await authStore.reloadUser();
-
-    if (to.meta.requiresAuth && !authStore.isLoggedIn) {
-      return `${RoutePrefixes.AUTH}/sign-in`;
-    }
-
-    if (to.path.includes(RoutePrefixes.AUTH) && authStore.isLoggedIn) {
-      return RoutePrefixes.PROTECTED;
-    }
-
-    if (to.path.includes(RoutePrefixes.ADMIN) && authStore.isLoggedIn) {
-      if (!authStore.getUser.roles.includes(Role.SUPERADMIN)) {
-        return RoutePrefixes.PROTECTED;
-      }
-    }
-  });
-
-  return Router;
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
 });
+
+
+
+ export default router;

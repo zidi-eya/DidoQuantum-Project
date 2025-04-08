@@ -7,15 +7,31 @@ import authRoutes from '@/modules/auth/router/routes';
 //import adminRoutes from '@/modules/admin/router/routes';
 const routes: RouteRecordRaw[] = [
   {
-    path: '/auth',
-    component: () => import('@/modules/auth/layouts/AuthLayout.vue'),
-    children: authRoutes[0].children, // use only the children array
+    path: RoutePrefixes.PROTECTED,
+    component: () => import('@/layouts/MainLayout.vue'),
+    children: [
+      {path: RoutePrefixes.INDEX,
+      component: () => import('@/modules/pages/index.vue'),
+    },
+
+
+    ],
+    meta: { requiresAuth: true },
   },
+
+  {
+    path: RoutePrefixes.AUTH,
+    children: authRoutes,
+  },
+
+  // Always leave this as last one,
+  // but you can also remove it
   {
     path: '/:catchAll(.*)*',
     component: () => import('@/pages/ErrorNotFound.vue'),
   },
 ];
+
 /*const routes: RouteRecordRaw[] = [
   {
 

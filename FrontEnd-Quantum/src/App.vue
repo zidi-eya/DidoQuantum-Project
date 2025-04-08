@@ -1,11 +1,17 @@
 <template>
   <!--<sidebar /> -->
-  <RouterView />
+  <router-view />
+  <h1>je suis  app.vue</h1>
+  <div>
+    <button
+      class="text-bold text-primary cursor-pointer"
+      @click="router.push({ name: RoutePrefixes.INDEX })"
+    >
+      Create an Account
+  </button>
+  </div>
 </template>
-<script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import sidebar from "./components/sidebar.vue";
-</script>
+
 
 <style scoped>
 header {
@@ -70,3 +76,87 @@ nav a:first-of-type {
   }
 }
 </style>
+
+
+<script setup lang="ts">
+//import 'reflect-metadata';
+import { onMounted, watch } from 'vue';
+import { eventsObservable } from './utils/functions/observer-pattern';
+import RouteNames from '@/modules/auth/router/RouteNames';
+import { useRouter } from 'vue-router';
+import RoutePrefixes from '@/router/RoutePrefixes';
+
+//import { useSocialMediaStore } from '@/modules/tools/stores/sm-store';
+import { useAuthStore } from '@/modules/auth/stores/auth-store';
+import { RouterLink, RouterView } from "vue-router";
+import sidebar from "./components/sidebar.vue";
+
+const router = useRouter();
+
+//const smStore = useSocialMediaStore();
+let intervalId: NodeJS.Timeout | undefined;
+let websocket: WebSocket | undefined;
+
+const authStore = useAuthStore();
+
+watch(
+  () => authStore.isLoggedIn,
+  () => {
+    if (!authStore.isLoggedIn) {
+      disconnectWebSocket();
+    } else {
+      connectWebSocket();
+    }
+  }
+);
+
+// Function to establish WebSocket connection and set up event listeners
+function connectWebSocket() {
+  websocket = new WebSocket(`${process.env.API_WEBSOCKET_URL}/ws`);
+
+  websocket.onopen = () => {
+    intervalId = setInterval(() => {
+      websocket?.send(JSON.stringify({ type: 'ping' }));
+    }, 10000);
+  };
+
+  websocket.onmessage = (ev) => {
+    const data = JSON.parse(ev.data);
+    switch (data.type) {
+      case 'data': {
+        eventsObservable.notifyObserver(data.message);
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
+  websocket.onclose = () => {
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
+    // Attempt to reconnect after a delay
+    setTimeout(() => {
+      connectWebSocket();
+    }, 5000); // Reconnect after 5 seconds
+  };
+
+  websocket.onerror = (error) => {
+    console.error('WebSocket error:', error);
+    // Close the websocket explicitly on error to trigger the onclose event
+    websocket?.close();
+  };
+}
+
+function disconnectWebSocket() {
+  if (websocket) {
+    websocket.close();
+  }
+}
+
+onMounted(async () => {
+//  await smStore.init();
+  // connectWebSocket();
+});
+</script>

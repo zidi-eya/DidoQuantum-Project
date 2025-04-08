@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="nav">
-      <a @click="changeSection('etudiant')">Esprit</a>
+      <a @click="changeSection('etudiant')">Esprrrrrrrrrrrrit</a>
       <a @click="changeSection('parents')">AI researchers</a>
       <a @click="changeSection('enseignants')">startups</a>
       <a @click="changeSection('administration')">Engineers & developers</a>
@@ -10,11 +10,11 @@
     <div class="main-content">
       <div class="left-section">
         <h4>Dido Quantum Pulse is a cutting-edge AI-powered innovation platform that connects researchers, enterprises, and government agencies to accelerate breakthroughs in artificial intelligence, quantum computing, and cybersecurity.</h4>
-        <img
+       <!-- <img
           src="/home/eya/Dido-Quantum/BackEnd-Quantum/uploads/qt=q_95.webp"
           alt="Lecture Image"
           class="lecture-img"
-        />
+        />-->
       </div>
       <div class="right-section">
         <div v-if="selectedSection === 'etudiant'">
@@ -47,6 +47,12 @@
           <input type="text" placeholder="Email" class="input-text" />
           <input type="text" placeholder="Password" class="input-text" />
           <button class="btn" @click="goToListUser">Sign In</button>
+          <span
+          class="text-bold text-primary cursor-pointer"
+          @click="router.push({ name: RouteNames.FORGOT_PASSWORD })"
+        >
+          Forgot password?
+        </span>
         </div>
       </div>
         </div>
@@ -56,6 +62,8 @@
 <script setup>
 import { ref, watch  } from "vue";
 import { useRouter } from 'vue-router';
+import RoutePrefixes from '@/router/RoutePrefixes';
+import RouteNames from '@/modules/auth/router/RouteNames';
 
 const router = useRouter();
 const selectedSection = ref("etudiant");
