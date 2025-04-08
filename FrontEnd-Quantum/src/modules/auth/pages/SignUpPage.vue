@@ -134,6 +134,7 @@ import { AuthRules, GeneralRules } from '@/utils/validation/rules';
 import { useAuthStore } from '@/modules/auth/stores/auth-store';
 //import stripeService from '@/modules/stripe/services/StripeService';
 //import { Price } from '@/modules/stripe/models/price';
+import { QBtn, QInput,QForm,QStepper, QStep, QIcon , QSelect} from 'quasar'
 
 const { safeExecute, errors } = useExceptionHandling();
 const router = useRouter();

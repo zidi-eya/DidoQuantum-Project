@@ -1,15 +1,7 @@
 <template>
   <!--<sidebar /> -->
-  <router-view />
-  <h1>je suis  app.vue</h1>
-  <div>
-    <button
-      class="text-bold text-primary cursor-pointer"
-      @click="router.push({ name: RoutePrefixes.INDEX })"
-    >
-      Create an Account
-  </button>
-  </div>
+  <RouterView />
+
 </template>
 
 

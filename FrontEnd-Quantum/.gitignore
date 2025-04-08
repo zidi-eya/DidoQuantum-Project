@@ -6,6 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+# Quasar core related directories
+.quasar
+/dist
+/quasar.config.*.temporary.compiled*
 
 node_modules
 .DS_Store

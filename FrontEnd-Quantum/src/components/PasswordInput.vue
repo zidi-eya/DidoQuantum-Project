@@ -19,6 +19,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import {QInput,QIcon, } from 'quasar'
 
 const props = defineProps({
   modelValue: {

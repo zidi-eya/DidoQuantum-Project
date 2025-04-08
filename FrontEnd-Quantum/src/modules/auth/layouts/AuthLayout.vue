@@ -24,3 +24,7 @@
     </section>
   </q-layout>
 </template>
+<script setup lang="ts">
+import { QItem, QList,QPage, QPageContainer,QLayout } from 'quasar'
+
+</script>

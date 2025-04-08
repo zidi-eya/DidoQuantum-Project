@@ -90,6 +90,7 @@ import authService from '@/modules/auth/services/AuthService';
 import { AuthRules, GeneralRules } from '@/utils/validation/rules';
 import RoutePrefixes from '@/router/RoutePrefixes';
 import { useAuthStore } from '@/modules/auth/stores/auth-store';
+import { QItem, QSeparator, QSpace, QBtn, QDrawer, QPageContainer,QLayout } from 'quasar'
 
 const { safeExecute, errors } = useExceptionHandling();
 const router = useRouter();

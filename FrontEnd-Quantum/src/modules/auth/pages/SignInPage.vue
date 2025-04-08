@@ -59,6 +59,7 @@
 <script setup lang="ts">
 import ErrorBox from '@/components/ErrorBox.vue';
 import RoutePrefixes from '@/router/RoutePrefixes';
+import {QForm , QBtn, QCheckbox,QInput,QIcon } from 'quasar'
 
 import { ref } from 'vue';
 import { SignInRequest } from '@/modules/auth/validation/sign-in';

@@ -1,0 +1,134 @@
+// app global css in SCSS form
+
+.absolute-bottom-center {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.absolute-top-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.overflow-visible {
+  overflow: visible !important;
+}
+
+.visibility-visible {
+  visibility: visible !important;
+}
+
+.position-sticky {
+  position: sticky !important;
+}
+
+.rounded {
+  border-radius: 30px !important;
+}
+
+.rounded-sm {
+  border-radius: 10px !important;
+}
+
+.border-primary {
+  border-color: $primary !important;
+}
+
+.border-md {
+  border-width: 2px !important;
+}
+.dialogSize60 {
+  max-width: 60vw !important;
+}
+.postIconBtn {
+  min-width: 160px !important;
+}
+.rowBottom {
+  margin-bottom: 15px;
+}
+.tableColumnLenth {
+  max-width: 300px;
+  min-width: 200px;
+  word-wrap: break-word;
+  text-wrap: wrap;
+}
+@media all and (min-width: 769px) {
+  .paddingLgscreen {
+    padding-left: 15px !important;
+  }
+  .postIconBtn {
+    min-width: 190px !important;
+  }
+  .responsive-modal {
+    max-width: 60vw !important;
+  }
+}
+
+@media all and (max-width: 769px) {
+  .postIconBtn .q-icon {
+    display: none;
+  }
+  .dialogSize60 {
+    max-width: none !important;
+  }
+  .paddingBottomMobile {
+    margin-bottom: 15px;
+  }
+  .hideOnsmall {
+    display: none !important;
+  }
+  .smallPaddengMobile {
+    padding: 2px;
+  }
+  .calendarTextMobile {
+    font-size: 13px;
+    text-align: center;
+    font-weight: normal;
+  }
+  .mobileJustifyContent {
+    justify-content: center;
+  }
+  .noPaddingMobile {
+    padding: 0px;
+  }
+  .responsive-modal {
+    max-width: 80vw !important;
+  }
+  .text-h4 {
+    font-size: 1.7rem;
+  }
+  .mobileStepper .q-stepper__tab {
+    max-width: 17%;
+    padding: 0px;
+    text-align: center;
+    justify-content: center !important;
+  }
+  .mobileStepper .q-stepper__label {
+    display: none;
+  }
+  .mobileStepper .q-q-stepper__dot {
+    margin: 0px;
+  }
+  .mobileStepper .q-stepper__tab .q-stepper--horizontal .q-stepper__dot:before {
+    display: none;
+  }
+  .q-chip {
+    max-width: 150px;
+  }
+  .noMobileMargin {
+    margin: 0px;
+  }
+  .topMarginMobile {
+    margin-top: 16px;
+  }
+  .mobileWidth100 {
+    width: 100% !important;
+  }
+  .minwidth200px {
+    min-width: 200px;
+  }
+}

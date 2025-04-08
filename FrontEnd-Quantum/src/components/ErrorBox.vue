@@ -9,6 +9,8 @@
 </template>
 
 <script setup lang="ts">
+import {QList, QItem, QItemSection } from 'quasar'
+
 defineProps({
   errors: {
     type: Array as () => string[],

@@ -70,6 +70,7 @@ import authService from '@/modules/auth/services/AuthService';
 import PageHeadings from '@/components/PageHeadings.vue';
 //import AppLogo from '@/components/AppLogo.vue';
 import { AuthRules } from '@/utils/validation/rules';
+import { QItem, QSeparator, QSpace, QBtn, QDrawer, QPageContainer,QLayout } from 'quasar'
 
 const { safeExecute, errors } = useExceptionHandling();
 const route = useRoute();

@@ -33,6 +33,7 @@ import PageHeadings from '@/components/PageHeadings.vue';
 //import { Price } from 'src/modules/stripe/models/price';
 import { useRoute } from 'vue-router';
 import HelloWorld from '@/components/HelloWorld.vue';
+import { QItem, QSeparator, QSpace, QBtn, QDrawer, QPageContainer,QLayout } from 'quasar'
 
 //const priceOptions = ref<Price[]>([]);
 //const selectedPrice = ref<Price>();

@@ -60,6 +60,7 @@ import PageHeadings from '@/components/PageHeadings.vue';
 import { AuthRules } from '@/utils/validation/rules';
 import RouteNames from '@/modules/auth/router/RouteNames';
 import { useRouter } from 'vue-router';
+import { QItem, QSeparator, QSpace, QBtn, QDrawer, QPageContainer,QLayout } from 'quasar'
 
 const { safeExecute, errors } = useExceptionHandling();
 const email = ref('');
