@@ -1,7 +1,7 @@
 <template>
 
     <!--<app-logo class="q-mb-xl" />-->
-    <page-headings title="Sign in" subtitle="Enter your email and password to sign in!" />
+     <!--<page-headings title="Sign in" subtitle="Enter your email and password to sign in!" />
     <q-form greedy class="q-gutter-md full-width" @submit.prevent="onSubmit">
       <q-input
         class="full-width"
@@ -52,11 +52,36 @@
         </span>
       </div>
       <ErrorBox :errors="errors" />
-    </q-form>
+    </q-form>-->
 
+    <div class="container" id="container">
+
+      <SignUpComponent />
+      <SignInComponent />
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <app-logo class="q-mb-xl" />
+            <h1>Welcome Back!</h1>
+            <p>Dido Quantum Pulse is a cutting-edge AI-powered innovation platform that connects researchers, enterprises, and government agencies to accelerate breakthroughs in artificial intelligence, quantum computing, and cybersecurity.
+            </p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <app-logo class="q-mb-xl" />
+            <h1>Hello, Friend!</h1>
+            <p>Dido Quantum Pulse is a cutting-edge AI-powered innovation platform that connects researchers, enterprises, and government agencies to accelerate breakthroughs in artificial intelligence, quantum computing, and cybersecurity.
+            </p>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script setup lang="ts">
+import SignInComponent from './SignInComponent.vue'
+import SignUpComponent from './SignUpComponent.vue'
 import ErrorBox from '@/components/ErrorBox.vue';
 import RoutePrefixes from '@/router/RoutePrefixes';
 import {QForm , QBtn, QCheckbox,QInput,QIcon } from 'quasar'
@@ -70,7 +95,7 @@ import { AuthRules } from '@/utils/validation/rules';
 import RouteNames from '@/modules/auth/router/RouteNames';
 import PageHeadings from '@/components/PageHeadings.vue';
 import PasswordInput from '@/components/PasswordInput.vue';
-//import AppLogo from '@/components/AppLogo.vue';
+import AppLogo from '@/components/AppLogo.vue';
 import { AxiosError } from 'axios';
 //import stripeService from '@/modules/stripe/services/StripeService';
 
@@ -116,4 +141,29 @@ async function onSubmit() {
     }
   });
 }
+
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  const signUpButton = document.getElementById('signUp') as HTMLButtonElement | null;
+  const signInButton = document.getElementById('signIn') as HTMLButtonElement | null;
+  const container = document.getElementById('container') as HTMLElement | null;
+
+  if (signUpButton && signInButton && container) {
+    signUpButton.addEventListener('click', () => {
+      container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+      container.classList.remove("right-panel-active");
+    });
+  } else {
+    console.warn("One or more elements not found in the DOM.");
+  }
+});
+
+
+
+
 </script>
+

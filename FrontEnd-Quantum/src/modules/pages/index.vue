@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <nav class="nav">
-      <a @click="changeSection('etudiant')">Esprrrrrrrrrrrrit</a>
+      <a @click="changeSection('etudiant')">Esprit</a>
       <a @click="changeSection('parents')">AI researchers</a>
       <a @click="changeSection('enseignants')">startups</a>
       <a @click="changeSection('administration')">Engineers & developers</a>
@@ -10,11 +10,11 @@
     <div class="main-content">
       <div class="left-section">
         <h4>Dido Quantum Pulse is a cutting-edge AI-powered innovation platform that connects researchers, enterprises, and government agencies to accelerate breakthroughs in artificial intelligence, quantum computing, and cybersecurity.</h4>
-       <!-- <img
-          src="/home/eya/Dido-Quantum/BackEnd-Quantum/uploads/qt=q_95.webp"
+        <img
+          src="/home/eya/Dido-Quantum/FrontEnd-Quantum/public/image/qtpulse.webp"
           alt="Lecture Image"
           class="lecture-img"
-        />-->
+        />
       </div>
       <div class="right-section">
         <div v-if="selectedSection === 'etudiant'">
