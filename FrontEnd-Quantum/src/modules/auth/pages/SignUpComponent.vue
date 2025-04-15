@@ -98,7 +98,8 @@ async function onSubmit() {
  // step.value = 2;
  console.log("Navigating to /ListUser"); // Debug log
 
- router.push('/ListUser');
+ router.push('/index');
+ console.log(userBrief.value);
 
 }
 

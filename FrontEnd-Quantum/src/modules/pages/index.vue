@@ -15,6 +15,21 @@
           alt="Lecture Image"
           class="lecture-img"
         />
+
+
+      <div class="column items-center">
+        <text-avatar size="72px" :name="authStore.getUser?.fullName" />
+
+        <div class="text-subtitle2 q-mt-md q-mb-md">
+          {{ authStore.getUser?.fullName }}
+        </div>
+        <button
+        color="primary"
+        size="sm"
+        v-close-popup
+        @click="signOut"
+      > Logout</button>
+      </div>
       </div>
       <div class="right-section">
         <div v-if="selectedSection === 'etudiant'">
@@ -64,13 +79,16 @@ import { ref, watch  } from "vue";
 import { useRouter } from 'vue-router';
 import RoutePrefixes from '@/router/RoutePrefixes';
 import RouteNames from '@/modules/auth/router/RouteNames';
+import AuthRouteNames from '@/modules/auth/router/RouteNames';
+import { useAuthStore } from '@/modules/auth/stores/auth-store';
+const authStore = useAuthStore();
 
 const router = useRouter();
 const selectedSection = ref("etudiant");
 
 const goToListUser = () => {
   console.log("Navigating to /ListUser"); // Debug log
-  router.push('/ListUser');
+  router.push('/index');
 };
 
 // Watcher pour détecter les changements de selectedSection
@@ -82,7 +100,10 @@ watch(selectedSection, (newSection, oldSection) => {
 const changeSection = (section) => {
   selectedSection.value = section;
 };
-
+async function signOut() {
+  await authStore.signOut();
+  await router.push({ name: AuthRouteNames.SIGN_IN });
+}
 
 </script>
 
