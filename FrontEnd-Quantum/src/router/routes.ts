@@ -9,12 +9,11 @@ const routes: RouteRecordRaw[] = [
   {
     path: RoutePrefixes.PROTECTED,
     component: () => import('@/layouts/MainLayout.vue'),
+
     children: [
       {path: RoutePrefixes.INDEX,
       component: () => import('@/modules/pages/index.vue'),
     },
-
-
     ],
     meta: { requiresAuth: true },
   },
@@ -31,42 +30,8 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/ErrorNotFound.vue'),
   },
 ];
-
-/*const routes: RouteRecordRaw[] = [
-  {
-
-    path: RoutePrefixes.AUTH,
-    component: () => import('@/pages/ErrorNotFound.vue'),
-    children: [
-
-     /* {
-        path: RoutePrefixes.PROFILE,
-        children: profileRoutes,
-      },*/
-
-
-    /*],
-    meta: { requiresAuth: true },
-  },*/
-
-  /*{
-    path: RoutePrefixes.AUTH,
-    children: authRoutes,
-  },
-
-  // Always leave this as last one,
-  // but you can also remove it
-  {
-    path: '/WelcomingMessage',
-    component: () => import('@/pages/ErrorNotFound.vue'),
-  },
-
-  {
-    path: '/:catchAll(.*)*',
-    component: () => import('@/pages/ErrorNotFound.vue'),
-  },
-];*/
-
-
-
 export default routes;
+
+
+
+

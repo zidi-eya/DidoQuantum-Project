@@ -75,12 +75,14 @@
 </template>
 
 <script setup>
-import { ref, watch  } from "vue";
+import { ref, watch , onMounted  } from "vue";
 import { useRouter } from 'vue-router';
 import RoutePrefixes from '@/router/RoutePrefixes';
 import RouteNames from '@/modules/auth/router/RouteNames';
 import AuthRouteNames from '@/modules/auth/router/RouteNames';
 import { useAuthStore } from '@/modules/auth/stores/auth-store';
+
+
 const authStore = useAuthStore();
 
 const router = useRouter();
@@ -102,9 +104,19 @@ const changeSection = (section) => {
 };
 async function signOut() {
   await authStore.signOut();
+  console.log('User after sign out:', authStore.user);
+console.log('Token after sign out:', authStore.token);
   await router.push({ name: AuthRouteNames.SIGN_IN });
 }
-
+onMounted(() => {
+  if (authStore.getUser) {
+    console.log('User is authenticated:', authStore.getUser.fullName);
+    console.log('User after sign in:', authStore.user);
+    console.log('Token after sign in:', authStore.token);
+  } else {
+    console.log('No authenticated user.');
+  }
+});
 </script>
 
 <style>

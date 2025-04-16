@@ -12,41 +12,47 @@ class AuthService {
     rememberMe = false
   ): Promise<SignInResponse> {
     try {
-      const response = await api.post('api/auth/sign-in', {
+      const response = await api.post('auth/sign-in', {
         email: email,
         password: password,
         remember_me: rememberMe,
       });
+
+
       return response.data as SignInResponse;
     } catch (error) {
       if (error instanceof AxiosError) {
+        console.error("Error details:", error.response?.data); // Affiche les détails de l'erreur
         switch (error.response?.status) {
           case 401:
             throw new NotFoundException('Email or password is incorrect');
+          case 422:
+            throw new Error('Validation failed: ' + JSON.stringify(error.response?.data));
           default:
             throw error;
         }
       }
-
       throw error;
     }
   }
+
 
   async signUpWithEmailAndPassword(
     fullName: string,
     email: string,
     password: string
   ): Promise<any> {
-    return await api.post('api/auth/sign-up', {
+    return await api.post('auth/sign-up', {
       full_name: fullName,
       email: email,
       password: password,
     });
   }
 
- /* async getUser()
+  async getUser()
   : Promise<User> {
-    const response = await api.get('api/auth/profile');
+    const response = await api.get('auth/profile');
+    console.log(response.data);
     const data = response.data;
     return plainToInstance(User, data, {
       excludeExtraneousValues: true,
@@ -55,26 +61,27 @@ class AuthService {
 
   async updateProfile({ fullName }: { fullName?: string })
   : Promise<User> {
-    const response = await api.patch('api/auth/profile', {
+    const response = await api.patch('auth/profile', {
       ...(fullName && { full_name: fullName }),
     });
     return plainToInstance(User, response.data, {
       excludeExtraneousValues: true,
     });
   }
-*/
+
+
   async signOut(): Promise<void> {
-    await api.post('api/auth/sign-out');
+    await api.post('auth/sign-out');
   }
 
   async forgotPassword(email: string): Promise<void> {
-    await api.post('api/auth/reset-password', {
+    await api.post('auth/reset-password', {
       email: email,
     });
   }
 
   async resetPassword(token: string, password: string): Promise<void> {
-    await api.post(`api/auth/reset-password/${token}`, {
+    await api.post(`auth/reset-password/${token}`, {
       password: password,
     });
   }
@@ -83,7 +90,7 @@ class AuthService {
     oldPassword: string,
     newPassword: string
   ): Promise<void> {
-    await api.post('api/auth/change-password', {
+    await api.post('auth/change-password', {
       old_password: oldPassword,
       new_password: newPassword,
     });

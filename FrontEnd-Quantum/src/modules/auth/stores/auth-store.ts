@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('auth-store', {
   actions: {
     async reloadUser(onError?: (error: Error) => Promise<void>) {
       try {
-      //  this.user = await authService.getUser();
+        this.user = await authService.getUser();
       } catch (e) {
         if (onError) {
           onError(e as Error);
@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('auth-store', {
       }
     },
     async updateUser({ fullName }: { fullName?: string }) {
-     // this.user = await authService.updateProfile({ fullName });
+      this.user = await authService.updateProfile({ fullName });
     },
     async signInWithEmailAndPassword(
       email: string,
@@ -38,8 +38,10 @@ export const useAuthStore = defineStore('auth-store', {
       rememberMe: boolean,
       onError?: (error: Error) => Promise<void>
     ) {
-      await authService.signInWithEmailAndPassword(email, password, rememberMe);
+     await authService.signInWithEmailAndPassword(email, password, rememberMe);
+
       await this.reloadUser(onError);
+      console.log
     },
     async signOut() {
       await authService.signOut();
