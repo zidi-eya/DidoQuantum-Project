@@ -71,6 +71,8 @@ class AuthService {
 
 
   async signOut(): Promise<void> {
+    console.log('Calling API signOut');
+
     await api.post('auth/sign-out');
   }
 
