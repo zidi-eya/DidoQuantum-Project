@@ -164,7 +164,13 @@ async def refresh_token(
       #  user_details.subscription.provider = SubscriptionProvider.STRIPE
 
     #return user_details
-
+@router.get("/profile")
+async def profile(
+    user: User = Depends(auth_service.access_token_validation()),
+) -> UserDetail:
+    user_details = UserDetail.from_model(user)
+    # (add code to retrieve subscription info if needed)
+    return user_details
 @router.patch("/profile")
 async def update_profile(
     request: PatchUserRequest,

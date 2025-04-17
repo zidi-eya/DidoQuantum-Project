@@ -10,26 +10,28 @@
     <div class="main-content">
       <div class="left-section">
         <h4>Dido Quantum Pulse is a cutting-edge AI-powered innovation platform that connects researchers, enterprises, and government agencies to accelerate breakthroughs in artificial intelligence, quantum computing, and cybersecurity.</h4>
-        <img
+       <!-- <img
           src="/home/eya/Dido-Quantum/FrontEnd-Quantum/public/image/qtpulse.webp"
           alt="Lecture Image"
           class="lecture-img"
         />
+-->
 
 
-      <div class="column items-center">
-        <text-avatar size="72px" :name="authStore.getUser?.fullName" />
+<div class="column items-center">
+  <text-avatar size="72px" :name="authStore.getUser?.fullName" />
 
-        <div class="text-subtitle2 q-mt-md q-mb-md">
-          {{ authStore.getUser?.fullName }}
-        </div>
-        <button
-        color="primary"
-        size="sm"
-        v-close-popup
-        @click="signOut"
-      > Logout</button>
-      </div>
+  <div class="text-subtitle2 q-mt-md q-mb-md">
+    {{ authStore.getUser?.fullName }}
+  </div>
+
+  <q-btn
+    label="Logout"
+    size="sm"
+    v-close-popup
+    @click="signOut"
+  />
+</div>
       </div>
       <div class="right-section">
         <div v-if="selectedSection === 'etudiant'">
@@ -75,12 +77,15 @@
 </template>
 
 <script setup>
-import { ref, watch  } from "vue";
+import { ref, watch , onMounted  } from "vue";
 import { useRouter } from 'vue-router';
 import RoutePrefixes from '@/router/RoutePrefixes';
 import RouteNames from '@/modules/auth/router/RouteNames';
 import AuthRouteNames from '@/modules/auth/router/RouteNames';
 import { useAuthStore } from '@/modules/auth/stores/auth-store';
+import { QBtn } from 'quasar'
+
+
 const authStore = useAuthStore();
 
 const router = useRouter();
@@ -102,9 +107,20 @@ const changeSection = (section) => {
 };
 async function signOut() {
   await authStore.signOut();
+  disconnectWebSocket();
+  console.log('User after sign out:', authStore.user);
+console.log('Token after sign out:', authStore.token);
   await router.push({ name: AuthRouteNames.SIGN_IN });
 }
-
+onMounted(() => {
+  if (authStore.getUser) {
+    console.log('User is authenticated:', authStore.getUser.fullName);
+    console.log('User after sign in:', authStore.user);
+    console.log('Token after sign in:', authStore.token);
+  } else {
+    console.log('No authenticated user.');
+  }
+});
 </script>
 
 <style>

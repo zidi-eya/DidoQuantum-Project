@@ -14,7 +14,7 @@
     <section
       class="bg-primary column relative-position col shadow-24 gt-md"
       style="
-        background-image: url('/images/vitaminai/cover.png') !important;
+        background-image: url('/image/SI.png') !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
         background-size: cover !important;

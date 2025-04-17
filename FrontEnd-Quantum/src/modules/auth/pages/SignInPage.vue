@@ -1,7 +1,7 @@
 <template>
 
-    <!--<app-logo class="q-mb-xl" />-->
-     <!--<page-headings title="Sign in" subtitle="Enter your email and password to sign in!" />
+    <app-logo class="q-mb-xl" />
+    <page-headings title="Sign in" subtitle="Enter your email and password to sign in!" />
     <q-form greedy class="q-gutter-md full-width" @submit.prevent="onSubmit">
       <q-input
         class="full-width"
@@ -52,9 +52,9 @@
         </span>
       </div>
       <ErrorBox :errors="errors" />
-    </q-form>-->
+    </q-form>
 
-    <div class="container" id="container">
+    <!-- <div class="container" id="container">
 
       <SignUpComponent />
       <SignInComponent />
@@ -76,7 +76,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 </template>
 
 <script setup lang="ts">
@@ -109,40 +109,35 @@ const rememberMe = ref(false);
 
 async function onSubmit() {
   await safeExecute(async () => {
+    console.log('Tentative de connexion...');
     SignInRequest.parse({
       username: username.value,
       password: password.value,
     });
+    console.log('username:', username.value, 'password:', password.value);
+
     await authStore.signInWithEmailAndPassword(
       username.value,
       password.value,
       rememberMe.value,
-      async (e) => {
-        if (e instanceof AxiosError) {
-          if (e.response?.status === 402) {
-            const clientReferenceId = e.response?.data.client_reference_id;
-            const subscriptionId = e.response?.data.subscription_id;
-
-          //  if (subscriptionId) {
-          //    await stripeService.createCheckoutSession({ clientReferenceId : clientReferenceId});
-           // } else {
-           //   await router.push({
-           //     name: RouteNames.FINISH_PAYMENT,
-            //    query: { clientReferenceId },
-           //   });
-           // }
-          }
-        }
-      }
     );
+    console.log('username:', username.value, 'password:', password.value);
+
+    console.log('isLoggedIn:', authStore.isLoggedIn);
+    console.log('user:', authStore.user);
+    await authStore.reloadUser(); // ← s'il existe
 
     if (authStore.isLoggedIn) {
-      await router.push(RoutePrefixes.PROTECTED);
+      console.log('Redirection vers /index...');
+      await router.push('/index');
+    } else {
+      console.warn('Connexion échouée : utilisateur non authentifié');
     }
   });
 }
 
-import { onMounted } from 'vue';
+
+/*import { onMounted } from 'vue';
 
 onMounted(() => {
   const signUpButton = document.getElementById('signUp') as HTMLButtonElement | null;
@@ -160,7 +155,7 @@ onMounted(() => {
   } else {
     console.warn("One or more elements not found in the DOM.");
   }
-});
+});*/
 
 
 

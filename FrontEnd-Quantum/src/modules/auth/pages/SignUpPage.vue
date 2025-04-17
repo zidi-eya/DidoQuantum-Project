@@ -135,6 +135,7 @@ import { useAuthStore } from '@/modules/auth/stores/auth-store';
 //import stripeService from '@/modules/stripe/services/StripeService';
 //import { Price } from '@/modules/stripe/models/price';
 import { QBtn, QInput,QForm,QStepper, QStep, QIcon , QSelect} from 'quasar'
+import RoutePrefixes from '@/router/RoutePrefixes';
 
 const { safeExecute, errors } = useExceptionHandling();
 const router = useRouter();
@@ -156,7 +157,33 @@ const userBrief = ref();
 });
 */
 async function onSubmit() {
-  step.value = 2;
+  //step.value = 2;
+
+  safeExecute(async () => {
+    loading.value = true;
+    const response = await authService.signUpWithEmailAndPassword(
+      fullName.value,
+      email.value,
+      password.value
+    );
+    console.log('first response:', response);
+
+    await authStore.reloadUser();
+    userBrief.value = response.data;
+    console.log('second userBrief:', userBrief.value);
+
+    loading.value = false;
+
+    // Optional: redirect user somewhere after successful signup
+    console.log('third: je vais returner vers INDEX');
+    try {
+  await router.push('/index');
+  console.log('redirected successfully');
+} catch (err) {
+  console.error('router.push failed:', err);
+}
+
+  });
 }
 
 async function submitUserInformation() {
