@@ -14,8 +14,8 @@ class AppConfig(BaseSettings):
     TESTER_USER_NAME: str
     TESTER_USER_EMAIL: str
     TESTER_USER_PASSWORD: str
-    #NOTIFICATION_EMAIL_ADDRESS: str
-    #CLIENT_URL: str
+    NOTIFICATION_EMAIL_ADDRESS: str
+    CLIENT_URL: str
     #AUDIO_FILE_SIZE: int
     #TEXT_FILE_SIZE: int
     #STRIPE_API_KEY: str

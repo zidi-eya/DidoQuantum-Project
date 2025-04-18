@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="x-apple-disable-message-reformatting">
+	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+	<style type="text/css">
+		html,
+		body{
+			margin: 0 auto !important;
+			padding: 0 !important;
+			height: 100% !important;
+			width: 100% !important;
+			font-family: 'Roboto';
+			font-size: 16px;
+			background-color: white;
+		}
+		/* What it does: Stops email clients resizing small text. */
+		* {
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+		/* What it does: Stops Outlook from adding extra spacing to tables. */
+		table,
+		td {
+			mso-table-lspace: 0pt !important;
+			mso-table-rspace: 0pt !important;
+		}
+		.Low{
+			border-radius: 15px;
+			color: #ffffff;
+			text-align: center;
+			padding: 5px 15px;
+			background-color:#4caf50;
+			border-color: #4caf50
+		}
+		.Medium{
+			border-radius: 15px;
+			color: #ffffff;
+			text-align: center;
+			padding: 5px 15px;
+			background-color:#ff9800;
+			border-color: #ff9800
+		}
+		.High{
+			border-radius: 15px;
+			color: #ffffff;
+			text-align: center;
+			padding: 5px 15px;
+			background-color:#9c27b0;
+			border-color: #9c27b0
+		}
+		.Critical{
+			border-radius: 15px;
+			color: #ffffff;
+			text-align: center;
+			padding: 5px 15px;
+			background-color:#f44336;
+			border-color: #f44336
+		}
+		.title{
+			font-weight: bold;
+			height:10px;
+			font-size: 1.2em;
+		}
+		.tdTitle{
+			padding-bottom: 3em;
+		}
+		.tdHead{
+			padding-bottom: 1em;
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+		.tdDescription{
+			padding-bottom: 3em;
+		}
+		.tdSeperator{
+			padding: 0px 15px;
+			padding-bottom: 3em;
+		}
+		.lineSeperator{
+			border-top: 2px solid #eee;
+		}
+		.tdDetails{
+			width: 150px;
+			padding-bottom: 1em;
+		}
+		.tagDiv{
+			border-radius: 10px;
+			color: black;
+			text-align: center;
+			padding: 5px 15px;
+			background-color: #eee;
+			display: inline-block;
+		}
+		.tdTag{
+			padding-bottom: 1em;
+		}
+		.tdBottomTitle{
+			padding-top: 3em;
+			padding-bottom: 3em;
+		}
+		.tdBottomSubTitle{
+			color: #ddd;
+			font-size: 0.9em;
+			text-align: center;
+
+		}
+		.containerWrapper{
+			max-width: 700px;
+			background-color: white;
+			margin: auto;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="containerWrapper">
+		<table width="100%">
+			<tr style="margin-bottom:10px;">
+				<td  class="tdHead" colspan="2">A new lead has been created</td>
+			</tr>
+		</table>
+
+		<p class="tdTitle">Hey {{user_name}}! A new lead has been created through one of your chatbots. Here are the lead's informations:</p>
+
+		<table width="100%">
+			<tr >
+				<td class="tdDetails" width="150px">
+					<div class="details">Name</div>
+				</td>
+				<td class="tdTag" >
+					<table>
+						<tr>
+							<td style="font-size: 15px; vertical-align: top; border-radius: 15px; text-align: left; background-color: #eeeeee;" valign="top" align="center" bgcolor="#eeeeee">
+								<a href="#" style="border: solid 1px #eeeeee; border-radius: 15px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 15px;  margin: 0; padding: 5px 15px; text-decoration: none; line-height: 1; background-color: #eeeeee; border-color: #eeeeee; color: #000000;">
+									<label>{{ lead_name }}</label>
+								</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr >
+				<td class="tdDetails" width="150px">
+					<div class="details">Email</div>
+				</td>
+				<td class="tdTag" >
+					<table>
+						<tr>
+							<td style="font-size: 15px; vertical-align: top; border-radius: 15px; text-align: left; background-color: #eeeeee;" valign="top" align="center" bgcolor="#eeeeee">
+								<a href="#" style="border: solid 1px #eeeeee; border-radius: 15px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 15px;  margin: 0; padding: 5px 15px; text-decoration: none; line-height: 1; background-color: #eeeeee; border-color: #eeeeee; color: #000000;">
+									<label>{{ lead_email }}</label>
+								</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr >
+				<td class="tdDetails" width="150px">
+					<div class="details">Phone Number</div>
+				</td>
+				<td class="tdTag" >
+					<table>
+						<tr>
+							<td style="font-size: 15px; vertical-align: top; border-radius: 15px; text-align: left; background-color: #eeeeee;" valign="top" align="center" bgcolor="#eeeeee">
+								<a href="#" style="border: solid 1px #eeeeee; border-radius: 15px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 15px;  margin: 0; padding: 5px 15px; text-decoration: none; line-height: 1; background-color: #eeeeee; border-color: #eeeeee; color: #000000;">
+									<label>{{ lead_phone_number }}</label>
+								</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr >
+				<td class="tdDetails" width="150px">
+					<div class="details">Chatbot</div>
+				</td>
+				<td class="tdTag" >
+					<table>
+						<tr>
+							<td style="font-size: 15px; vertical-align: top; border-radius: 15px; text-align: left; background-color: #eeeeee;" valign="top" align="center" bgcolor="#eeeeee">
+								<a href="#" style="border: solid 1px #eeeeee; border-radius: 15px; box-sizing: border-box; cursor: pointer; display: inline-block; font-size: 15px;  margin: 0; padding: 5px 15px; text-decoration: none; line-height: 1; background-color: #eeeeee; border-color: #eeeeee; color: #000000;">
+									<label>{{ lead_chatbot }}</label>
+								</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr>
+				<td align="left" style="padding:0;Margin:0;padding-top:0px;padding-left:20px;padding-right:20px"> 
+					<table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
+					  <tr> 
+					   <td align="center" valign="top" style="padding:0;Margin:0;width:560px"> 
+						<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
+						  <tr> 
+						   <td align="center" style="padding:0;Margin:0;padding-bottom:15px"><span class="es-button-border" style="border-style:solid;border-color:#5c68e2;background:#253053;border-width:0px;display:inline-block;border-radius:10px;width:auto"><a href="http://space.vitaminai.app/tools/chatbot-assistant" class="es-button es-button-2" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:20px;border-style:solid;border-color:#253053;border-width:10px 30px;display:inline-block;background:#253053;border-radius:10px;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:max-content;text-align:center">View Leads</a></span></td> 
+						  </tr> 
+						</table></td> 
+					  </tr> 
+					</table>
+				</td> 
+			</tr>
+			
+		</table>
+
+		<table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
+			<tr> 
+				<td align="center" valign="top" style="padding:0;Margin:0;width:560px"> 
+					<table width="100%" class="es-content" cellspacing="0" cellpadding="0" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%"> 
+						<tr> 
+							<td align="center" style="padding:0;Margin:0"> 
+								<table class="es-content-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:600px" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" align="center"> 
+									<tr> 
+										<td align="left" style="Margin:0;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px"> 
+											<table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
+												<tr> 
+													<td valign="top" align="center" style="padding:0;Margin:0;width:560px"></td> 
+												</tr> 
+											</table>
+										</td> 
+									</tr> 
+								</table>
+							</td> 
+						</tr> 
+					</table> 
+					<table class="es-footer" cellspacing="0" cellpadding="0" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top"> 
+						<tr> 
+							<td align="center" style="padding:0;Margin:0"> 
+								<table class="es-footer-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:600px" cellspacing="0" cellpadding="0" align="center"> 
+									<tr> 
+										<td align="left" style="padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px"> 
+											<table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
+												<tr> 
+													<td align="center" valign="top" style="padding:0;Margin:0;width:560px"> 
+														<table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
+															<tr> 
+																<td align="center" style="padding:0;Margin:0;padding-bottom:10px">
+																	<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:18px;color:#333333;font-size:12px">	&copy;&nbsp;2024&nbsp;<a target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#333333;font-size:12px;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif" href="https://www.vitaminai.app">VitaminAI</a>.&nbsp;All Rights Reserved.</p>
+																	<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:18px;color:#333333;font-size:12px">Cours Saint-Michel 30A, 1040 Brussels, Belgium</p>
+																</td> 
+															</tr> 
+														</table>
+													</td> 
+												</tr> 
+											</table>
+										</td> 
+									</tr> 
+								</table>
+							</td> 
+						</tr> 
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

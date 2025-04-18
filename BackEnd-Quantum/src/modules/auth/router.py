@@ -22,7 +22,7 @@ from src.modules.auth.models import User
 from src.modules.auth.constants import UserRole
 from src.modules.auth.utils import set_access_token_cookie, set_refresh_token_cookie
 from src.exceptions import NotAuthenticated, NotFound, PermissionDenied
-#from src.modules.email.service import service as email_service
+from src.modules.email.service import service as email_service
 from src.config import app_config
 from datetime import datetime
 
@@ -59,39 +59,40 @@ async def sign_up(request: SignUpRequest, response: Response) -> UserBrief:
         is_active=True,
     )
 
-   # email_service.send_email(
-    #    new_user.email,
-   #     "Welcome to VitaminAI",
-   #     f"""
-    #    Dear {new_user.full_name},
-#
- #       Congratulations and welcome to VitaminAI! We're thrilled to inform you that your account has been successfully created. You're now part of our community dedicated to harnessing the power of AI tools to boost your company's productivity.
-#
-  #      With your account now active, you can begin exploring the wide range of AI tools and resources available on our platform.
-#
- #       If you have any questions, feedback, or need assistance, feel free to reach out to our support team at support@vitaminai.app. We're here to assist you and ensure you have a seamless experience using VitaminAI.
+    email_service.send_email(
+        new_user.email,
+        "Welcome to DiDo Qunatum Pulse",
+        f"""
+        Dear {new_user.full_name},
 
-  #      Thank you for choosing VitaminAI! We're excited to have you onboard and look forward to helping you unlock the full potential of AI technology.
+       Congratulations and welcome to Dido Quantum Pulse!
 
-   #     Best regards,
+We’re excited to inform you that your account has been successfully created. You’re now part of a cutting-edge innovation platform that connects researchers, enterprises, and government agencies to accelerate breakthroughs in artificial intelligence, quantum computing, and cybersecurity.
 
-    #    VitaminAI Team.
-     #   """,
-    #)
+With your account now active, you can start exploring our ecosystem of AI-powered tools, collaborative opportunities, and transformative resources designed to push the boundaries of innovation.
 
-   # email_service.send_email(
-     #   app_config.NOTIFICATION_EMAIL_ADDRESS,
-      #  "New user signed up to VitaminAI",
-    #    f"""
-     #   Hi there,
-      #  A new user signed up to VitaminAI!
-      #  Full name: {new_user.full_name}
-      #  Email: {new_user.email}
-      #  Phone: +{new_user.phone_country_code+new_user.phone}
-       # Best regards,
-       # VitaminAI Team
-        #""",
-    #)
+If you have any questions, feedback, or need assistance, our support team is here for you at support@didoquantumpulse.app. We're committed to ensuring you have a seamless and impactful experience.
+
+Thank you for choosing Dido Quantum Pulse. We’re thrilled to have you onboard and can’t wait to see the future you’ll help shape.
+
+Best regards,
+The Dido Quantum Pulse Team
+        DiDo Qunatum Pulse Team.
+        """,
+    )
+
+    email_service.send_email(
+        app_config.NOTIFICATION_EMAIL_ADDRESS,
+    "New user signed up to DiDo Qunatum Pulse",
+        f"""
+        Hi there,
+        A new user signed up to DiDo Qunatum Pulse!
+        Full name: {new_user.full_name}
+        Email: {new_user.email}
+        Best regards,
+        DiDo Qunatum Pulse Team
+        """,
+    )
 
     access_token, refresh_token = await auth_service.sign_in(request.email, request.password)
 
@@ -105,19 +106,19 @@ async def sign_up(request: SignUpRequest, response: Response) -> UserBrief:
 async def send_reset_password_email(request: ForgotPasswordRequest) -> None:
     logging.info("sending reset password email")
     reset_token = await auth_service.create_password_reset_token(request.email)
-   # email_service.send_email(
-   #     request.email,
-   #     "Reset your password",
-   #     f"""
-   #     Dear user,
+    email_service.send_email(
+        request.email,
+        "Reset your password",
+        f"""
+       Dear user,
         
-     #   You can reset your password by clicking on the following link:
-    #    {app_config.CLIENT_URL}/auth/reset-password?token={reset_token.token}
+        You can reset your password by clicking on the following link:
+    {app_config.CLIENT_URL}/auth/reset-password?token={reset_token.token}
         
-    #    Best regards,
-    #    VitaminAI Team
-    #    """,
-    #)
+       Best regards,
+        DiDo Qunatum Pulse Team
+       """,
+    )
 
 
 @router.post("/reset-password/{token}", status_code=status.HTTP_204_NO_CONTENT)
