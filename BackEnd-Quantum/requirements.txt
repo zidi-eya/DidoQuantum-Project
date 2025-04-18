@@ -37,3 +37,4 @@ debugpy
 psycopg2-binary
 bcrypt
 pydantic_settings
+jinja2
