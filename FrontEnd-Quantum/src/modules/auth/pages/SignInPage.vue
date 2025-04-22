@@ -126,10 +126,20 @@ async function onSubmit() {
     console.log('isLoggedIn:', authStore.isLoggedIn);
     console.log('user:', authStore.user);
     await authStore.reloadUser(); // ← s'il existe
-
+    const userType = localStorage.getItem('userType');
+console.log('this is the ', userType)
     if (authStore.isLoggedIn) {
-      console.log('Redirection vers /index...');
-      await router.push('/index');
+      if (userType === 'esprit') {
+  await router.push(RoutePrefixes.ESPRIT);
+} else if (userType === 'ai') {
+  await router.push('/ai-home');
+} else if (userType === 'startup') {
+  await router.push('/startup-home');
+} else if (userType === 'dev') {
+  await router.push('/dev-home');
+} else {
+  await router.push('/index'); // fallback
+}
     } else {
       console.warn('Connexion échouée : utilisateur non authentifié');
     }

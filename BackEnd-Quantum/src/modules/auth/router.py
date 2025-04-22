@@ -54,7 +54,7 @@ async def sign_up(request: SignUpRequest, response: Response) -> UserBrief:
     new_user = await auth_service.create_user(
         request.full_name,
         request.email,
-        [UserRole.USER],
+        [request.role],
         password=request.password,
         is_active=True,
     )

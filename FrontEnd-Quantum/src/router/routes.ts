@@ -14,10 +14,19 @@ const routes: RouteRecordRaw[] = [
       {path: RoutePrefixes.INDEX,
       component: () => import('@/modules/pages/index.vue'),
     },
+
+
     ],
     meta: { requiresAuth: true },
   },
-
+  {
+    path: '/startup',
+    component: () => import('@/modules/pages/startup.vue'),
+  },
+  {
+    path: RoutePrefixes.ESPRIT,
+    component: () => import('@/modules/pages/esprit.vue'),
+  },
   {
     path: RoutePrefixes.AUTH,
     children: authRoutes,

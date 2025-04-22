@@ -6,6 +6,7 @@ enum RoutePrefixes {
   SUBSCRIPTION = '/subscription',
   WELCOMING_MESSAGE = '/welcoming-message',
   INDEX = '/index',
+  ESPRIT='/esprit',
 }
 
 export default RoutePrefixes;

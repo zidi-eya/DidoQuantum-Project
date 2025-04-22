@@ -5,6 +5,9 @@ import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    sourcemap: false,
+  },
   base: '/',
   plugins: [
     vue()
@@ -13,4 +16,12 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // ceci supprime les warnings de Sass
+        quietDeps: true,
+      }
+    }
+  }
 })

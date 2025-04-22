@@ -40,12 +40,14 @@ class AuthService {
   async signUpWithEmailAndPassword(
     fullName: string,
     email: string,
-    password: string
+    password: string,
+    role:string
   ): Promise<any> {
     return await api.post('auth/sign-up', {
       full_name: fullName,
       email: email,
       password: password,
+      role:role,
     });
   }
 
