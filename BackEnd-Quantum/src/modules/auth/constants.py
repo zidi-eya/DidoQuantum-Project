@@ -3,7 +3,7 @@ from enum import Enum
 
 class ApiKeyPrivilege(str, Enum):
     PROMPT = "prompt"
-    READ_COLLECTIONS = "read_collections"
+    #READ_COLLECTIONS = "read_collections"
 
 
 class UserTokenPurpose(str, Enum):

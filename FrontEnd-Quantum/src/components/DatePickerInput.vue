@@ -14,8 +14,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { date as qdate } from 'quasar';
-import { usePreferenceStore } from 'src/stores/user-preference-store';
-import DatePicker from 'src/components/DatePicker.vue';
+import { usePreferenceStore } from '@/stores/user-preference-store';
+import DatePicker from '@/components/DatePicker.vue';
 
 const props = defineProps({
   modelValue: Date,

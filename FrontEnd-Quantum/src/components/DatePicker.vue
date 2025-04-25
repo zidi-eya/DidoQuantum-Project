@@ -32,8 +32,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { date as qdate } from 'quasar'
-import { DateTimeParser } from 'src/utils/functions/datetime-parser'
-import { usePreferenceStore } from 'src/stores/user-preference-store';
+import { DateTimeParser } from '@/utils/functions/datetime-parser'
+import { usePreferenceStore } from '@/stores/user-preference-store';
 
 const props = defineProps({
   date: Date,
@@ -72,7 +72,7 @@ watch(internalDateTime, (newVal) => {
 });
 
 watch(
-  () => props.date, 
+  () => props.date,
   (newVal) => {
     internalDateTime.value = qdate.formatDate(newVal, displayFormat.value.full())
   }, {

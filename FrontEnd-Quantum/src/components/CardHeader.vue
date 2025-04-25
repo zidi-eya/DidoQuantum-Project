@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import HelpButton from 'src/components/HelpButton.vue'
+import HelpButton from '@/components/HelpButton.vue'
 defineProps({
   title: String,
   subtitle: String,

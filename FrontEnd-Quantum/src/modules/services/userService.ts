@@ -2,7 +2,7 @@ import axios from "axios";
 import type { User } from "../models/userModel";
 
 
-const API_URL = "http://127.0.0.1:8000"; // Update if your backend runs on another port
+const API_URL = "http://127.0.0.1:8000";
 
 export const fetchAllUsers = async (): Promise<User[]> => {
   try {

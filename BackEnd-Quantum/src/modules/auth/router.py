@@ -149,22 +149,22 @@ async def refresh_token(
     return RefreshTokenResponse(access_token=access_token, refresh_token=refresh_token, subscription_status=subscription_status)
 
 
-#@router.get("/profile")
-#async def profile(
- #   user: User = Depends(auth_service.access_token_validation()),
-#) -> UserDetail:
- #   user_details = UserDetail.from_model(user)
-  #  if user.subscription.provider == SubscriptionProvider.STRIPE:
-   ##     subscription = await stripe_service.get_stripe_subscription(user.subscription.external_subscription_id)
-     ##   if not subscription:
-       #     raise NotFound("External Subscription not found")
+@router.get("/profile")
+async def profile(
+   user: User = Depends(auth_service.access_token_validation()),
+) -> UserDetail:
+   user_details = UserDetail.from_model(user)
+    #if user.subscription.provider == SubscriptionProvider.STRIPE:
+        #subscription = await stripe_service.get_stripe_subscription(user.subscription.external_subscription_id)
+        #if not subscription:
+            #raise NotFound("External Subscription not found")
         #subscription_metadata = subscription['items']['data'][0]['price']['product']['metadata']
-      #  user_details.subscription.validity_date = datetime.fromtimestamp(subscription.current_period_end)
-       # user_details.subscription.status = SubscriptionStatus.from_model(subscription['status'])
+        #user_details.subscription.validity_date = datetime.fromtimestamp(subscription.current_period_end)
+        #user_details.subscription.status = SubscriptionStatus.from_model(subscription['status'])
      #   user_details.subscription.plan = subscription_metadata['subscription_type'] if 'subscription_type' in subscription_metadata else None
       #  user_details.subscription.provider = SubscriptionProvider.STRIPE
 
-    #return user_details
+   return user_details
 @router.get("/profile")
 async def profile(
     user: User = Depends(auth_service.access_token_validation()),

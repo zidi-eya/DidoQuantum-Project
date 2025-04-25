@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import materialIcons from 'src/utils/material-icons';
+import materialIcons from '@/utils/material-icons';
 import { ref, computed, watch } from 'vue';
 import SearchInput from 'src/components/SearchInput.vue';
 

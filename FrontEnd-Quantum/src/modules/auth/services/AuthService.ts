@@ -18,7 +18,7 @@ class AuthService {
         remember_me: rememberMe,
       });
 
-
+      console.log('SignIn response:', response.data);
       return response.data as SignInResponse;
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -71,11 +71,8 @@ class AuthService {
     });
   }
 
-
   async signOut(): Promise<void> {
-    console.log('Calling API signOut');
-
-    await api.post('auth/sign-out');
+    await api.post('api/auth/sign-out');
   }
 
   async forgotPassword(email: string): Promise<void> {
