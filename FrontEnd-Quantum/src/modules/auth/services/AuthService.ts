@@ -71,9 +71,19 @@ class AuthService {
     });
   }
 
-  async signOut(): Promise<void> {
-    await api.post('api/auth/sign-out');
+
+
+  async  signOut() {
+    console.log('[🚪] Sign out initiated');
+    try {
+      await api.post('auth/sign-out');
+        } catch (e) {
+      console.warn('Logout failed:', e); // maybe the session is already gone
+    }
   }
+
+
+
 
   async forgotPassword(email: string): Promise<void> {
     await api.post('auth/reset-password', {

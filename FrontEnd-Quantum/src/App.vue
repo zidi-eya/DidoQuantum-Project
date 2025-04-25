@@ -35,6 +35,8 @@ watch(
 
 // Function to establish WebSocket connection and set up event listeners
 function connectWebSocket() {
+  console.log('[🌐] Connecting WebSocket');
+
   //websocket = new WebSocket(`${import.meta.env.API_WEBSOCKET_URL}/ws`);
   websocket = new WebSocket(`${import.meta.env.VITE_API_WEBSOCKET_URL}/ws`);
 
@@ -101,6 +103,12 @@ onMounted(() => {
   window.addEventListener('user-logged-out', () => {
     disconnectWebSocket();
   });
+});
+
+onMounted(() => {
+  if (localStorage.getItem('token')) {
+    authStore.reloadUser()
+  }
 });
 
 </script>

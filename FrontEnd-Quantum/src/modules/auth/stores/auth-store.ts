@@ -19,13 +19,15 @@ export const useAuthStore = defineStore('auth-store', {
   },
   actions: {
     async reloadUser(onError?: (error: Error) => Promise<void>) {
+      console.log('[🌀] reloadUser called');
       try {
         this.user = await authService.getUser();
+        console.log('[✅] user reloaded:', this.user);
       } catch (e) {
+        console.error('[❌] reloadUser error:', e);
         if (onError) {
-          onError(e as Error);
+          await onError(e as Error);
         }
-
         this.user = null;
       }
     },

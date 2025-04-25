@@ -22,7 +22,6 @@
   <!-- <text-avatar size="72px" :name="authStore.getUser?.fullName" />-->
 
   <div class="text-subtitle2 q-mt-md q-mb-md">
-    {{ authStore.getUser?.fullName }}
   </div>
 
   <q-btn
