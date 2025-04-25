@@ -20,17 +20,20 @@ const routes: RouteRecordRaw[] = [
       path: RoutePrefixes.PROFILE,
       children: profileRoutes,
     },
+
+    {
+      path: RoutePrefixes.ESPRIT,
+      component: () => import('@/modules/pages/esprit.vue'),
+    },
+    {
+      path: '/startup',
+      component: () => import('@/modules/pages/startup.vue'),
+    },
     ],
     meta: { requiresAuth: true },
   },
-  {
-    path: '/startup',
-    component: () => import('@/modules/pages/startup.vue'),
-  },
-  {
-    path: RoutePrefixes.ESPRIT,
-    component: () => import('@/modules/pages/esprit.vue'),
-  },
+
+
   {
     path: RoutePrefixes.AUTH,
     children: authRoutes,
