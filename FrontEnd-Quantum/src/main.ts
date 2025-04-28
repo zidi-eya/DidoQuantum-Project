@@ -32,13 +32,8 @@ async function bootstrap() {
 
   const resolvedRouter = await router()
   app.use(resolvedRouter)
-  app.use(Quasar, {
-    directives: {
-      ClosePopup
-    }
-  })
-  app.mount('#app')
 
+  app.mount('#app')
   console.log('App loaded!')
 }
 

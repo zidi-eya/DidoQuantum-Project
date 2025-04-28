@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { SelectOption } from 'src/types/SelectOption';
+import { SelectOption } from '@/types/SelectOption';
 import { ref, watch, PropType } from 'vue';
 
 const props = defineProps({

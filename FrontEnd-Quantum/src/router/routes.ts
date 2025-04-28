@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import RoutePrefixes from '@/router/RoutePrefixes';
+import profileRoutes from '@/modules/profile/router/routes';
 
 import authRoutes from '@/modules/auth/router/routes';
 
@@ -14,9 +15,24 @@ const routes: RouteRecordRaw[] = [
       {path: RoutePrefixes.INDEX,
       component: () => import('@/modules/pages/index.vue'),
     },
+
+    {
+      path: RoutePrefixes.PROFILE,
+      children: profileRoutes,
+    },
+
+    {
+      path: RoutePrefixes.ESPRIT,
+      component: () => import('@/modules/pages/esprit.vue'),
+    },
+    {
+      path: '/startup',
+      component: () => import('@/modules/pages/startup.vue'),
+    },
     ],
     meta: { requiresAuth: true },
   },
+
 
   {
     path: RoutePrefixes.AUTH,

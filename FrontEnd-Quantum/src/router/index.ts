@@ -75,7 +75,11 @@ export default route(function (/* { store, ssrContext } */) {
   Router.beforeEach(async (to) => {
     try {
     const authStore = useAuthStore();
-    await authStore.reloadUser();
+
+    if (!authStore.user && localStorage.getItem('token')) {
+      await authStore.reloadUser();
+    }
+
     LoadingBar.start();
     if (to.meta.requiresAuth && !authStore.isLoggedIn) {
       return `${RoutePrefixes.AUTH}/sign-in`;

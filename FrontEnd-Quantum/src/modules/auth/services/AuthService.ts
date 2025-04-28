@@ -18,7 +18,7 @@ class AuthService {
         remember_me: rememberMe,
       });
 
-
+      console.log('SignIn response:', response.data);
       return response.data as SignInResponse;
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -40,12 +40,14 @@ class AuthService {
   async signUpWithEmailAndPassword(
     fullName: string,
     email: string,
-    password: string
+    password: string,
+    role:string
   ): Promise<any> {
     return await api.post('auth/sign-up', {
       full_name: fullName,
       email: email,
       password: password,
+      role:role,
     });
   }
 
@@ -70,11 +72,18 @@ class AuthService {
   }
 
 
-  async signOut(): Promise<void> {
-    console.log('Calling API signOut');
 
-    await api.post('auth/sign-out');
+  async  signOut() {
+    console.log('[🚪] Sign out initiated');
+    try {
+      await api.post('auth/sign-out');
+        } catch (e) {
+      console.warn('Logout failed:', e); // maybe the session is already gone
+    }
   }
+
+
+
 
   async forgotPassword(email: string): Promise<void> {
     await api.post('auth/reset-password', {

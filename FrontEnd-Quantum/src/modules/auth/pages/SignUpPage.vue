@@ -2,8 +2,29 @@
     <!--<app-logo class="q-mb-xl" />-->
     <q-stepper header-nav v-model="step" vertical color="primary" animated>
     <q-step :name="1" title="Sign up" icon="settings" :done="step > 1">
-      <page-headings subtitle="Let's start creating your account!" />
+      <page-headings subtitle="Let's start creating your account as !" />
       <q-form greedy class="q-gutter-md full-width" @submit.prevent="onSubmit">
+
+        <!-- <q-select
+        v-model="selectedRole"
+        :options="[
+          { label: 'ESPRIT', value: 'ESPRIT' },
+          { label: 'AI Researchers', value: 'AI Researchers' },
+          { label: 'Startups', value: 'Startups' },
+          { label: 'Engineers & Developers', value: 'Engineers & Developers' }
+        ]"
+        label="Select your role"
+      />-->
+       <q-btn @click="selectUserType('esprit')" :color="userType === 'esprit' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+       >ESPRIT</q-btn>
+        <q-btn @click="selectUserType('ai')" :color="userType === 'ai' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+        >AI researchers</q-btn>
+        <q-btn @click="selectUserType('startup')" :color="userType === 'startup' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+        >Startups</q-btn>
+        <q-btn @click="selectUserType('dev')" :color="userType === 'dev' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+        >Engineers & developers</q-btn>
+
+
         <q-input
           class="full-width"
           standout="bg-primary text-white"
@@ -148,8 +169,13 @@ const password = ref('');
 const repeatPassword = ref('');
 const selectedPrice = ref();
 //const priceOptions = ref<Price[]>([]);
-const userBrief = ref();
+  const selectedRole = ref<string | null>(null); // Define the type and initialize to null or a default value
 
+const userBrief = ref();
+const userType = ref<string>('');
+function selectUserType(type: string) {
+  userType.value = type
+}
 /*onMounted(() => {
   safeExecute(async () => {
     priceOptions.value = await stripeService.getAllPrices();
@@ -157,31 +183,39 @@ const userBrief = ref();
 });
 */
 async function onSubmit() {
-  //step.value = 2;
-
+  step.value = 2;
+  if (!userType.value) {
+  alert('Veuillez sélectionner un type d’utilisateur.');
+  return;
+}
   safeExecute(async () => {
     loading.value = true;
     const response = await authService.signUpWithEmailAndPassword(
       fullName.value,
       email.value,
-      password.value
+      password.value,
+      userType.value
     );
-    console.log('first response:', response);
+    console.log('first response:', response , selectedRole.value);
 
     await authStore.reloadUser();
     userBrief.value = response.data;
     console.log('second userBrief:', userBrief.value);
+    //await authService.assignRoleToUser(response.data.id, selectedRole.value);
 
     loading.value = false;
+    localStorage.setItem('userType', userType.value || '');
 
-    // Optional: redirect user somewhere after successful signup
-    console.log('third: je vais returner vers INDEX');
-    try {
-  await router.push('/index');
-  console.log('redirected successfully');
-} catch (err) {
-  console.error('router.push failed:', err);
+    if (userType.value === 'esprit') {
+  await router.push(RoutePrefixes.ESPRIT);
+} else if (userType.value === 'ai') {
+  await router.push('/ai-home');
+} else if (userType.value === 'startup') {
+  await router.push('/startup');
+} else if (userType.value === 'dev') {
+  await router.push('/dev-home');
 }
+
 
   });
 }
@@ -194,10 +228,14 @@ async function submitUserInformation() {
     const response = await authService.signUpWithEmailAndPassword(
       fullName.value,
       email.value,
-      password.value
+      password.value,
+      userType.value
+
     );
     await authStore.reloadUser();
     userBrief.value = response.data;
+    localStorage.setItem('userType', userType.value || '');
+
     step.value = 3;
     loading.value = false;
   });

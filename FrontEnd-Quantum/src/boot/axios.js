@@ -11,6 +11,7 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
+
 export default boot(({ app }) => {
     // for use inside Vue files (Options API) through this.$axios and this.$api
     app.config.globalProperties.$axios = axios;
@@ -19,40 +20,7 @@ export default boot(({ app }) => {
     app.config.globalProperties.$api = api;
     // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
     //       so you can easily perform requests against your app's API
-    api.interceptors.response.use(null, function (e) {
-        // Optionally, you can check for specific error codes and handle them differently
-        if (e.response && e.response.status === 402) {
-            const { showErrorDialog } = useErrorDialog();
-            if (e.response.data.type == 'subscription-limit-reached') {
-                showErrorDialog({
-                    title: 'Subscription Limits Reached',
-                    message: "Oops! It looks like you've reached your subscription plan limits. Please consider upgrading your subscription plan.",
-                    okButtonMessage: 'Change Subscription',
-                    clientReferenceId: e.response.data.client_reference_id,
-                    paymentRequiredType: e.response.data.type,
-                });
-            }
-            if (e.response.data.type == 'inactive-subscription-logged-user') {
-                showErrorDialog({
-                    title: 'No valid subscription found',
-                    message: 'Oops! It looks like you dont have any subscription active. Please subscribe to any of our plans to unlock more features. You will be logged out if you wish to subscribe.',
-                    okButtonMessage: 'Subscribe',
-                    clientReferenceId: e.response.data.client_reference_id,
-                    paymentRequiredType: e.response.data.type,
-                });
-            }
-            if (e.response.data.type == 'subscription-limit-reached-member') {
-                showErrorDialog({
-                    title: 'Owner Subscription Limits Reached',
-                    message: 'Oops! It looks like the owner subscription has reached the subscription plan limits. Please contact the organization owner.',
-                    okButtonMessage: null,
-                    clientReferenceId: e.response.data.client_reference_id,
-                    paymentRequiredType: e.response.data.type,
-                });
-            }
-        }
-        return Promise.reject(e);
-    });
+
 });
 export { api };
 //# sourceMappingURL=axios.js.map

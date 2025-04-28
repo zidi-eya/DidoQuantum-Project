@@ -19,10 +19,9 @@
 
 
 <div class="column items-center">
-  <text-avatar size="72px" :name="authStore.getUser?.fullName" />
+  <!-- <text-avatar size="72px" :name="authStore.getUser?.fullName" />-->
 
   <div class="text-subtitle2 q-mt-md q-mb-md">
-    {{ authStore.getUser?.fullName }}
   </div>
 
   <q-btn
@@ -104,23 +103,15 @@ watch(selectedSection, (newSection, oldSection) => {
 // Fonction pour changer de section au clic
 const changeSection = (section) => {
   selectedSection.value = section;
-};
+}
+
 async function signOut() {
   await authStore.signOut();
-  disconnectWebSocket();
-  console.log('User after sign out:', authStore.user);
-console.log('Token after sign out:', authStore.token);
   await router.push({ name: AuthRouteNames.SIGN_IN });
 }
-onMounted(() => {
-  if (authStore.getUser) {
-    console.log('User is authenticated:', authStore.getUser.fullName);
-    console.log('User after sign in:', authStore.user);
-    console.log('Token after sign in:', authStore.token);
-  } else {
-    console.log('No authenticated user.');
-  }
-});
+
+
+
 </script>
 
 <style>
