@@ -5,16 +5,6 @@
       <page-headings subtitle="Let's start creating your account as !" />
       <q-form greedy class="q-gutter-md full-width" @submit.prevent="onSubmit">
 
-        <!-- <q-select
-        v-model="selectedRole"
-        :options="[
-          { label: 'ESPRIT', value: 'ESPRIT' },
-          { label: 'AI Researchers', value: 'AI Researchers' },
-          { label: 'Startups', value: 'Startups' },
-          { label: 'Engineers & Developers', value: 'Engineers & Developers' }
-        ]"
-        label="Select your role"
-      />-->
        <q-btn @click="selectUserType('esprit')" :color="userType === 'esprit' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
        >ESPRIT</q-btn>
         <q-btn @click="selectUserType('ai')" :color="userType === 'ai' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
@@ -174,7 +164,8 @@ const selectedPrice = ref();
 const userBrief = ref();
 const userType = ref<string>('');
 function selectUserType(type: string) {
-  userType.value = type
+  userType.value = type;
+  localStorage.setItem('userType', type);
 }
 /*onMounted(() => {
   safeExecute(async () => {

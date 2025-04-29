@@ -1,11 +1,9 @@
 import { RouteRecordRaw } from 'vue-router';
 import RoutePrefixes from '@/router/RoutePrefixes';
 import profileRoutes from '@/modules/profile/router/routes';
-
 import authRoutes from '@/modules/auth/router/routes';
-
-//import profileRoutes from '@/modules/profile/router/routes';
 //import adminRoutes from '@/modules/admin/router/routes';
+
 const routes: RouteRecordRaw[] = [
   {
     path: RoutePrefixes.PROTECTED,
@@ -23,6 +21,7 @@ const routes: RouteRecordRaw[] = [
 
     {
       path: RoutePrefixes.ESPRIT,
+      name: 'EspritPage',
       component: () => import('@/modules/pages/esprit.vue'),
     },
     {

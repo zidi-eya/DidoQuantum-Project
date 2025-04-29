@@ -121,7 +121,6 @@ async function onSubmit() {
       password.value,
       rememberMe.value,
     );
-    console.log('username:', username.value, 'password:', password.value);
 
     console.log('isLoggedIn:', authStore.isLoggedIn);
     console.log('user:', authStore.user);
