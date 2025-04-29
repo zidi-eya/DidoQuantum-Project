@@ -11,6 +11,7 @@ export const useAuthStore = defineStore('auth-store', {
   state: (): authState => ({
     user: null,
   }),
+  persist: true,
   getters: {
     isLoggedIn: (state) => state.user !== null,
     isAdmin: (state) => state.user?.roles.includes(Role.SUPERADMIN),
