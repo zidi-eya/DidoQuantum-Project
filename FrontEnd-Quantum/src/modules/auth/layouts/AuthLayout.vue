@@ -6,8 +6,13 @@
         <q-list class="row  row justify-center q-mb-lg">
           <q-item class="text-grey-7" clickable> Terms & Conditions </q-item>
           <q-item class="text-grey-7" clickable> Privacy Policy </q-item>
-          <q-item class="text-grey-7" clickable> Contact Us </q-item>
-          <q-item class="text-grey-7" clickable> About Us </q-item>
+          <q-item    tag="router-link"
+          :to="{ name: 'contact' }" class="text-grey-7" clickable> Contact Us </q-item>
+          <q-item
+          tag="router-link"
+          :to="{ name: 'about' }"
+
+          class="text-grey-7" clickable> About Us </q-item>
         </q-list>
       </q-page>
     </q-page-container>

@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { QInput, QIcon } from 'quasar';
 
 // Define the event you want to emit
 const emit = defineEmits(['searchChange']);

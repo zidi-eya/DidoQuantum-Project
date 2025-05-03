@@ -40,6 +40,17 @@ const routes: RouteRecordRaw[] = [
 
   // Always leave this as last one,
   // but you can also remove it
+
+  {
+    path: '/about',
+    name: 'about' ,
+    component: () => import('@/modules/pages/about.vue'),
+  },
+  {
+    path: '/contact',
+    name: 'contact' ,
+    component: () => import('@/modules/pages/contact.vue'),
+  },
   {
     path: '/:catchAll(.*)*',
     component: () => import('@/pages/ErrorNotFound.vue'),

@@ -3,6 +3,19 @@
     <app-logo class="q-mb-xl" />
     <page-headings title="Sign in" subtitle="Enter your email and password to sign in!" />
     <q-form greedy class="q-gutter-md full-width" @submit.prevent="onSubmit">
+
+
+      <q-btn @click="selectUserType('esprit')" :color="userType === 'esprit' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+      >ESPRIT</q-btn>
+       <q-btn @click="selectUserType('ai')" :color="userType === 'ai' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+       >AI researchers</q-btn>
+       <q-btn @click="selectUserType('startup')" :color="userType === 'startup' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+       >Startups</q-btn>
+       <q-btn @click="selectUserType('dev')" :color="userType === 'dev' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+       >Engineers & developers</q-btn>
+
+
+
       <q-input
         class="full-width"
         standout="bg-primary text-white"
@@ -106,7 +119,12 @@ const router = useRouter();
 const username = ref('');
 const password = ref('');
 const rememberMe = ref(false);
+const userType = ref<string>('');
 
+function selectUserType(type: string) {
+  userType.value = type;
+  localStorage.setItem('userType', type);
+}
 async function onSubmit() {
   await safeExecute(async () => {
     console.log('Tentative de connexion...');

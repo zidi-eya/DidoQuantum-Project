@@ -93,6 +93,7 @@ import { useAuthStore } from '@/modules/auth/stores/auth-store';
 import CardHeader from '@/components/CardHeader.vue';
 import { GeneralRules } from '@/utils/validation/rules';
 import { ref } from 'vue';
+import { QInput, QCard ,QIcon, QCardSection, QForm, QBtn, QCardActions  } from 'quasar'
 
 const authStore = useAuthStore();
 const fullName = ref(authStore.getUser.fullName);

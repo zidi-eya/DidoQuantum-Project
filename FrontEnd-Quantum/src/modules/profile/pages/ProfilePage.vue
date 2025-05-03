@@ -1,4 +1,13 @@
 <template>
+  <header-layout
+  :breadcrumbs="[
+    {
+      label: 'Profile',
+      routeName: RouteNames.PROFILE,
+    },
+  ]"
+  :help_url="DocURLS.PROFILE"
+/>
 
   <q-tabs
     v-model="activeTab"
@@ -16,9 +25,9 @@
       <general-settings />
     </q-tab-panel>
 
-    <q-tab-panel class="q-px-none" :name="ProfileTabs.API_ACCESS">
+   <!-- <q-tab-panel class="q-px-none" :name="ProfileTabs.API_ACCESS">
       <api-keys />
-    </q-tab-panel>
+    </q-tab-panel>-->
 
 
   </q-tab-panels>
@@ -31,6 +40,9 @@ import RouteNames from "@/modules/profile/router/RouteNames";
 import GeneralSettings from "@/modules/profile/components/GeneralSettings.vue";
 import ApiKeys from "@/modules/profile/components/ApiKeys.vue";
 import { ref } from "vue";
+import { QTab, QCard ,QTabPanel,QTabs, QTabPanels } from 'quasar'
+import { DocURLS } from "@/utils/constants/doc-urls";
+
 
 enum ProfileTabs {
   GENERAL_SETTINGS = "general-settings",
