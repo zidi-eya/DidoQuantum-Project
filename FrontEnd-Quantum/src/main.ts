@@ -1,11 +1,12 @@
 import '@/css/app.scss';
-//mport '@quasar/extras/material-icons/material-icons.css';
-//import 'quasar/src/css/index.sass';
+//import '@/quasar/extras/material-icons/material-icons.css';
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { route } from 'quasar/wrappers'
 import 'quasar/src/css/index.sass' // make sure you load Quasar CSS
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
+import 'eva-icons/style/eva-icons.css';
 
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import {  Quasar, Dialog, Notify, Loading, ClosePopup  } from 'quasar'
