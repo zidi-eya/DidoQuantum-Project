@@ -37,8 +37,8 @@
 <script setup lang="ts">
 import { PropType, useSlots } from 'vue';
 import { useRouter } from 'vue-router';
-import HelpButton from 'src/components/HelpButton.vue';
-import { BreadcrumbItem } from 'src/types/Breadcrumb';
+import HelpButton from '@/components/HelpButton.vue';
+import { BreadcrumbItem } from '@/types/Breadcrumb';
 
 defineProps({
   breadcrumbs: Array as PropType<BreadcrumbItem[]>,

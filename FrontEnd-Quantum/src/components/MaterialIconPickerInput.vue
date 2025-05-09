@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import materialIcons from '@/utils/material-icons';
 import { ref, computed, watch } from 'vue';
-import SearchInput from 'src/components/SearchInput.vue';
+import SearchInput from '@/components/SearchInput.vue';
 
 const props = defineProps({
   modelValue: {

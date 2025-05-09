@@ -3,10 +3,9 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from src.database import init_db
-from src.modules.Formulaire.router import router as user_router
 from src.modules.websocket.router import router as websocket_router
-
-
+from src.modules.Formulaire.router import router as formulaire_test
+from src.modules.Files_Uploaded.router import router as Files_router
 from src.modules.auth.router import router as auth
 
 # FastAPI App
@@ -40,13 +39,16 @@ app.add_middleware(
 async def startup():
     await init_db()  # Initialize the database on startup
 
-# Import and include your routers
-from src.modules.Formulaire.router import router as formulaire_router
 
-app.include_router(formulaire_router)
+
+app.include_router(formulaire_test)
+app.include_router(Files_router)
+
 # Include User Routes
-app.include_router(user_router, prefix="/users", tags=["Users"])
+app.include_router(formulaire_test, prefix="/users", tags=["formulaire test"])
 app.include_router(auth, prefix="/auth", tags=["auth"])
+
+app.include_router(Files_router, prefix="/Files", tags=["Files"])
 
 
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")

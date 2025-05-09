@@ -62,16 +62,14 @@
               <q-btn
                 class="menu_item"
                 align="left"
-                icon="account_circle"
                 label="Profile"
                 @click="goToProfile"
                 no-caps
                 flat
               />
-              <q-btn
+            <q-btn
                 class="menu_item"
                 align="left"
-                icon="card_membership"
                 label="Subscription"
                 @click="goToSubscription"
                 no-caps

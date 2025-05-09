@@ -7,8 +7,7 @@
 
       <q-btn @click="selectUserType('esprit')" :color="userType === 'esprit' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
       >ESPRIT</q-btn>
-       <q-btn @click="selectUserType('ai')" :color="userType === 'ai' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
-       >AI researchers</q-btn>
+
        <q-btn @click="selectUserType('startup')" :color="userType === 'startup' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
        >Startups</q-btn>
        <q-btn @click="selectUserType('dev')" :color="userType === 'dev' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
@@ -151,7 +150,7 @@ console.log('this is the ', userType)
 } else if (userType === 'ai') {
   await router.push('/ai-home');
 } else if (userType === 'startup') {
-  await router.push('/startup-home');
+  await router.push('/startup');
 } else if (userType === 'dev') {
   await router.push('/dev-home');
 } else {

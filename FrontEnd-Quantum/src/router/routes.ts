@@ -41,6 +41,24 @@ const routes: RouteRecordRaw[] = [
   // Always leave this as last one,
   // but you can also remove it
 
+
+
+  {
+    path: '/upload',
+    name: 'upload' ,
+    component: () => import('@/modules/Upload_files/pages/CollectionOverviewPage.vue'),
+  },
+
+
+
+
+
+
+  {
+    path: '/offer',
+    name: 'offer' ,
+    component: () => import('@/modules/pages/ourOffer.vue'),
+  },
   {
     path: '/about',
     name: 'about' ,

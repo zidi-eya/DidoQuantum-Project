@@ -1,6 +1,6 @@
 <template>
   <div class="absolute-center column justify-center items-center">
-    <img src="/images/" style="width: 20rem" />
+    <!--<img src="/image/" style="width: 20rem" />-->
     <div class="text-h6 text-weight-medium text-center text-grey-9 q-mt-sm">
       No items found
     </div>

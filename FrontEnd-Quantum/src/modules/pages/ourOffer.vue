@@ -23,7 +23,7 @@
   </div>
 
   <div class="contact-us">
-    <h2 class="contact-title">About Us</h2>
+    <h2 class="contact-title">What we Offer</h2>
     <p class="contact-description">
       Welcome to Dido Quantum, where we harness the power of quantum science to redefine security, identity, and communication. Our mission is to build groundbreaking technologies that merge quantum sensing, biometric intelligence, and advanced cryptography to create safer, smarter systems for the future of aviation and beyond.
     </p>
@@ -36,13 +36,24 @@
         <div class="contentN-container">
 
           <div class="contentN-image">
-            <img src="/image/rs=w_1024,h_512,cg_true.webp" alt="image description" />
+            <img src="/image/qtpulse.webp" alt="image description" />
           </div>
           <div class="content-textN" style="margin-left: 10px;">
-            <h4> What is EntangleBeat™?</h4>
+            <h4> What Dido Quantum Pulse Offer
+              ?</h4>
             <p>
-              EntangleBeat™ is an innovative biometric authentication and pilot monitoring system that uses quantum sensing technology to analyze a pilot’s electromagnetic heartbeat signature in real time. By converting these biological signals into quantum wavefunctions and encoding them as qubits, the system ensures continuous identity verification and stress detection. If signs of distress or biometric incoherence are detected—such as during a hijack or medical emergency—the system can trigger a secure override, disabling cockpit controls and alerting ground authorities. This represents a paradigm shift in aviation security, integrating biometric coherence and quantum cryptography for unprecedented safety.            </p>
-          </div>
+              Dido Quantum Pulse is an AI-powered digital innovation marketplace designed to:
+             <br/> ✅ Match enterprises & governments with cutting-edge AI & quantum solutions.
+             <br/> ✅ Provide a secure platform for AI startups & researchers to commercialize innovations.
+             <br/> ✅ Accelerate the adoption of AI-driven cybersecurity, fintech, and cloud-based quantum computing.
+
+             <br/> We focus on three main pillars:
+             <br/>- AI & Quantum Research Commercialization
+             <br/>– Helping AI & quantum researchers patent, license, and monetize their discoveries.
+             <br/> -Secure AI Adoption & GovTech Innovation
+             <br/>  – Enabling government agencies & enterprises to implement AI safely.
+             <br/>- Quantum-Secured Networking & AI-driven Cybersecurity
+             <br/> – Building Quantum VPN (QVPN) solutions & AI-enhanced security infrastructures        </p>    </div>
 
         </div>
       </div>
@@ -56,13 +67,22 @@
       <div class="contentN">
         <div class="contentN-container">
           <div class="content-textN">
-            <h4> Quantum Security Meets Aviation</h4>
+            <h4>  What We Offer</h4>
             <p>
-              The EntangleBeat™ system combines advanced quantum technologies such as Schrödinger-based modeling, Qubit encoding, and Quantum Key Distribution (QKD) to establish a zero-trust communication channel between aircraft and ground control. A seat-embedded quantum sensor captures the pilot’s cardiac electromagnetic signals and entangles them with a stored baseline for real-time validation. In parallel, it supports spoof-proof aircraft tracking and secure data handover across regions using entangled positioning and QKD laser transmission. This cutting-edge approach bridges quantum science, aerospace engineering, and cybersecurity to deliver a robust, intelligent security layer for modern aviation.
-            </p>
+              <br/>🔹 AI-Powered Innovation Marketplace
+              A secure, intelligent platform where businesses, startups, and research institutions showcase and commercialize AI, IT, telecom, and cybersecurity solutions.
+
+              <br/> 🔹 Hybrid Quantum Synchronization (HQS)
+              A revolutionary quantum-secure synchronization technology designed for 6G, AI-powered networks, cybersecurity, and blockchain-based data integrity.
+
+              <br/> 🔹 AI & GovTech Solutions
+              Enterprise and public-sector AI adoption strategies, compliance solutions (GDPR, FedRAMP), and AI-driven digital transformation.
+
+              <br/> 🔹 Blockchain-Based Licensing & IP Protection
+              Advanced blockchain smart contracts for secure, fair, and efficient licensing of AI-driven software, patents, and digital innovations.            </p>
           </div>
           <div class="contentN-image">
-            <img src="/image/rs=w_2560,h_1360.webp" alt="image description" />
+            <img src="/image/rs=w_984,h_689.webp    " alt="image description" />
           </div>
         </div>
       </div>
@@ -74,16 +94,34 @@
     <q-separator inset />
     <q-card-section class="column q-px-md preview-card">
       <div class="contentN">
+        <h5 style="margin-left: 120px;"> The Future of AI, Quantum, and Secure Telecommunications Starts Here!</h5>
+
         <div class="contentN-container">
 
           <div class="contentN-image">
-            <img src="/image/rs=w_984,h_689.webp" alt="image description" />
+            <img src="/image/rs=w_2560,h_1360.webp" alt="image description" />
           </div>
           <div class="content-textN" style="margin-left: 10px;">
-            <h4> Dido Quantum Pulse: Bridging Innovation with AI-Powered Intelligence</h4>
             <p>
-              Dido Quantum Pulse envisions a global AI-powered digital innovation marketplace that bridges the gap between enterprises, government agencies, and cutting-edge technology innovators. By leveraging AI-driven matchmaking, blockchain-based licensing, and enterprise-level security compliance (GDPR & FedRAMP), the platform will accelerate technological discovery, ensuring that the most advanced solutions reach the right partners efficiently.ur Mission
-            </p>
+
+
+              🤝 Partner with Us
+              Dido Quantum Pulse is actively seeking strategic partnerships, investors, and enterprise collaborations to accelerate the future of AI-powered innovation, secure telecom infrastructure, and post-quantum cybersecurity.
+
+              <br/>   📌 How You Can Collaborate with Us
+              <br/>   🔹 Enterprises & Governments – Looking for cutting-edge AI & telecom solutions? We provide secure, scalable, and innovative technology adoption strategies.
+              <br/>   🔹 Investors & VC Firms – Join us in funding the next wave of AI-powered digital transformation and quantum-secure telecom.
+              <br/>🔹 Tech Innovators & Researchers – Showcase your breakthrough solutions on our AI-powered marketplace and connect with global enterprises.
+              <br/> 🔹 Media & Conference Organizers – Invite Chokri Ouali as a speaker, panelist, or expert contributor on AI, cybersecurity, and quantum tech.
+
+            <!--  📅 Schedule a Meeting → [Insert Calendar Link] (Optional if you have an online booking system)
+
+              📩 For business inquiries, partnerships, or media requests, contact us at:
+              📧 Email: chokriouali@didoquantumpulse.com
+              🌐 Website: www.didoquantumpulse.com
+              📍 Location: Belgium, Germany, U.S. (Arizona LLC)
+
+              🔗 Connect with Chokri Ouali     -->       </p>
           </div>
 
         </div>
@@ -114,7 +152,9 @@
   import { useRouter } from 'vue-router';
 
   const router = useRouter();
+
 </script>
+
 <style lang="scss">
 
 .navbar {
