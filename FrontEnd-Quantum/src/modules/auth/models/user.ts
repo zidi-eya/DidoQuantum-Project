@@ -1,5 +1,5 @@
 import { Expose, Transform } from 'class-transformer';
-import { Role } from 'src/modules/auth/utils/constants';
+import { Role } from '@/modules/auth/utils/constants';
 
 export class User {
   @Expose()

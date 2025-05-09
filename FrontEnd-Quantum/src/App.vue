@@ -12,7 +12,7 @@
 
 
 <script setup lang="ts">
-//import 'reflect-metadata';
+import 'reflect-metadata';
 import {  watch , onMounted} from 'vue';
 import { eventsObservable } from './utils/functions/observer-pattern';
 import { useAuthStore } from '@/modules/auth/stores/auth-store';

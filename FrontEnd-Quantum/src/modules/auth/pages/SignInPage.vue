@@ -3,6 +3,18 @@
     <app-logo class="q-mb-xl" />
     <page-headings title="Sign in" subtitle="Enter your email and password to sign in!" />
     <q-form greedy class="q-gutter-md full-width" @submit.prevent="onSubmit">
+
+
+      <q-btn @click="selectUserType('esprit')" :color="userType === 'esprit' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+      >ESPRIT</q-btn>
+
+       <q-btn @click="selectUserType('startup')" :color="userType === 'startup' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+       >Startups</q-btn>
+       <q-btn @click="selectUserType('dev')" :color="userType === 'dev' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
+       >Engineers & developers</q-btn>
+
+
+
       <q-input
         class="full-width"
         standout="bg-primary text-white"
@@ -106,7 +118,12 @@ const router = useRouter();
 const username = ref('');
 const password = ref('');
 const rememberMe = ref(false);
+const userType = ref<string>('');
 
+function selectUserType(type: string) {
+  userType.value = type;
+  localStorage.setItem('userType', type);
+}
 async function onSubmit() {
   await safeExecute(async () => {
     console.log('Tentative de connexion...');
@@ -121,7 +138,6 @@ async function onSubmit() {
       password.value,
       rememberMe.value,
     );
-    console.log('username:', username.value, 'password:', password.value);
 
     console.log('isLoggedIn:', authStore.isLoggedIn);
     console.log('user:', authStore.user);
@@ -134,7 +150,7 @@ console.log('this is the ', userType)
 } else if (userType === 'ai') {
   await router.push('/ai-home');
 } else if (userType === 'startup') {
-  await router.push('/startup-home');
+  await router.push('/startup');
 } else if (userType === 'dev') {
   await router.push('/dev-home');
 } else {

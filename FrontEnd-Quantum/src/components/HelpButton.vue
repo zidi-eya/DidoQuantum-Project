@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import {  QBtn} from 'quasar';
 
 const props = defineProps({
     help_url: {

@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import {QAvatar } from 'quasar';
 
 
 const props = defineProps({

@@ -62,6 +62,7 @@ import authService from '@/modules/auth/services/AuthService';
 import { AuthRules } from '@/utils/validation/rules';
 //import { DocURLS } from 'src/utils/constants/doc-urls';
 import { ref } from 'vue';
+import {  QCard , QCardSection, QForm, QBtn, QCardActions  } from 'quasar'
 
 const q = useQuasar();
 const password = ref('');

@@ -14,6 +14,8 @@
 </template>
 
 <script setup lang="ts">
+import { QCardSection  } from 'quasar'
+
 import HelpButton from '@/components/HelpButton.vue'
 defineProps({
   title: String,

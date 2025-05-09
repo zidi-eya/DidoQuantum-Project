@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { QCard, QCardActions, QBtn, QCardSection, QDialog  } from 'quasar';
 
 const props = defineProps({
   modelValue: Boolean,

@@ -1,11 +1,9 @@
 import { RouteRecordRaw } from 'vue-router';
 import RoutePrefixes from '@/router/RoutePrefixes';
 import profileRoutes from '@/modules/profile/router/routes';
-
 import authRoutes from '@/modules/auth/router/routes';
-
-//import profileRoutes from '@/modules/profile/router/routes';
 //import adminRoutes from '@/modules/admin/router/routes';
+
 const routes: RouteRecordRaw[] = [
   {
     path: RoutePrefixes.PROTECTED,
@@ -23,6 +21,7 @@ const routes: RouteRecordRaw[] = [
 
     {
       path: RoutePrefixes.ESPRIT,
+      name: 'EspritPage',
       component: () => import('@/modules/pages/esprit.vue'),
     },
     {
@@ -41,6 +40,35 @@ const routes: RouteRecordRaw[] = [
 
   // Always leave this as last one,
   // but you can also remove it
+
+
+
+  {
+    path: '/upload',
+    name: 'upload' ,
+    component: () => import('@/modules/Upload_files/pages/CollectionOverviewPage.vue'),
+  },
+
+
+
+
+
+
+  {
+    path: '/offer',
+    name: 'offer' ,
+    component: () => import('@/modules/pages/ourOffer.vue'),
+  },
+  {
+    path: '/about',
+    name: 'about' ,
+    component: () => import('@/modules/pages/about.vue'),
+  },
+  {
+    path: '/contact',
+    name: 'contact' ,
+    component: () => import('@/modules/pages/contact.vue'),
+  },
   {
     path: '/:catchAll(.*)*',
     component: () => import('@/pages/ErrorNotFound.vue'),

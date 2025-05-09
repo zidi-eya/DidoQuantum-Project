@@ -64,6 +64,9 @@ import { ApiKey } from '@/modules/auth/models/api';
 import { useApiKeys } from '@/modules/auth/composables/api-keys';
 //import { DocURLS } from 'src/utils/constants/doc-urls';
 import { ref } from 'vue';
+import {  QBtn, QCard,  QCardSection, QTd, QTable  } from 'quasar';
+
+
 
 const search = ref('');
 const isApiAddModalVisible = ref(false);
