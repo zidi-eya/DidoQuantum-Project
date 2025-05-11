@@ -19,6 +19,12 @@ const routes: RouteRecordRaw[] = [
       children: profileRoutes,
     },
 
+  {
+    path: '/upload',
+    name: 'upload' ,
+    component: () => import('@/modules/Upload_files/pages/CollectionOverviewPage.vue'),
+  },
+
     {
       path: RoutePrefixes.ESPRIT,
       name: 'EspritPage',
@@ -43,11 +49,6 @@ const routes: RouteRecordRaw[] = [
 
 
 
-  {
-    path: '/upload',
-    name: 'upload' ,
-    component: () => import('@/modules/Upload_files/pages/CollectionOverviewPage.vue'),
-  },
 
 
 

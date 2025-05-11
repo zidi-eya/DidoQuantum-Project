@@ -2,8 +2,8 @@
   <breadcrumbs-layout
   :breadcrumbs="[
     {
-      label: 'Profile',
-      routeName: RouteNames.PROFILE,
+      label: 'Upload Files',
+      routeName: RouteNames.UPLOAD,
     },
   ]"
   :help_url="DocURLS.PROFILE"
@@ -17,10 +17,7 @@
     >
       <q-form greedy id="collection-details-form" @submit.prevent="saveChanges">
         <q-card class="rounded-sm shadow-1 q-mb-md">
-          <q-card-section >
-            <div class="text-body1 text-bold">Organization</div>
-            <div class="text-body2">Organization</div>
-          </q-card-section>
+
 
           <q-card-section>
             <div class="text-body1 text-bold">Name</div>
@@ -67,7 +64,11 @@
           <q-card-section>
             <div class="text-body1 text-bold">Total sources</div>
             <div class="text-body2">
-00            </div>
+
+  {{ uploadedFiles.length }}
+
+
+            </div>
           </q-card-section>
 
           <!-- New Email Section
@@ -185,17 +186,7 @@
             rowsPerPage: 20,
           }"
         >
-          <template v-slot:body-cell-type="props">
-            <q-td :props="props">
-              <data-source-type-badge :source-type="props.value" />
-            </q-td>
-          </template>
 
-          <template v-slot:body-cell-status="props">
-            <q-td :props="props">
-              <data-source-status-badge :status="props.value" />
-            </q-td>
-          </template>
           <template v-slot:body-cell-name="props">
             <q-td :props="props">
               <div class="tableColumnLenth">
@@ -210,11 +201,7 @@
               </div>
             </q-td>
           </template>
-          <template v-slot:body-cell-update-status="props">
-            <q-td :props="props">
-              <data-source-update-status-badge :status="props.value" />
-            </q-td>
-          </template>
+
 
           <template
             v-slot:body-cell-actions="props"
@@ -233,7 +220,7 @@
                 flat
                 color="negative"
                 icon="eva-trash-2-outline"
-                @click="markToBeDeleted(props.value)"
+                @click="markToBeDeleted(props.row.name)"
               />
             </q-td>
           </template>
@@ -241,6 +228,15 @@
       </div>
     </q-expansion-item>
   </breadcrumbs-layout>
+
+
+ <confirmation-modal
+    v-model="deleteFileModalVisible"
+    title="Delete Data Source"
+  :description="`Are you sure you want to delete the file '${fileToDelete}'?`"
+    @confirm="deleteDataSource"
+  />
+
  <!-- <confirmation-modal
     v-model="deleteModalVisible"
     title="Delete Collection"
@@ -248,12 +244,7 @@
     @confirm="deleteCollection"
   />
 
-  <confirmation-modal
-    v-model="deleteSourceModalVisible"
-    title="Delete Data Source"
-    :description="`Are you sure you want to delete data source '${dataSourceAction?.name}'?`"
-    @confirm="deleteDataSource"
-  />
+
   <data-source-create-modal
     v-model="addDataSourceModalVisible"
     @submit="(dataSource) => collectionDetail?.dataSources.unshift(dataSource)"
@@ -268,16 +259,19 @@
 import { QTable, QCard ,QTd,QExpansionItem, QBtn, QCardSection, QIcon, QInput, QCardActions, QForm } from 'quasar';
 import BreadcrumbsLayout from "@/layouts/BreadcrumbsLayout.vue";
 import CopyIcon from "@/components/icons/CopyIcon.vue";
+import ConfirmationModal from "@/components/ConfirmationModal.vue";
 
-import RouteNames from "@/modules/profile/router/RouteNames";
+import RouteNames from "@/router/RoutePrefixes";
 import { DocURLS } from "@/utils/constants/doc-urls";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted  } from "vue";
 import {  GeneralRules } from '@/utils/validation/rules';
 import { useQuasar } from "quasar";
 import SearchInput from "@/components/SearchInput.vue";
 import ReportModal from '@/modules/Upload_files/pages/ReportModal.vue';
+import { listFiles, deleteFile  } from '@/modules/Upload_files/service/uploadService';
 
-const rows = computed(() =>  []);
+const rows = ref<any[]>([]);
+const uploadedFiles = ref<string[]>([]);
 
 const $q = useQuasar();
 const collectionName = ref("");
@@ -285,7 +279,7 @@ const collectionDescription = ref("");
 const isEditing = ref(false);
 const searchKeyword = ref("");
 const deleteModalVisible = ref(false);
-const addDataSourceModalVisible = ref(false);
+const deleteFileModalVisible = ref(false);
 const viewGrid = ref(false);
 const computedEmail=  computed(() => {
   return  "";
@@ -308,55 +302,80 @@ function copyEmailToClipboard() {
 }
 
 const columns = [
-  {
-    name: "id",
-    required: true,
-    align: "left",
-    label: "ID",
-    field:  "Pdf",
-    sortable: true,
-  },
-  {
-    name: "type",
-    required: true,
-    align: "left",
-    label: "Type",
-    field: "Pdf",
-    sortable: true,
-  },
-  {
-    name: "name",
-    required: true,
-    label: "Name",
-    align: "left",
-    field:  "Pdf",
-    sortable: true,
-  },
-
-
-  {
-    name: "actions",
-    label: "Actions",
-    align: "left",
-    field:  "Pdf",
-  },
+  {    name: "id",  required: true,  align: "left", label: "ID",     field: (row: any) => row.id
+,  sortable: true,  },
+  {    name: "type", required: true,  align: "left", label: "Type",     field: (row: any) => row.type,
+  sortable: true,  },
+  {    name: "name", required: true,  label: "Name",  align: "left",  field:  "name",  sortable: true,  },
+  {    name: "Description", required: true,  label: "Description",  align: "left",      field: (row: any) => row.message,
+ sortable: true,  },
+  {    name: "actions",  label: "Actions",   align: "left",    field:  "Pdf",  },
 ];
 
 
+
+function getFileType(fileName: string) {
+  const ext = fileName.split('.').pop();
+  return ext ? ext.toUpperCase() : 'Unknown';
+}
 
 
 async function saveChanges() {
 
 }
+const fileToDelete = ref<string | null>(null);
 
-async function markToBeDeleted(dataSource: any) {
-
+function markToBeDeleted(fileName: string) {
+  fileToDelete.value = fileName;
+  deleteFileModalVisible.value = true;
 }
+
+
+async function deleteDataSource() {
+  if (!fileToDelete.value) return;
+
+  try {
+    await deleteFile(fileToDelete.value);
+    $q.notify({
+      type: 'positive',
+      message: `File '${fileToDelete.value}' deleted successfully.`,
+    });
+
+    uploadedFiles.value = uploadedFiles.value.filter(name => name !== fileToDelete.value);
+    rows.value = rows.value.filter(row => row.name !== fileToDelete.value);
+  } catch (err) {
+    console.error('Failed to delete file:', err);
+    $q.notify({
+      type: 'negative',
+      message: `Failed to delete file '${fileToDelete.value}'.`,
+    });
+  } finally {
+    deleteFileModalVisible.value = false;
+    fileToDelete.value = null;
+  }
+}
+
+
 
 function viewDataSourceDetail(dataSource: any) {
 
 }
 
+
+onMounted(async () => {
+  try {
+    const files = await listFiles();
+    uploadedFiles.value = files;
+    rows.value = files.map((filename, index) => ({
+      id: index + 1,
+      type: getFileType(filename),
+      name: filename,
+    }));
+  } catch (err) {
+    console.error('Failed to load files:', err);
+    $q.notify({ type: 'negative', message: 'Unable to fetch files' });
+  }
+});
 
 
 </script>

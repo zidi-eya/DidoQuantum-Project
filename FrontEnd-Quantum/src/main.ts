@@ -4,7 +4,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { route } from 'quasar/wrappers'
 import 'quasar/src/css/index.sass' // make sure you load Quasar CSS
-import 'material-design-icons-iconfont/dist/material-design-icons.css';
+//import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
 import 'eva-icons/style/eva-icons.css';
 
@@ -31,7 +31,9 @@ async function bootstrap() {
     iconSet,
     lang
   })
-  app.use(createPinia())
+   const pinia = createPinia();
+  pinia.use(piniaPluginPersistedstate); // Add the plugin
+  app.use(pinia); // Register Pinia
 
   const resolvedRouter = await router()
   app.use(resolvedRouter)
@@ -40,10 +42,7 @@ async function bootstrap() {
   console.log('App loaded!')
 
 
-  const pinia = createPinia();
-  pinia.use(piniaPluginPersistedstate);
 
-  app.use(pinia);
 
 }
 

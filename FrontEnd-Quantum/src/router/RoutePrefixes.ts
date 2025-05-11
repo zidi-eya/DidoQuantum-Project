@@ -7,6 +7,7 @@ enum RoutePrefixes {
   WELCOMING_MESSAGE = '/welcoming-message',
   INDEX = '/index',
   ESPRIT='/esprit',
+  UPLOAD='/upload',
 }
 
 export default RoutePrefixes;

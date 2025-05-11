@@ -9,8 +9,7 @@
           class="text-h6"
           style="text-align: center; font-family: 'Roboto', sans-serif"
         >
-          Report a Bug or a Suggestion
-        </div>
+Upload File        </div>
       </q-card-section>
 
       <q-card-section class="q-pt-none col-grow column q-gutter-sm">
@@ -24,7 +23,7 @@
         class="full-width"
         filled
         label="Details"
-        v-model="message"
+        v-model="name"
         lazy-rules="ondemand"
         :rules="GeneralRules.fieldRequired('Please enter a message')"
       >
@@ -39,7 +38,6 @@
             label="Details"
             v-model="message"
             lazy-rules="ondemand"
-            :rules="GeneralRules.fieldRequired('Please enter a message')"
           >
             <template v-slot:prepend>
               <q-icon name="description" />
@@ -95,7 +93,8 @@
 import { useQuasar } from 'quasar';
 import { ref, watch } from 'vue';
 import { GeneralRules } from '@/utils/validation/rules';
-import {  QCard , QBtn, QCardSection, QIcon, QInput, QCardActions, QForm,QDialog, QFile, QSelect } from 'quasar';
+import {  QCard , QBtn, QCardSection, QIcon, QInput, QCardActions, QForm,QDialog, QFile } from 'quasar';
+import { uploadFile } from '@/modules/Upload_files/service/uploadService';
 
 const DocumentFileSize = import.meta.env.TEXT_FILE_SIZE;
 const props = defineProps({
@@ -105,6 +104,8 @@ const emit = defineEmits<{
   (e: 'update:modelValue', v: boolean): void;
 }>();
 const message = ref('');
+const name = ref('');
+
 const file = ref<File>();
 interface ReportOption {
   label: string;
@@ -114,7 +115,6 @@ const reportOptions: ReportOption[] = [
   { label: 'Bug', value: 'bug' },
   { label: 'Suggestion', value: 'suggestion' },
 ];
-const selectedOption = ref<ReportOption | null>(null);
 const isVisible = ref(false);
 const $q = useQuasar();
 
@@ -122,11 +122,21 @@ function cancel() {
   isVisible.value = false;
   message.value = '';
 }
-async function send(): Promise<any> {
-  if (selectedOption.value) {
-    const reportType = selectedOption.value.value || '';
 
+async function send(): Promise<any> {
+  if (!file.value) {
+    $q.notify({ type: 'negative', message: 'Please select a file first.' });
+    return;
+  }
+
+  try {
+    const response = await uploadFile(file.value);
+    $q.notify({ type: 'positive', message: 'File uploaded successfully!' });
+    console.log('Upload response:', response);
     cancel();
+  } catch (error) {
+    console.error('Upload error:', error);
+    $q.notify({ type: 'negative', message: 'Failed to upload file.' });
   }
 }
 

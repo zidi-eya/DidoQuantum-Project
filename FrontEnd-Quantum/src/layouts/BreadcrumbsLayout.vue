@@ -39,7 +39,7 @@ import { PropType, useSlots } from 'vue';
 import { useRouter } from 'vue-router';
 import HelpButton from '@/components/HelpButton.vue';
 import { BreadcrumbItem } from '@/types/Breadcrumb';
-//import{QScrollArea, QInnerLoading} from 'quasar';
+//import{QScrollArea, QInnerLoading, QBreadcrumbsEl, QBreadcrumbs} from 'quasar';
 
 defineProps({
   breadcrumbs: Array as PropType<BreadcrumbItem[]>,
