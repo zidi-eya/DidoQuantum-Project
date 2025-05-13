@@ -7,7 +7,7 @@
     },
   ]"
   :help_url="DocURLS.PROFILE"
->
+
   >
     <q-expansion-item
       default-opened
