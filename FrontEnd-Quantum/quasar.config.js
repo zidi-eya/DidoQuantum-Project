@@ -31,7 +31,9 @@ module.exports = configure(function () {
     boot: ['i18n', 'axios', 'syntax-highlight'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
-    css: ['src/css/app.scss'],
+    css: ['src/css/app.scss',
+      'material-icons.css',
+    ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -39,12 +41,11 @@ module.exports = configure(function () {
        'mdi-v5',
       'fontawesome-v6',
       'eva-icons',
-      // 'themify',
-      // 'line-awesome',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-
       'roboto-font', // optional, you are not bound to it
       'material-icons', // optional, you are not bound to it
+      // // 'themify',
+      // 'line-awesome',
+      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
@@ -109,7 +110,7 @@ module.exports = configure(function () {
         'QList',         // Add this
       ],
 
-      iconSet: 'mdi-v5', // Quasar icon set
+      iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
