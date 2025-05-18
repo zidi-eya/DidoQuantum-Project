@@ -6,6 +6,8 @@ from src.database import init_db
 from src.modules.websocket.router import router as websocket_router
 from src.modules.Formulaire.router import router as formulaire_test
 from src.modules.Files_Uploaded.router import router as Files_router
+from src.modules.company_projects.router import router as company_projects
+
 from src.modules.auth.router import router as auth
 
 # FastAPI App
@@ -47,6 +49,7 @@ app.include_router(Files_router)
 # Include User Routes
 app.include_router(formulaire_test, prefix="/users", tags=["formulaire test"])
 app.include_router(auth, prefix="/auth", tags=["auth"])
+app.include_router(company_projects, prefix="/users", tags=["company projects"])
 
 app.include_router(Files_router, prefix="/Files", tags=["Files"])
 
