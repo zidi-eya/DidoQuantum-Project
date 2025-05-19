@@ -7,6 +7,11 @@ from src.modules.websocket.router import router as websocket_router
 from src.modules.Formulaire.router import router as formulaire_test
 from src.modules.Files_Uploaded.router import router as Files_router
 from src.modules.company_projects.router import router as company_projects
+from src.modules.researcher_profiles.router import router as researcher_profile
+
+
+
+
 
 from src.modules.auth.router import router as auth
 
@@ -50,6 +55,7 @@ app.include_router(Files_router)
 app.include_router(formulaire_test, prefix="/users", tags=["formulaire test"])
 app.include_router(auth, prefix="/auth", tags=["auth"])
 app.include_router(company_projects, prefix="/users", tags=["company projects"])
+app.include_router(researcher_profile, prefix="/users", tags=["researcher profile"])
 
 app.include_router(Files_router, prefix="/Files", tags=["Files"])
 
