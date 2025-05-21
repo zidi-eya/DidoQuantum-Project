@@ -40,3 +40,5 @@ pydantic_settings
 jinja2
 websockets
 psutil
+sentence-transformers
+torch
