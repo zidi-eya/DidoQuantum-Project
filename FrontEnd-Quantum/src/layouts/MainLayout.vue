@@ -43,6 +43,27 @@
           :url="RouteNames.UPLOAD"
         />
 
+
+<sidebar-link
+          label="Company Projects "
+          icon="eva-book-open-outline"
+          active-icon="eva-book-open"
+          :url="RoutePrefixes.COMPANY"
+        />
+
+        <sidebar-link
+          label="Researcher Profiles"
+          icon="eva-book-open-outline"
+          active-icon="eva-book-open"
+          :url="RoutePrefixes.RESEARCHE"
+        />
+<sidebar-link
+          label="Matches  "
+          icon="eva-book-open-outline"
+          active-icon="eva-book-open"
+          :url="RoutePrefixes.MATCH"
+        />
+
       </q-list>
       <q-space />
 

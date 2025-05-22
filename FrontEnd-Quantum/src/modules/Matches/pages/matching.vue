@@ -1,0 +1,6 @@
+<template>
+
+hello maching
+
+
+</template>

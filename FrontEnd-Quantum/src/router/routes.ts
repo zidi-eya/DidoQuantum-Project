@@ -25,6 +25,21 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/modules/Upload_files/pages/CollectionOverviewPage.vue'),
   },
 
+ {
+    path: RoutePrefixes.MATCH,
+    name: 'matching' ,
+    component: () => import('@/modules/Matches/pages/matching.vue'),
+  },
+ {
+    path: RoutePrefixes.COMPANY,
+    name: 'company_projects' ,
+    component: () => import('@/modules/Company_Project/pages/companyProject.vue')
+  },
+ {
+    path: RoutePrefixes.RESEARCHE,
+    name: 'research_profile' ,
+    component: () => import('@/modules/researcher_profiles/pages/reasearchProfile.vue'),
+  },
     {
       path: RoutePrefixes.ESPRIT,
       name: 'EspritPage',
