@@ -269,7 +269,7 @@ import { LazyList } from "@/utils/functions/lazy-list";
 import { useCompanyProjects } from "@/modules/Company_Project/pages/company_projects";
 import { companyProjectService } from "@/modules/Company_Project/service/companyService";
 import { CompanyProject } from "@/modules/Company_Project/models/companyModels";
-const { lazyList } = useCompanyProjects();
+const { lazyList, projects } = useCompanyProjects();
 
 const $q = useQuasar();
 
@@ -305,7 +305,7 @@ const observer_file2 = new Observer("translate_file_failed", async () => {
 
 eventsObservable.addObserver(observer_file2);
 
-const projects = ref<CompanyProject[]>([]);
+//const projects = ref<CompanyProject[]>([]);
 
 const fetchProjects = async () => {
   try {
@@ -334,8 +334,14 @@ const project = ref<CompanyProject>({
 });
 
 const handleSubmit = async () => {
+  const payload = {
+    ...project.value,
+    required_tech: project.value.required_tech.join(","),
+  };
   try {
-    await companyProjectService.createProject(project.value);
+    await companyProjectService.createProject(payload);
+    console.log("Payload:", project.value);
+
     $q.notify({ type: "positive", message: "Project created successfully!" });
   } catch (err) {
     $q.notify({ type: "negative", message: "Error creating project." });
