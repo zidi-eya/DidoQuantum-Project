@@ -109,7 +109,7 @@
 <script setup lang="ts">
 
   import AppLogo from '@/components/AppLogo.vue';
-  import { QBtn, QInput,QForm, QIcon } from 'quasar'
+  import { QBtn} from 'quasar'
   import RouteNames from '@/modules/auth/router/RouteNames';
   import { useRouter } from 'vue-router';
 

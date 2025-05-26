@@ -20,7 +20,7 @@ const props = defineProps({
 })
 
 function navigateToDocs() {
-    const docs_url = process.env.HELP_CENTER_URL;
+    const docs_url = import.meta.env.HELP_CENTER_URL;
     window.open(`${docs_url}/${props.help_url}`, '_blank')
   }
 </script>
