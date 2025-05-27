@@ -30,11 +30,12 @@ export const companyProjectService = {
 },
 
   async updateProject(projectId: number, project: CompanyProject) {
-    const response = await axios.put(`/${projectId}`, project);
+    const response = await api.put(`/${projectId}`, project);
     return response.data;
   },
 
   async deleteProject(projectId: number) {
-    await axios.delete(`/${projectId}`);
+   const response = await api.delete(`/company_projects/projects/${projectId}`);
+   return response.data;
   }
 };

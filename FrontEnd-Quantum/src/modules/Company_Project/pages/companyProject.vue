@@ -63,10 +63,10 @@
         </template>
         <template v-slot:item="slotProps">
           <q-item
-            :active="slotProps.item === selectedTranslatedFile"
+            :active="slotProps.item === selectedProject"
             class="rounded-sm bg-white q-mb-md q-px-sm q-mx-md shadow-md"
             active-class="active-list-card"
-            @click="selectedTranslatedFile = slotProps.item"
+            @click="selectedProject = slotProps.item"
             clickable
             v-ripple
           >
@@ -109,10 +109,10 @@
                 <q-btn size="12px" flat dense round icon="more_vert">
                   <q-menu>
                     <q-btn
-                      icon="eye"
+                      icon="eva-eye-outline"
                       label="View"
                       no-caps
-                      @click="deleteModalVisible = true"
+                      @click="selectedProject?.id && openViewModal(selectedProject.id)"
                     />
 
                     <q-btn
@@ -146,6 +146,7 @@
         </template>
       </lazy-history>
     </div>
+
     <div class="col-12 col-md-9 q-pl-md-md">
       <q-card class="custom-card q-mb-md">
         <card-header title="New Project to be created" />
@@ -180,7 +181,7 @@
             </q-input>
 
             <q-select
-              label="required Technologies"
+              label="Required Technologies"
               v-model="project.required_tech"
               outlined
               multiple
@@ -218,12 +219,45 @@
         <q-inner-loading color="primary" :showing="isLoading" />
       </q-card>
     </div>
+    <confirmation-modal
+      v-model="deleteModalVisible"
+      title="Delete Translate file"
+      description="You are about to delete this file. This action cannot be undone. Are you sure you want to continue?"
+      @confirm="selectedProject?.id !== undefined && confirmDelete(selectedProject.id)"
+    />
+
+    <q-dialog v-model="ViewModalVisible" persistent>
+      <q-card style="min-width: 400px">
+        <q-card-section>
+          <div class="text-h6">Project Details</div>
+        </q-card-section>
+
+        <q-card-section>
+          <div v-if="selectedProjectDetails">
+            <p><strong>Name:</strong> {{ selectedProjectDetails.title }}</p>
+            <p><strong>Description:</strong> {{ selectedProjectDetails.description }}</p>
+            <p>
+              <strong>Required Technologies:</strong>
+              {{ selectedProjectDetails.required_tech }}
+            </p>
+            <p><strong>Goals:</strong> {{ selectedProjectDetails.goal }}</p>
+
+            <!-- Add other fields as needed -->
+          </div>
+          <div v-else>loading...</div>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Close" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import CardHeader from "@/components/CardHeader.vue";
-//import RouteNames from '@/modules/tools/router/RouteNames';
+import ConfirmationModal from "@/components/ConfirmationModal.vue";
 import { ref, onMounted } from "vue";
 import { DocURLS } from "@/utils/constants/doc-urls";
 import {
@@ -244,6 +278,8 @@ import {
   QChip,
   QItem,
   QSelect,
+  QDialog,
+  QCardActions,
 } from "quasar";
 import LazyHistory from "./LazyHistory.vue";
 import { usePreferenceStore } from "@/stores/user-preference-store";
@@ -269,11 +305,17 @@ const selectedFilter = ref("All"); // Add this line
 const selectedLanguages = ref([]);
 
 const deleteModalVisible = ref(false);
-const selectedTranslatedFile = ref([]);
+
+const ViewModalVisible = ref(false);
+
+const selectedProject = ref<CompanyProject>();
+const selectedProjectDetails = ref<CompanyProject | null>(null);
+
 const isModalVisible = ref(false);
 const isLoading = ref(false);
 const isGenerating = ref(false);
 const fileUpload = ref();
+const modalContent = ref<string>("Loading...");
 
 const filters = ref(["Private", "Draft", "Public", "Published"]);
 
@@ -282,6 +324,58 @@ const observer_file = new Observer("translate_file_generated", async () => {
   fileUpload.value = [];
   selectedLanguages.value = [];
 });
+
+//const confirmDelete = (project: CompanyProject) => {
+// selectedProject.value = project;
+// deleteModalVisible.value = true;
+//};
+const clearForm = () => {
+  project.value = {
+    title: "",
+    description: "",
+    required_tech: [],
+    goal: "",
+  };
+};
+
+async function openViewModal(id?: number) {
+  if (!id) return;
+
+  console.log("Fetching project with ID:", id); // ✅ Debug
+  selectedProjectDetails.value = null;
+  ViewModalVisible.value = true;
+
+  try {
+    const project = await companyProjectService.getProject(id);
+    console.log("Fetched project:", project); // ✅ Debug
+    selectedProjectDetails.value = project;
+  } catch (error) {
+    console.error("Error fetching project details:", error);
+  }
+}
+
+async function confirmDelete(id?: number) {
+  if (id === undefined) {
+    console.error("Cannot delete: ID is undefined");
+    return;
+  }
+
+  console.log("Deleting project with ID:", id);
+  try {
+    await companyProjectService.deleteProject(id);
+    projects.value = projects.value.filter((file: any) => file.id !== id);
+    selectedProject.value = undefined;
+    $q.notify({
+      type: "positive",
+      message: "File deleted successfully",
+    });
+  } catch (error) {
+    $q.notify({
+      type: "negative",
+      message: "Failed to delete the file",
+    });
+  }
+}
 
 eventsObservable.addObserver(observer_file);
 
@@ -329,6 +423,9 @@ const handleSubmit = async () => {
     console.log("Payload:", project.value);
 
     $q.notify({ type: "positive", message: "Project created successfully!" });
+    await fetchProjects();
+
+    clearForm(); // <- Clears the form
   } catch (err) {
     $q.notify({ type: "negative", message: "Error creating project." });
   }
