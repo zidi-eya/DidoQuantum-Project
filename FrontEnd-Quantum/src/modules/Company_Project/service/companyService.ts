@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { CompanyProject } from '@/modules/Company_Project/models/companyModels';
 import { api } from '@/boot/axios';
-const API_URL = '/api/projects';
 
 export const companyProjectService = {
   async createProject(project: CompanyProject) {

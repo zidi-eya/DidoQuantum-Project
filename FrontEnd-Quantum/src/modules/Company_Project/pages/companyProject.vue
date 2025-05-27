@@ -148,38 +148,35 @@
     </div>
     <div class="col-12 col-md-9 q-pl-md-md">
       <q-card class="custom-card q-mb-md">
-        <card-header title="File to be translated" />
+        <card-header title="New Project to be created" />
         <q-separator class="q-mb-sm-xs q-mb-md q-mx-md" />
         <q-card-section>
           <q-form @submit.prevent="handleSubmit" class="column q-gutter-md">
             <q-input
               v-model="project.title"
-              class="col-12 col-md-6 q-mr-md noMobileMargin"
+              class="custom-field"
               dense
               outlined
               lazy-rules="ondemand"
-              :rules="GeneralRules.fieldRequired('Please enter your full name')"
+              :rules="GeneralRules.fieldRequired('Please enter the project Titel')"
               hide-bottom-space
               label="Title"
             >
-              <template v-slot:prepend>
-                <q-icon name="eva-person-outline" />
-              </template>
             </q-input>
 
             <q-input
               v-model="project.description"
-              class="col-12 col-md-6 q-mr-md noMobileMargin"
+              class="custom-field"
               dense
+              multiple
+              use-input
+              use-chips
               outlined
               lazy-rules="ondemand"
               :rules="GeneralRules.fieldRequired('Please enter your full name')"
               label="Description"
               hide-bottom-space
             >
-              <template v-slot:prepend>
-                <q-icon name="eva-person-outline" />
-              </template>
             </q-input>
 
             <q-select
@@ -196,14 +193,11 @@
               placeholder="Enter required Technologies"
               hide-dropdown-icon
             >
-              <template v-slot:prepend>
-                <FileIcon />
-              </template>
             </q-select>
 
             <q-input
               v-model="project.goal"
-              class="col-12 col-md-6 q-mr-md noMobileMargin"
+              class="custom-field"
               dense
               outlined
               lazy-rules="ondemand"
@@ -211,9 +205,6 @@
               hide-bottom-space
               label="Project Goal"
             >
-              <template v-slot:prepend>
-                <q-icon name="eva-person-outline" />
-              </template>
             </q-input>
 
             <q-btn type="submit" label="Create Project" color="primary" />
@@ -261,11 +252,8 @@ import SharedStatusBadge from "./SharedBadge.vue";
 import { SharedStatus } from "./shared-status";
 import HeaderLayout from "@/layouts/HeaderLayout.vue";
 import { GeneralRules } from "@/utils/validation/rules";
-
 import { Observer, eventsObservable } from "@/utils/functions/observer-pattern";
 import RoutePrefixes from "@/router/RoutePrefixes";
-import { LazyList } from "@/utils/functions/lazy-list";
-
 import { useCompanyProjects } from "@/modules/Company_Project/pages/company_projects";
 import { companyProjectService } from "@/modules/Company_Project/service/companyService";
 import { CompanyProject } from "@/modules/Company_Project/models/companyModels";
@@ -304,8 +292,6 @@ const observer_file2 = new Observer("translate_file_failed", async () => {
 });
 
 eventsObservable.addObserver(observer_file2);
-
-//const projects = ref<CompanyProject[]>([]);
 
 const fetchProjects = async () => {
   try {
