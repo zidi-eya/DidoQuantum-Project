@@ -3,6 +3,7 @@ import RoutePrefixes from '@/router/RoutePrefixes';
 import profileRoutes from '@/modules/profile/router/routes';
 import authRoutes from '@/modules/auth/router/routes';
 //import adminRoutes from '@/modules/admin/router/routes';
+import adminRoutes from '@/modules/admin/router/routes';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -40,6 +41,11 @@ const routes: RouteRecordRaw[] = [
     name: 'research_profile' ,
     component: () => import('@/modules/researcher_profiles/pages/reasearchProfile.vue'),
   },
+{
+        path: RoutePrefixes.ADMIN,
+        children: adminRoutes,
+      },
+
     {
       path: RoutePrefixes.ESPRIT,
       name: 'EspritPage',
