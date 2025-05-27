@@ -9,6 +9,7 @@ from src.modules.Files_Uploaded.router import router as Files_router
 from src.modules.company_projects.router import router as company_projects
 from src.modules.researcher_profiles.router import router as researcher_profile
 from src.modules.matching.router import router as matching
+from src.modules.admin.router import router as admin_router
 
 
 
@@ -58,6 +59,7 @@ app.include_router(company_projects, prefix="/company_projects", tags=["company 
 app.include_router(researcher_profile, prefix="/researcher_profile", tags=["researcher profile"])
 app.include_router(matching, prefix="/matching", tags=["matching"])
 app.include_router(Files_router, prefix="/Files", tags=["Files"])
+app.include_router(admin_router, prefix="/admin", tags=["Admin"])
 
 
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
