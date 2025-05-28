@@ -1,33 +1,52 @@
 <template>
+  <header-layout
+    :breadcrumbs="[
+      {
+        label: 'Researcher Proflies',
+        routeName: RoutePrefixes.ADMIN,
+      },
+    ]"
+    :help_url="DocURLS.ADMIN"
+  />
+
   <div class="p-4">
     <h2 class="text-xl font-bold mb-4">Liste des chercheurs</h2>
 
     <!-- Formulaire de création -->
-    <q-form @submit.prevent="createProfile" class="mb-6 space-y-2">
+    <q-form @submit.prevent="createProfile" class="column q-gutter-md">
       <q-input
         v-model="newProfile.skills"
-        type="text"
-        placeholder="Compétences"
-        class="input"
-        required
+        label="Compétences"
+        class="custom-field"
+        dense
+        outlined
+        lazy-rules="ondemand"
+        :rules="GeneralRules.fieldRequired('Please enter the project Titel')"
+        hide-bottom-space
       />
       <q-input
         v-model="newProfile.topics"
-        type="text"
-        placeholder="Sujets de recherche"
+        label="Sujets de recherche"
         class="input"
-        required
+        dense
+        outlined
+        lazy-rules="ondemand"
+        :rules="GeneralRules.fieldRequired('Please enter the project Titel')"
+        hide-bottom-space
       />
       <q-input
         v-model="newProfile.publications"
-        type="text"
-        placeholder="Publications"
+        label="Publications"
         class="input"
-        required
+        dense
+        outlined
+        lazy-rules="ondemand"
+        :rules="GeneralRules.fieldRequired('Please enter the project Titel')"
+        hide-bottom-space
       />
-      <q-btn type="submit" class="btn btn-primary">Créer</q-btn>
+      <q-btn type="submit" label="Create Project" color="primary" />
     </q-form>
-
+    <q-separator class="q-mt-sm-xs q-mt-md" />
     <!-- Liste des profils -->
     <div class="q-gutter-md">
       <q-card v-for="profile in profiles" :key="profile.id" class="q-pa-md" flat bordered>
@@ -60,6 +79,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
+import HeaderLayout from "@/layouts/HeaderLayout.vue";
+import RoutePrefixes from "@/router/RoutePrefixes";
+import { DocURLS } from "@/utils/constants/doc-urls";
+import { GeneralRules } from "@/utils/validation/rules";
+
 import type {
   ResearcherProfileCreate,
   ResearcherProfileOut,
