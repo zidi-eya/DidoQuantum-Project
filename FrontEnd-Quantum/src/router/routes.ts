@@ -3,6 +3,7 @@ import RoutePrefixes from '@/router/RoutePrefixes';
 import profileRoutes from '@/modules/profile/router/routes';
 import authRoutes from '@/modules/auth/router/routes';
 //import adminRoutes from '@/modules/admin/router/routes';
+import adminRoutes from '@/modules/admin/router/routes';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -24,6 +25,26 @@ const routes: RouteRecordRaw[] = [
     name: 'upload' ,
     component: () => import('@/modules/Upload_files/pages/CollectionOverviewPage.vue'),
   },
+
+ {
+    path: RoutePrefixes.MATCH,
+    name: 'matching' ,
+    component: () => import('@/modules/Matches/pages/matching.vue'),
+  },
+ {
+    path: RoutePrefixes.COMPANY,
+    name: 'company_projects' ,
+    component: () => import('@/modules/Company_Project/pages/companyProject.vue')
+  },
+ {
+    path: RoutePrefixes.RESEARCHE,
+    name: 'research_profile' ,
+    component: () => import('@/modules/researcher_profiles/pages/reasearchProfile.vue'),
+  },
+{
+        path: RoutePrefixes.ADMIN,
+        children: adminRoutes,
+      },
 
     {
       path: RoutePrefixes.ESPRIT,

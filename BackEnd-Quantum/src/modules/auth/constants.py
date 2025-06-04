@@ -19,6 +19,3 @@ class UserRole(str, Enum):
     USER = "user"
     SUPER_ADMIN = "superadmin"
     TESTER = "tester"
-    ORGANIZATION_MEMBER = "organization_member"
-    ORGANIZATION_MANAGER = "organization_manager"
-    ORGANIZATION_OWNER = "organization_owner"

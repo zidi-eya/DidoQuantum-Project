@@ -1,7 +1,6 @@
 <template>
   <q-layout>
-
-  <q-drawer
+    <q-drawer
       class="column shadow-sm q-px-sm drawer-menu"
       v-model="sidebarVisible"
       :mini="miniState"
@@ -38,11 +37,47 @@
         />
         <sidebar-link
           label="Upload"
-          icon="eva-book-open-outline"
-          active-icon="eva-book-open"
+          icon="cloud"
+          active-icon="cloud"
           :url="RouteNames.UPLOAD"
         />
 
+        <sidebar-link
+          label="Company Projects "
+          icon="eva-map-outline"
+          active-icon="eva-map-outline"
+          :url="RoutePrefixes.COMPANY"
+        />
+
+        <sidebar-link
+          label="Researcher Profiles"
+          icon="eva-book-open-outline"
+          active-icon="eva-book-open"
+          :url="RoutePrefixes.RESEARCHE"
+        />
+        <sidebar-link
+          label="Matches  "
+          icon="eva-globe-outline"
+          active-icon="eva-globe-outline"
+          :url="RoutePrefixes.MATCH"
+        />
+
+        <q-expansion-item
+          @click="miniState = false"
+          v-if="authStore.isAdmin"
+          icon="eva-shield-outline"
+          label="Admin"
+          group="menuGroup"
+          class="text-grey-7"
+        >
+          <sidebar-link
+            class="q-pl-lg q-mx-md"
+            label="Users"
+            icon="eva-person-done-outline"
+            active-icon="eva-person-done"
+            :route-name="AdminRouteNames.USERS_OVERVIEW"
+          />
+        </q-expansion-item>
       </q-list>
       <q-space />
 
@@ -51,9 +86,7 @@
       </q-item>
     </q-drawer>
 
-
-
- <q-page-container
+    <q-page-container
       class="row no-wrap"
       style="
         height: 100vh;
@@ -85,23 +118,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { useAuthStore } from '@/modules/auth/stores/auth-store';
-import { useRouter } from 'vue-router';
-//import AdminRouteNames from '@/modules/admin/router/RouteNames';
-import RoutePrefixes from '@/router/RoutePrefixes';
-import AuthRouteNames from '@/modules/auth/router/RouteNames';
-import SidebarLink from '@/components/sidebar/SidebarLink.vue';
-import { QLayout, QDrawer, QItem,QList , QBtn , QPageContainer, QSpace, QSeparator} from 'quasar'
+import { ref, computed } from "vue";
+import { useAuthStore } from "@/modules/auth/stores/auth-store";
+import { useRouter } from "vue-router";
+import AdminRouteNames from "@/modules/admin/router/RouteNames";
+import RoutePrefixes from "@/router/RoutePrefixes";
+import AuthRouteNames from "@/modules/auth/router/RouteNames";
+import SidebarLink from "@/components/sidebar/SidebarLink.vue";
+import {
+  QLayout,
+  QDrawer,
+  QItem,
+  QList,
+  QBtn,
+  QPageContainer,
+  QSpace,
+  QSeparator,
+  QExpansionItem,
+} from "quasar";
 import RouteNames from "@/router/RoutePrefixes";
-
 
 const isReportAddModalVisible = ref(false);
 //const docs_url = import.meta.env.VITE_HELP_CENTER_URL;
 //const faq_url = import.meta.env.VITE_FAQ_URL;
 const miniState = ref(true);
 
-const version = ref('1.0.0');
+const version = ref("1.0.0");
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -113,10 +155,8 @@ async function signOut() {
   await router.push({ name: AuthRouteNames.SIGN_IN });
 }
 
-
-
 const isMobile = computed(() => {
-  return window.matchMedia('(max-width: 768px)').matches;
+  return window.matchMedia("(max-width: 768px)").matches;
 });
 
 if (isMobile.value) {

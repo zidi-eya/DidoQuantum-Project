@@ -3,7 +3,8 @@ from src.modules.matching.repository import MatchRepository
 from src.modules.matching.schemas import MatchCreate
 from src.modules.researcher_profiles.models import ResearcherProfile
 from src.modules.company_projects.models import CompanyProject
-from src.utils.nlp import encode_text, compute_similarity
+from src.modules.matching.utils import encode_text, compute_similarity
+from sqlalchemy.future import select
 
 class MatchingService:
 

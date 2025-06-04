@@ -8,8 +8,7 @@
           :label="item.label"
           :class="item.routeName && 'cursor-pointer'"
           @click="
-            item.routeName &&
-              router.push({ name: item.routeName, params: item.params })
+            item.routeName && router.push({ name: item.routeName, params: item.params })
           "
         />
       </q-breadcrumbs>
@@ -35,11 +34,11 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, useSlots } from 'vue';
-import { useRouter } from 'vue-router';
-import HelpButton from '@/components/HelpButton.vue';
-import { BreadcrumbItem } from '@/types/Breadcrumb';
-//import{QScrollArea, QInnerLoading, QBreadcrumbsEl, QBreadcrumbs} from 'quasar';
+import { PropType, useSlots } from "vue";
+import { useRouter } from "vue-router";
+import HelpButton from "@/components/HelpButton.vue";
+import { BreadcrumbItem } from "@/types/Breadcrumb";
+import { QScrollArea, QInnerLoading, QBreadcrumbsEl, QBreadcrumbs } from "quasar";
 
 defineProps({
   breadcrumbs: Array as PropType<BreadcrumbItem[]>,
