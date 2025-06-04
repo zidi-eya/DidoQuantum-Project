@@ -37,15 +37,15 @@
         />
         <sidebar-link
           label="Upload"
-          icon="eva-book-open-outline"
-          active-icon="eva-book-open"
+          icon="cloud"
+          active-icon="cloud"
           :url="RouteNames.UPLOAD"
         />
 
         <sidebar-link
           label="Company Projects "
-          icon="eva-book-open-outline"
-          active-icon="eva-book-open"
+          icon="eva-map-outline"
+          active-icon="eva-map-outline"
           :url="RoutePrefixes.COMPANY"
         />
 
@@ -57,8 +57,8 @@
         />
         <sidebar-link
           label="Matches  "
-          icon="eva-book-open-outline"
-          active-icon="eva-book-open"
+          icon="eva-globe-outline"
+          active-icon="eva-globe-outline"
           :url="RoutePrefixes.MATCH"
         />
 
