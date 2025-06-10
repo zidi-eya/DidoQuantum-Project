@@ -4,6 +4,8 @@ import { NotFoundException } from '@/exceptions/http-exceptions';
 import { SignInResponse } from '@/modules/auth/validation/sign-in';
 import { User } from '@/modules/auth/models/user';
 import { plainToInstance } from 'class-transformer';
+import { Subscription } from '../models/subscription';
+
 
 class AuthService {
   async signInWithEmailAndPassword(
@@ -18,11 +20,9 @@ class AuthService {
         remember_me: rememberMe,
       });
 
-      console.log('SignIn response:', response.data);
       return response.data as SignInResponse;
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.error("Error details:", error.response?.data); // Affiche les détails de l'erreur
         switch (error.response?.status) {
           case 401:
             throw new NotFoundException('Email or password is incorrect');
@@ -56,9 +56,16 @@ class AuthService {
     const response = await api.get('auth/profile');
     console.log(response.data);
     const data = response.data;
-    return plainToInstance(User, data, {
+
+    const subscription = plainToInstance(Subscription, data.subscription, {
       excludeExtraneousValues: true,
     });
+
+    const user = plainToInstance(User, data, {
+      excludeExtraneousValues: true,
+    });
+    user.subscription = subscription;
+    return user;
   }
 
   async updateProfile({ fullName }: { fullName?: string })
@@ -71,8 +78,6 @@ class AuthService {
     });
   }
 
-
-
   async  signOut() {
     console.log('[🚪] Sign out initiated');
     try {
@@ -81,9 +86,6 @@ class AuthService {
       console.warn('Logout failed:', e); // maybe the session is already gone
     }
   }
-
-
-
 
   async forgotPassword(email: string): Promise<void> {
     await api.post('auth/reset-password', {
