@@ -77,6 +77,13 @@
             active-icon="eva-person-done"
             :route-name="AdminRouteNames.USERS_OVERVIEW"
           />
+          <sidebar-link
+            class="q-pl-lg q-mx-md"
+            label="Subscriptions"
+            icon="eva-person-done-outline"
+            active-icon="eva-person-done"
+            :route-name="AdminRouteNames.USERS_SUBSCRIPTION"
+          />
         </q-expansion-item>
       </q-list>
       <q-space />

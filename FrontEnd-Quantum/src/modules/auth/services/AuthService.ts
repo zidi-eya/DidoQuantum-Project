@@ -19,7 +19,12 @@ class AuthService {
         password: password,
         remember_me: rememberMe,
       });
-
+            console.log('SignIn response:', response.data);
+   const { access_token } = response.data;
+           if (access_token) {
+    localStorage.setItem('accessToken', access_token);
+    api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+  }
       return response.data as SignInResponse;
     } catch (error) {
       if (error instanceof AxiosError) {

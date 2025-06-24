@@ -1,20 +1,9 @@
 <template>
-    <!--<app-logo class="q-mb-xl" />-->
-    <q-stepper header-nav v-model="step" vertical color="primary" animated>
+  <!--<app-logo class="q-mb-xl" />-->
+  <q-stepper header-nav v-model="step" vertical color="primary" animated>
     <q-step :name="1" title="Sign up" icon="settings" :done="step > 1">
-      <page-headings subtitle="Let's start creating your account as !" />
+      <page-headings subtitle="Let's start creating your account!" />
       <q-form greedy class="q-gutter-md full-width" @submit.prevent="onSubmit">
-
-       <q-btn @click="selectUserType('esprit')" :color="userType === 'esprit' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
-       >ESPRIT</q-btn>
-        <q-btn @click="selectUserType('ai')" :color="userType === 'ai' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
-        >AI researchers</q-btn>
-        <q-btn @click="selectUserType('startup')" :color="userType === 'startup' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
-        >Startups</q-btn>
-        <q-btn @click="selectUserType('dev')" :color="userType === 'dev' ? 'primary' : 'grey-5'"           :rules="AuthRules.passwordRequirements"
-        >Engineers & developers</q-btn>
-
-
         <q-input
           class="full-width"
           standout="bg-primary text-white"
@@ -132,41 +121,35 @@
 </template>
 
 <script setup lang="ts">
-import ErrorBox from '@/components/ErrorBox.vue';
-import { ref, onMounted } from 'vue';
-import { useExceptionHandling } from '@/composables/exception-handling';
-import { useRouter } from 'vue-router';
-import RouteNames from '@/modules/auth/router/RouteNames';
-import PageHeadings from '@/components/PageHeadings.vue';
-import PasswordInput from '@/components/PasswordInput.vue';
+import ErrorBox from "@/components/ErrorBox.vue";
+import { ref, onMounted } from "vue";
+import { useExceptionHandling } from "@/composables/exception-handling";
+import { useRouter } from "vue-router";
+import RouteNames from "@/modules/auth/router/RouteNames";
+import PageHeadings from "@/components/PageHeadings.vue";
+import PasswordInput from "@/components/PasswordInput.vue";
 //import AppLogo from '@/components/AppLogo.vue';
-import authService from '@/modules/auth/services/AuthService';
-import { AuthRules, GeneralRules } from '@/utils/validation/rules';
-import { useAuthStore } from '@/modules/auth/stores/auth-store';
+import authService from "@/modules/auth/services/AuthService";
+import { AuthRules, GeneralRules } from "@/utils/validation/rules";
+import { useAuthStore } from "@/modules/auth/stores/auth-store";
 //import stripeService from '@/modules/stripe/services/StripeService';
 //import { Price } from '@/modules/stripe/models/price';
-import { QBtn, QInput,QForm,QStepper, QStep, QIcon , QSelect} from 'quasar'
-import RoutePrefixes from '@/router/RoutePrefixes';
+import { QBtn, QInput, QForm, QStepper, QStep, QIcon, QSelect } from "quasar";
+import RoutePrefixes from "@/router/RoutePrefixes";
 
 const { safeExecute, errors } = useExceptionHandling();
 const router = useRouter();
 const step = ref(1);
 const loading = ref(false);
 const authStore = useAuthStore();
-const email = ref('');
-const fullName = ref('');
-const password = ref('');
-const repeatPassword = ref('');
+const email = ref("");
+const fullName = ref("");
+const password = ref("");
+const repeatPassword = ref("");
 const selectedPrice = ref();
 //const priceOptions = ref<Price[]>([]);
-  const selectedRole = ref<string | null>(null); // Define the type and initialize to null or a default value
-
 const userBrief = ref();
-const userType = ref<string>('');
-function selectUserType(type: string) {
-  userType.value = type;
-  localStorage.setItem('userType', type);
-}
+
 /*onMounted(() => {
   safeExecute(async () => {
     priceOptions.value = await stripeService.getAllPrices();
@@ -174,43 +157,35 @@ function selectUserType(type: string) {
 });
 */
 async function onSubmit() {
-  step.value = 2;
-  if (!userType.value) {
-  alert('Veuillez sélectionner un type d’utilisateur.');
-  return;
-}
+  //step.value = 2;
+
   safeExecute(async () => {
     loading.value = true;
     const response = await authService.signUpWithEmailAndPassword(
       fullName.value,
       email.value,
       password.value,
-      userType.value
+      role.value
     );
-    console.log('first response:', response , selectedRole.value);
+    console.log("first response:", response);
 
     await authStore.reloadUser();
     userBrief.value = response.data;
-    console.log('second userBrief:', userBrief.value);
-    //await authService.assignRoleToUser(response.data.id, selectedRole.value);
+    console.log("second userBrief:", userBrief.value);
 
     loading.value = false;
-    localStorage.setItem('userType', userType.value || '');
 
-    if (userType.value === 'esprit') {
-  await router.push(RoutePrefixes.ESPRIT);
-} else if (userType.value === 'ai') {
-  await router.push('/ai-home');
-} else if (userType.value === 'startup') {
-  await router.push('/startup');
-} else if (userType.value === 'dev') {
-  await router.push('/dev-home');
-}
-
-
+    // Optional: redirect user somewhere after successful signup
+    console.log("third: je vais returner vers INDEX");
+    try {
+      await router.push("/index");
+      console.log("redirected successfully");
+    } catch (err) {
+      console.error("router.push failed:", err);
+    }
   });
 }
-
+const role = ref("user");
 async function submitUserInformation() {
   if (!selectedPrice.value) return;
 
@@ -220,13 +195,10 @@ async function submitUserInformation() {
       fullName.value,
       email.value,
       password.value,
-      userType.value
-
+      role.value
     );
     await authStore.reloadUser();
     userBrief.value = response.data;
-    localStorage.setItem('userType', userType.value || '');
-
     step.value = 3;
     loading.value = false;
   });
