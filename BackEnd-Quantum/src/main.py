@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -11,7 +11,7 @@ from src.modules.researcher_profiles.router import router as researcher_profile
 from src.modules.matching.router import router as matching
 from src.modules.admin.router import router as admin_router
 from src.modules.stripe.router import router as stripe_router
-
+from src.modules.pilote.router import router as pilote_router
 
 
 
@@ -61,6 +61,6 @@ app.include_router(researcher_profile, prefix="/researcher_profile", tags=["rese
 app.include_router(matching, prefix="/matching", tags=["matching"])
 app.include_router(Files_router, prefix="/Files", tags=["Files"])
 app.include_router(admin_router, prefix="/admin", tags=["Admin"])
-
-app.include_router(    stripe_router, prefix="/stripe", tags=["Stripe"])
+app.include_router(pilote_router, prefix="/Pilote", tags=["Pilote"])
+app.include_router(stripe_router, prefix="/stripe", tags=["Stripe"])
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")

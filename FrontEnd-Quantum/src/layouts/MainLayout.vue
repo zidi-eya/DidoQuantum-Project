@@ -85,6 +85,14 @@
             :route-name="AdminRouteNames.USERS_SUBSCRIPTION"
           />
         </q-expansion-item>
+
+       <sidebar-link
+          label="Pilote"
+          icon="eva-book-open-outline"
+          active-icon="eva-book-open"
+          :url="RoutePrefixes.PILOTE"
+        />
+
       </q-list>
       <q-space />
 
