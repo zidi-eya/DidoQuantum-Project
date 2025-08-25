@@ -11,6 +11,7 @@ enum RoutePrefixes {
   MATCH='/matching',
   RESEARCHE='/research_profile',
   COMPANY='company_projects',
+  PILOTE='pilote',
 }
 
 export default RoutePrefixes;

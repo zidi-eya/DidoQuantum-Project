@@ -18,8 +18,8 @@ class AppConfig(BaseSettings):
     CLIENT_URL: str
     #AUDIO_FILE_SIZE: int
     #TEXT_FILE_SIZE: int
-    #STRIPE_API_KEY: str
-    #STRIPE_ENPOINT_SECRET: str
+    STRIPE_API_KEY: str
+    STRIPE_ENPOINT_SECRET: str
     #TRIAL_PERIOD_DAYS: int
     COOKIES_CONFIG_SAMESITE: str
 

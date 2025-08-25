@@ -7,6 +7,11 @@ const routes: RouteRecordRaw[] = [
     name: RouteNames.USERS_OVERVIEW,
     component: () => import('@/modules/admin/pages/UsersOverview.vue'),
   },
+   {
+    path: 'subscription',
+    name: RouteNames.USERS_SUBSCRIPTION,
+    component: () => import('@/modules/admin/pages/SubscriptionOverview.vue'),
+  },
 ];
 
 export default routes;

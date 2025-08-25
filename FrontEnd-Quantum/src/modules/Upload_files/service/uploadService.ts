@@ -9,6 +9,8 @@ export const uploadFile = async (file: File): Promise<any> => {
   const response = await api.post('/add-file', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+
     },
     // no need for withCredentials again if it's already in boot config
   });

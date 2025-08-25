@@ -55,10 +55,13 @@ const routes: RouteRecordRaw[] = [
       path: '/startup',
       component: () => import('@/modules/pages/startup.vue'),
     },
+    {
+      path: '/pilote',
+      component: () => import('@/modules/pilote/pages/pilote.vue'),
+    },
     ],
     meta: { requiresAuth: true },
   },
-
 
   {
     path: RoutePrefixes.AUTH,

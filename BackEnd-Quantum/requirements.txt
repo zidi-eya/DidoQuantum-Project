@@ -42,3 +42,11 @@ websockets
 psutil
 sentence-transformers
 torch
+stripe
+matplotlib
+pandas
+reportlab
+python-multipart 
+numpy
+qrcode
+pillow

@@ -58,8 +58,8 @@ class CustomSchema(BaseModel):
  #   text: str
 
 
-#class UrlResponse(CustomSchema):
- #   url: str
+class UrlResponse(CustomSchema):
+    url: str
 
 
 class FormDataRequest(CustomSchema):

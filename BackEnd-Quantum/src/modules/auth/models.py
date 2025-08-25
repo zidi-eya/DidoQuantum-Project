@@ -16,7 +16,7 @@ from sqlalchemy.orm import (
     mapped_column,
 )
 from src.modules.auth.constants import UserRole
-#from src.modules.subscription.models import Subscription
+from src.modules.subscription.models import Subscription
 
 user_role_association_table = Table(
     "user_role",
@@ -43,6 +43,8 @@ class User(Base):
     roles: Mapped[List[Role]] = relationship(
         secondary=user_role_association_table, lazy="joined"
     )
+    subscription: Mapped[Subscription] = relationship(lazy="joined", uselist=False)
+
 
     @staticmethod
     def generate_random_password() -> str:

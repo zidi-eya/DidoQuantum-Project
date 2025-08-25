@@ -1,5 +1,6 @@
 import { Expose, Transform } from 'class-transformer';
 import { Role } from '@/modules/auth/utils/constants';
+import { Subscription} from 'src/modules/auth/models/subscription';
 
 export class User {
   @Expose()
@@ -18,17 +19,25 @@ export class User {
   @Transform(({ value }) => value.map((role: string) => role as Role))
   roles: Role[];
 
+  @Expose({ name: 'subscription_status' })
+  subscription: Subscription
+
+
   constructor(
     id: number,
     fullName: string,
     email: string,
     isActive: boolean,
-    roles: Role[]
+    roles: Role[],
+    subscription: Subscription,
+
   ) {
     this.id = id;
     this.fullName = fullName;
     this.email = email;
     this.isActive = isActive;
     this.roles = roles;
+    this.subscription = subscription;
+
   }
 }
