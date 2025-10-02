@@ -46,7 +46,6 @@ async def list_generated_reports():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
 @router.get("/download/{name}")
 async def download_item(name: str):
     path = os.path.join(REPORTS_DIR, name)
@@ -62,3 +61,23 @@ async def download_item(name: str):
         # cas dossier → zip
         zip_path = shutil.make_archive(path, 'zip', path)  # crée dossier.zip
         return FileResponse(zip_path, filename=f"{name}.zip")
+    
+    
+    @router.delete("/{name}")
+    async def delete_report(name: str):
+        path = os.path.join(REPORTS_DIR, name)
+
+        if not os.path.exists(path):
+            raise HTTPException(status_code=404, detail="Report not found")
+
+        try:
+            if os.path.isfile(path):
+                os.remove(path)
+            elif os.path.isdir(path):
+                shutil.rmtree(path)
+            else:
+                raise HTTPException(status_code=400, detail="Invalid report type")
+
+            return {"message": f"Report '{name}' deleted successfully"}
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Error deleting report: {str(e)}")

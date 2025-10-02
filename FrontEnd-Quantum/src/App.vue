@@ -21,7 +21,6 @@ const authStore = useAuthStore();
 function connectWebSocket() {
   console.log("[🌐] Connecting WebSocket");
 
-  //websocket = new WebSocket(`${import.meta.env.API_WEBSOCKET_URL}/ws`);
   websocket = new WebSocket(`${import.meta.env.VITE_API_WEBSOCKET_URL}/ws`);
 
   console.log("WebSocket URL:", import.meta.env.VITE_API_WEBSOCKET_URL);
