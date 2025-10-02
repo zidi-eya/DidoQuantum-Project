@@ -263,7 +263,6 @@ import { DocURLS } from "@/utils/constants/doc-urls";
 import {
   useQuasar,
   date as qdate,
-  QIcon,
   QCard,
   QInput,
   QInnerLoading,
@@ -315,7 +314,6 @@ const isModalVisible = ref(false);
 const isLoading = ref(false);
 const isGenerating = ref(false);
 const fileUpload = ref();
-const modalContent = ref<string>("Loading...");
 
 const filters = ref(["Private", "Draft", "Public", "Published"]);
 
@@ -333,7 +331,6 @@ const clearForm = () => {
   project.value = {
     title: "",
     description: "",
-    required_tech: [],
     goal: "",
   };
 };
