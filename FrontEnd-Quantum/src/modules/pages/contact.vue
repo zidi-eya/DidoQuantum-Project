@@ -163,9 +163,8 @@
 <script setup lang="ts">
 import { AuthRules, GeneralRules } from "@/utils/validation/rules";
 import AppLogo from "@/components/AppLogo.vue";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { QBtn, QInput, QForm, QIcon } from "quasar";
-import { useExceptionHandling } from "@/composables/exception-handling";
 import RouteNames from "@/modules/auth/router/RouteNames";
 import { useRouter } from "vue-router";
 
@@ -173,8 +172,6 @@ const router = useRouter();
 const email = ref("");
 const description = ref("");
 const fullName = ref("");
-const { safeExecute, errors } = useExceptionHandling();
-const fileUpload = ref();
 </script>
 <style lang="scss">
 .navbar {
